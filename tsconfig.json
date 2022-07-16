@@ -18,10 +18,11 @@
     "noUnusedLocals": true,
     "baseUrl": ".",
     "noUnusedParameters": true,
+    "allowSyntheticDefaultImports": true,
     "paths": {
       "src/*": ["src/*"],
     },
   },
-  "include": ["src"],
+  "include": ["src", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "dist", "example", "rollup.config.js"]
 }

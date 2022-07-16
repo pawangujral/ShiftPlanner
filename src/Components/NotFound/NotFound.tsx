@@ -1,21 +1,21 @@
-import * as React from "react";
+import * as React from 'react'
 
-import NotFoundImage from "./../../Assets/not-found.svg";
-import { ImageBlock, Title, ImageContainer } from "./NotFound.style";
+// import NotFoundImage from './../../Assets/not-found.svg'
+import { ImageBlock, Title } from './NotFound.style'
 
-const defaultMessage = "Mayday Mayday! .... No data found.";
+const defaultMessage = 'Mayday Mayday! .... No data found.'
 
 interface IProps {
-  message?: string;
+  message?: string
 }
 
 const NotFound = ({ message = defaultMessage }: IProps): JSX.Element => (
   <ImageBlock>
-    <picture>
+    {/* <picture>
       <ImageContainer src={NotFoundImage} alt="data not found" />
-    </picture>
+    </picture> */}
     <Title>{message}</Title>
   </ImageBlock>
-);
+)
 
-export default NotFound;
+export default NotFound

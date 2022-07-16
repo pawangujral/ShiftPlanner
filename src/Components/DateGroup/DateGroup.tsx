@@ -1,20 +1,18 @@
-import * as React from "react";
-import moment from "moment";
-import { Current, Location } from "./DateGroup.style";
-import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
-import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
-import IconButton from "@mui/material/IconButton";
-import Stack from "@mui/material/Stack";
-import { IMetaData } from "./../../Utils";
+import * as React from 'react'
+import moment from 'moment'
+import { Current, Location } from './DateGroup.style'
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight'
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft'
+import IconButton from '@mui/material/IconButton'
+import Stack from '@mui/material/Stack'
+import { IMetaData } from './../../Utils'
 
 export interface IProps {
-  metadata: IMetaData;
-  disabled: boolean;
+  metadata: IMetaData
+  disabled: boolean
 }
 
 const DateGroup = ({ metadata, disabled }: IProps): JSX.Element => {
-  const [current, setCurrent] = React.useState<{}>(metadata.scheduled_date);
-
   return (
     <Stack
       direction="row"
@@ -33,7 +31,7 @@ const DateGroup = ({ metadata, disabled }: IProps): JSX.Element => {
         </IconButton>
       )}
       <Current>
-        {moment(current).format("MMM Do YYYY")}
+        {moment(metadata.scheduled_date).format('MMM Do YYYY')}
         <Location>{metadata.location}</Location>
       </Current>
       {metadata.onNextDateClick && (
@@ -47,7 +45,7 @@ const DateGroup = ({ metadata, disabled }: IProps): JSX.Element => {
         </IconButton>
       )}
     </Stack>
-  );
-};
+  )
+}
 
-export default React.memo(DateGroup);
+export default React.memo(DateGroup)

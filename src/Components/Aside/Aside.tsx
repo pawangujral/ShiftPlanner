@@ -1,12 +1,11 @@
-import * as React from "react";
-import type { ISchedule } from "./../../Utils";
-import { AsideContainer } from "./Aside.style";
-import JobInfo from "./JobInfo";
-import Skeleton from "@mui/material/Skeleton";
+import * as React from 'react'
+import type { ISchedule } from './../../Utils'
+import { AsideContainer } from './Aside.style'
+import JobInfo from './JobInfo'
 
 interface IProps {
-  collection: ISchedule[];
-  size: number;
+  collection: ISchedule[]
+  size: number
 }
 
 const Aside = ({ collection, size }: IProps) => (
@@ -15,6 +14,6 @@ const Aside = ({ collection, size }: IProps) => (
       <JobInfo collection={item} key={item.id} size={size} />
     ))}
   </AsideContainer>
-);
+)
 
-export default Aside;
+export default Aside
