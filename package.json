@@ -6,7 +6,7 @@
   "email": "gujral87@gmail.com",
   "url": "http://pawangujral.dev",
   "license": "Apache-2.0",
-  "repository": "ovieokeh/npm-react-typescript-template",
+  "repository": "pawangujral/ShiftPlanner",
   "main": "dist/index.js",
   "engines": {
     "node": ">=8",
