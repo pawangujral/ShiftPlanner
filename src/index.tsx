@@ -1,10 +1,31 @@
 import * as React from 'react'
-import './styles.scss'
+import CssBaseline from '@mui/material/CssBaseline'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import Timeline from './Modules/Timeline'
+import { ITimeline } from './Utils'
+interface IProps {
+  collection: ITimeline
+}
 
-const Package: React.FC = () => (
-  <div className="package">
-    <h2>Do cool stuff</h2>
-  </div>
-)
+const Scheduler = ({ collection }: IProps): JSX.Element => {
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
 
-export default Package
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          // mode: prefersDarkMode ? "dark" : "light", // TODO
+        },
+      }),
+    []
+  )
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Timeline collection={collection} />
+    </ThemeProvider>
+  )
+}
+
+export default Scheduler
