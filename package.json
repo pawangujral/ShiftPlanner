@@ -1,7 +1,7 @@
 {
-  "name": "ShiftPlanner",
+  "name": "shiftplanner",
   "version": "1.0.1",
-  "description": "A shift planner package",
+  "description": "A Shift planner package",
   "author": "Pawan Gujral",
   "email": "gujral87@gmail.com",
   "url": "http://pawangujral.dev",
