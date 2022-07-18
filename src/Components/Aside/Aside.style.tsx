@@ -1,7 +1,7 @@
 import { styled } from "@mui/system";
 import { grey } from "@mui/material/colors";
 
-export const AsideContainer = styled("aside")({
+export const Container = styled("aside")({
   margin: "15px 0 0 0",
 });
 

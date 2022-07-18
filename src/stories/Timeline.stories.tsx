@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import Timeline from './../index'
 
-import { data } from './../Mocks/schedule'
+import { mockServer } from './../Mocks/MockData'
 
 export default {
   title: 'Scheduler',
@@ -13,5 +13,5 @@ const Template = (args) => <Timeline {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  collection: data,
+  data: mockServer(),
 }

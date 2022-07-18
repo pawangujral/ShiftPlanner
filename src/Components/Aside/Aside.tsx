@@ -1,19 +1,19 @@
 import * as React from "react";
-import type { ISchedule } from "./../../Utils";
-import { AsideContainer } from "./Aside.style";
+import type { IShift } from "./../../Utils";
+import { Container } from "./Aside.style";
 import JobInfo from "./JobInfo";
 
 interface IProps {
-  collection: ISchedule[];
+  data: IShift[];
   size: number;
 }
 
-const Aside = ({ collection, size }: IProps) => (
-  <AsideContainer>
-    {collection.map((item) => (
-      <JobInfo collection={item} key={item.id} size={size} />
+const Aside = ({ data, size }: IProps) => (
+  <Container>
+    {data.map((item) => (
+      <JobInfo data={item} key={item.id} size={size} />
     ))}
-  </AsideContainer>
+  </Container>
 );
 
 export default Aside;

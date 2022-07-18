@@ -1,6 +1,6 @@
 import * as React from "react";
-
-import Users from "./../../Components/Users";
+import _ from "lodash";
+import Users from "../../Components/Users";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
@@ -8,26 +8,31 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import AlarmOnIcon from "@mui/icons-material/AlarmOn";
 import Stack from "@mui/material/Stack";
 
-import { CALCULATE_TIMELINE_BOX_WIDTH, FORMAT_DURATION } from "./../../Utils";
-import { AssignmentContainer, Title, Info } from "./Assignment.style";
-import type { IAssignment } from "./../../Utils";
+import {
+  CALCULATE_TIMELINE_BOX_WIDTH,
+  FORMAT_DURATION,
+  CALCULATE_DURATION,
+} from "../../Utils";
+import { Container, Title, Info } from "./Task.style";
+import type { ITask } from "../../Utils";
 
 export interface IProps {
-  collection: IAssignment;
+  data: ITask;
   unit: number;
-  className: string;
+  isHover: boolean;
   handleMouseEnter: () => void;
   handleMouseLeave: () => void;
 }
 
-const Assignment = ({
-  collection,
+const Task = ({
+  data,
   unit,
-  className,
+  isHover,
   handleMouseEnter,
   handleMouseLeave,
 }: IProps): JSX.Element => {
-  const { id, name, duration, color, assignee = [], actions } = collection;
+  const { id, name, color, assignee = [], actions, startTime, endTime } = data;
+  const duration = CALCULATE_DURATION(startTime, endTime);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const openMenu = Boolean(anchorEl);
@@ -40,14 +45,14 @@ const Assignment = ({
   };
 
   return (
-    <>
-      <AssignmentContainer
+    <React.Fragment>
+      <Container
         key={id}
         width={CALCULATE_TIMELINE_BOX_WIDTH(duration, unit)}
         padding={CALCULATE_TIMELINE_BOX_WIDTH(duration, unit)}
         data-type={id}
         color={color}
-        data-class={className}
+        data-hover={isHover}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -70,7 +75,7 @@ const Assignment = ({
             justifyContent="space-between"
             alignItems="center"
           >
-            {!!assignee.length && <Users collection={assignee} />}
+            {!_.isEmpty(assignee) && <Users data={assignee} />}
 
             <IconButton
               aria-label="Open actions"
@@ -85,7 +90,7 @@ const Assignment = ({
             </IconButton>
           </Stack>
         </Stack>
-      </AssignmentContainer>
+      </Container>
 
       <Menu
         id={id}
@@ -110,8 +115,8 @@ const Assignment = ({
           );
         })}
       </Menu>
-    </>
+    </React.Fragment>
   );
 };
 
-export default React.memo(Assignment);
+export default React.memo(Task);

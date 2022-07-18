@@ -1,6 +1,6 @@
 import { styled } from "@mui/system";
 
-export const ScheduleContainer = styled("div", {
+export const Container = styled("div", {
   shouldForwardProp: (prop) => prop !== "width",
 })<{ width: number; count: number; unit: number }>(
   ({ width, count, unit }) => ({
@@ -8,7 +8,7 @@ export const ScheduleContainer = styled("div", {
   })
 );
 
-export const TimelineBlock = styled("div", {
+export const Block = styled("div", {
   shouldForwardProp: (prop) => prop !== "gridSize",
 })<{
   gridSize: { width: number; height: number };

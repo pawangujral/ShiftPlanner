@@ -46,9 +46,8 @@ export interface IAssignee extends IBase {
   description?: string,
 }
 
-export interface IAssignment extends IBase{
-  name: string, 
-  duration: number,
+export interface ITask extends IBase{
+  name: string,  
   startTime: string,
   endTime: string,
   assignee?: IAssignee[],
@@ -60,24 +59,22 @@ export interface IAssignment extends IBase{
   actions? : IActions[]
 }
 
-export interface IEvent extends IBase {
-  duration:number,
+export interface IGroup extends IBase {
   startTime:string,
   endTime:string,
   name:string,
   createdAt:string,
   updatedAt:string,
-  assignments:IAssignment[],
+  tasks: ITask[],
 }
 
-export interface ISchedule extends IBase {
+export interface IShift extends IBase {
   name: string,
   startTime: string,
   endTime: string,
-  duration:number,
   createdAt: string,
   updatedAt:string,
-  events: IEvent[],
+  groups: IGroup[],
   assignee?: IAssignee[],
   actions? : IActions[]
 }
@@ -94,8 +91,8 @@ export interface IMetaData {
 }
 
 
-export interface ITimeline extends IBase {  
+export interface IPlanner extends IBase {  
   metaData: IMetaData,
-  schedules: ISchedule[],
+  shifts: IShift[], 
 
 }

@@ -1,6 +1,6 @@
 import * as React from "react";
-import * as _ from "lodash";
-import type { ISchedule } from "./../../../Utils";
+import _ from "lodash";
+import type { IShift } from "./../../../Utils";
 import { AsideBlock, AsideItem, Name } from "./../Aside.style";
 import Users from "./../../../Components/Users";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -9,12 +9,12 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
 interface IProps {
-  collection: ISchedule;
+  data: IShift;
   size: number;
 }
 
-const JobInfo = ({ collection, size }: IProps) => {
-  const { id, name, assignee, actions } = collection;
+const JobInfo = ({ data, size }: IProps) => {
+  const { id, name, assignee, actions } = data;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const openMenu = Boolean(anchorEl);
@@ -32,7 +32,7 @@ const JobInfo = ({ collection, size }: IProps) => {
         <AsideItem>
           <Name>{name}</Name>
           {assignee && !_.isEmpty(assignee) && (
-            <Users collection={assignee} size={18} />
+            <Users data={assignee} size={18} />
           )}
         </AsideItem>
 

@@ -1,9 +1,9 @@
 import { styled } from "@mui/system";
 import Paper from "@mui/material/Paper";
-import { Color } from "./../../Utils";
+import { Color } from "../../Utils";
 import { grey } from "@mui/material/colors";
 
-export const AssignmentContainer = styled(Paper, {
+export const Container = styled(Paper, {
   shouldForwardProp: (prop) => prop !== "width" && prop !== "padding",
 })<{
   width: number;
@@ -12,24 +12,19 @@ export const AssignmentContainer = styled(Paper, {
 }>(({ width, padding }) => ({
   width: width,
   overflow: "hidden",
-  transition: "all .5s linear",
-  transitionDelay: ".5s",
+  transition: "all .2s linear",
   padding: `${padding < 20 ? ".5em 0px" : ".5em"}`,
   position: "relative",
   display: "inline-block",
-
-  ":hover": {
-    padding: ".5em",
-  },
 }));
 
-export const AssignmentBlock = styled("div")({
+export const Block = styled("div")({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
 });
 
-export const InfoBox = styled("article")({});
+export const InfoBox = styled("div")({});
 
 export const Title = styled("h6")<{ theme?: { status: { danger: string } } }>(
   ({ theme }) => ({

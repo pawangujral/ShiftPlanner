@@ -2,14 +2,14 @@ import * as React from 'react'
 import _ from 'lodash'
 import CssBaseline from '@mui/material/CssBaseline'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import Timeline from './Modules/Timeline'
+import Planner from './Modules/Planner'
 import Mayday from './Components/Mayday'
-import { ITimeline } from './Utils'
+import { IPlanner } from './Utils'
 interface IProps {
-  collection: ITimeline | null | undefined
+  data: IPlanner | null | undefined
 }
 
-const Scheduler = ({ collection }: IProps): JSX.Element => {
+const Scheduler = ({ data }: IProps): JSX.Element => {
   const theme = React.useMemo(
     () =>
       createTheme({
@@ -20,14 +20,14 @@ const Scheduler = ({ collection }: IProps): JSX.Element => {
     []
   )
 
-  if (!collection || _.isEmpty(collection)) {
+  if (!data || _.isEmpty(data)) {
     return <Mayday />
   }
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Timeline collection={collection} />
+      <Planner data={data} />
     </ThemeProvider>
   )
 }

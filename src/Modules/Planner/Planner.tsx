@@ -1,18 +1,18 @@
 import * as React from "react";
 
-import { MainContainer, SchedulerSection } from "./Timeline.style";
-import * as _ from "lodash";
+import { Container, Main } from "./Planner.style";
+import _ from "lodash";
 import moment from "moment";
-import { CALCULATE_BLOCK_POSITION } from "./../../Utils";
-import type { IDefaultState, ITimeline } from "./../../Utils";
-import Aside from "./../../Components/Aside";
-import Actions from "./../../Components/Actions";
-import Indicator from "./../../Components/Indicator";
-import Schedule from "./../../Modules/Schedule";
+import { CALCULATE_BLOCK_POSITION } from "../../Utils";
+import type { IDefaultState, IPlanner } from "../../Utils";
+import Aside from "../../Components/Aside";
+import Actions from "../../Components/Actions";
+import Indicator from "../../Components/Indicator";
+import Shift from "../Shift";
 import Mayday from "../../Components/Mayday";
 
 interface IProps {
-  collection: ITimeline;
+  data: IPlanner;
 }
 
 const DEFAULT_STATE: IDefaultState = {
@@ -33,7 +33,7 @@ const DEFAULT_STATE: IDefaultState = {
   },
 };
 
-const Timeline = ({ collection }: IProps): JSX.Element => {
+const Planner = ({ data }: IProps): JSX.Element => {
   const [toggleAside, setToggleAside] = React.useState<boolean>(true);
   const [unit, setUnit] = React.useState<number>(DEFAULT_STATE.default);
 
@@ -66,12 +66,12 @@ const Timeline = ({ collection }: IProps): JSX.Element => {
     setToggleAside(!toggleAside);
   };
 
-  if (!collection.schedules || _.isEmpty(collection.schedules)) {
+  if (!data.shifts || _.isEmpty(data.shifts)) {
     return (
       <>
         <Actions
           unit={unit}
-          collection={collection}
+          data={data}
           disabled={true}
           zoom={DEFAULT_STATE.zoom}
           handleToggleZoom={handleToggleZoom}
@@ -86,32 +86,30 @@ const Timeline = ({ collection }: IProps): JSX.Element => {
     <>
       <Actions
         unit={unit}
-        collection={collection}
+        data={data}
         disabled={false}
         zoom={DEFAULT_STATE.zoom}
         handleToggleZoom={handleToggleZoom}
         handleToggle={handleToggle}
       />
 
-      <SchedulerSection toggle={toggleAside.toString()}>
+      <Container toggle={toggleAside}>
         {toggleAside && (
-          <Aside
-            collection={collection.schedules}
-            size={DEFAULT_STATE.gridRowSize.max}
-          />
+          <Aside data={data.shifts} size={DEFAULT_STATE.gridRowSize.max} />
         )}
-        <MainContainer ref={elRef}>
+
+        <Main ref={elRef}>
           <Indicator unit={unit} />
 
-          <Schedule
-            collection={collection.schedules}
+          <Shift
+            data={data.shifts}
             unit={unit}
             state={DEFAULT_STATE}
             gridSize={DEFAULT_STATE.gridRowSize.max}
           />
-        </MainContainer>
-      </SchedulerSection>
+        </Main>
+      </Container>
     </>
   );
 };
-export default Timeline;
+export default Planner;

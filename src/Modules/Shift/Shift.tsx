@@ -1,30 +1,25 @@
 import * as React from "react";
-import type { IDefaultState, ISchedule } from "./../../Utils";
-import Event from "./../../Modules/Event";
-import GridContainer from "./../../Components/GridContainer";
-import { TimelineBlock, ScheduleContainer } from "./Schedule.style";
+import type { IDefaultState, IShift } from "../../Utils";
+import Group from "../Group";
+import GridContainer from "../../Components/GridContainer";
+import { Block, Container } from "./Shift.style";
 
 interface IProps {
-  collection: ISchedule[];
+  data: IShift[];
   unit: number;
   state: IDefaultState;
   gridSize: number;
 }
 
-const Schedule = ({
-  collection,
-  unit,
-  state,
-  gridSize,
-}: IProps): JSX.Element => (
-  <ScheduleContainer
+const Schedule = ({ data, unit, state, gridSize }: IProps): JSX.Element => (
+  <Container
     width={state.gridRowSize.width}
     count={state.gridColumnCount}
     unit={unit}
   >
-    {collection.map(({ id, events = [] }: ISchedule) => (
+    {data.map(({ id, groups = [] }: IShift) => (
       <React.Fragment key={id}>
-        <TimelineBlock
+        <Block
           gridSize={{
             width: state.gridRowSize.width,
             height: gridSize,
@@ -38,15 +33,17 @@ const Schedule = ({
                 width: state.gridRowSize.width,
                 height: gridSize,
               }}
-              count={collection.length}
+              count={data.length}
               time={state.time}
             />
-            <Event collection={events} unit={unit} />
+            {groups.map((item, index) => (
+              <Group data={item} unit={unit} key={index} />
+            ))}
           </>
-        </TimelineBlock>
+        </Block>
       </React.Fragment>
     ))}
-  </ScheduleContainer>
+  </Container>
 );
 
 export default Schedule;

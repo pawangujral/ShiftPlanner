@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as _ from "lodash";
+import _ from "lodash";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
@@ -11,13 +11,13 @@ import { IZoom } from "./../../Utils";
 import MenuIcon from "@mui/icons-material/Menu";
 import DataObjectIcon from "@mui/icons-material/DataObject";
 import Dialog from "@mui/material/Dialog";
-import type { ITimeline } from "./../../Utils";
+import type { IPlanner } from "./../../Utils";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import JSONPretty from "react-json-pretty";
 
 interface IProps {
-  collection: ITimeline;
+  data: IPlanner;
   zoom: IZoom;
   unit: number;
   disabled: boolean;
@@ -35,7 +35,7 @@ const JSONViewerTheme = {
 };
 
 const Actions = ({
-  collection,
+  data,
   disabled,
   zoom,
   unit,
@@ -43,9 +43,9 @@ const Actions = ({
   handleToggleZoom,
 }: IProps): JSX.Element => {
   const [isOpen, setOpen] = React.useState<boolean>(false);
-  const previewData = collection.metaData?.rawData
-    ? JSON.parse(collection.metaData.rawData)
-    : collection;
+  const previewData = data.metaData?.rawData
+    ? JSON.parse(data.metaData.rawData)
+    : data;
 
   return (
     <>
@@ -65,7 +65,7 @@ const Actions = ({
           </Tooltip>
         </Grid>
         <Grid item xs={4}>
-          <DateGroup metaData={collection.metaData} disabled={disabled} />
+          <DateGroup metaData={data.metaData} disabled={disabled} />
         </Grid>
         <Grid item xs={4}>
           <Stack
