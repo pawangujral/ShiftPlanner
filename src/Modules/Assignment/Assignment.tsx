@@ -27,7 +27,7 @@ const Assignment = ({
   handleMouseEnter,
   handleMouseLeave,
 }: IProps): JSX.Element => {
-  const { id, title, duration, color, assignee = [], actions } = collection;
+  const { id, name, duration, color, assignee = [], actions } = collection;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const openMenu = Boolean(anchorEl);
@@ -58,7 +58,7 @@ const Assignment = ({
           alignItems="center"
         >
           <div>
-            <Title>{title}</Title>
+            <Title>{name}</Title>
             <Info>
               <AlarmOnIcon sx={{ fontSize: "inherit" }} />
               {FORMAT_DURATION(duration)}

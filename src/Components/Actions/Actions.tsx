@@ -43,6 +43,9 @@ const Actions = ({
   handleToggleZoom,
 }: IProps): JSX.Element => {
   const [isOpen, setOpen] = React.useState<boolean>(false);
+  const previewData = collection.metaData?.rawData
+    ? JSON.parse(collection.metaData.rawData)
+    : collection;
 
   return (
     <>
@@ -62,7 +65,7 @@ const Actions = ({
           </Tooltip>
         </Grid>
         <Grid item xs={4}>
-          <DateGroup metadata={collection.metadata} disabled={disabled} />
+          <DateGroup metaData={collection.metaData} disabled={disabled} />
         </Grid>
         <Grid item xs={4}>
           <Stack
@@ -113,11 +116,8 @@ const Actions = ({
 
       <Dialog open={isOpen} onClose={() => setOpen(false)} maxWidth="lg">
         <DialogTitle>Raw Data</DialogTitle>
-        <DialogContent>
-          <JSONPretty
-            data={collection.metadata.rawData ?? collection}
-            theme={JSONViewerTheme}
-          ></JSONPretty>
+        <DialogContent dividers>
+          <JSONPretty data={previewData} theme={JSONViewerTheme}></JSONPretty>
         </DialogContent>
       </Dialog>
     </>

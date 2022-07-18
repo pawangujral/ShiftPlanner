@@ -12,7 +12,7 @@ export interface IProps {
 }
 
 const AssignmentInfo = ({ collection }: IProps): JSX.Element => {
-  const { start_time, end_time, duration } = collection;
+  const { startTime, endTime, duration } = collection;
   return (
     <InfoContainer>
       <Stack direction="row" spacing={4}>
@@ -30,7 +30,7 @@ const AssignmentInfo = ({ collection }: IProps): JSX.Element => {
         <InfoBlock>
           <Title>Start time</Title>
           <Chip
-            label={FORMAT_HOUR(start_time)}
+            label={FORMAT_HOUR(startTime)}
             color="success"
             variant="outlined"
             size="small"
@@ -40,7 +40,7 @@ const AssignmentInfo = ({ collection }: IProps): JSX.Element => {
         <InfoBlock>
           <Title>End time</Title>
           <Chip
-            label={FORMAT_HOUR(end_time)}
+            label={FORMAT_HOUR(endTime)}
             color="error"
             variant="outlined"
             size="small"

@@ -36,14 +36,15 @@ export const Footer = styled("footer")({
   },
 });
 
-export const Title = styled("h5")({
+export const Name = styled("h5")({
   fontSize: 12,
-  fontWeight: 500,
+  fontWeight: 400,
   margin: 0,
   color: grey[800],
   overflow: "hidden",
   whiteSpace: "nowrap",
   textOverflow: "ellipsis",
+  textTransform: "capitalize",
   small: {
     display: "block",
     color: grey[700],

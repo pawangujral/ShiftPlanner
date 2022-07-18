@@ -1,24 +1,24 @@
-import * as React from 'react'
-import { IndicatorBlock, Title } from './Indicator.style'
-import { CALCULATE_BLOCK_POSITION } from './../../Utils'
-import moment from 'moment'
+import * as React from "react";
+import { IndicatorBlock, Title } from "./Indicator.style";
+import { CALCULATE_BLOCK_POSITION } from "./../../Utils";
+import moment from "moment";
 
 interface IProps {
-  unit: number
+  unit: number;
 }
 
-const INTERVAL_TIME = 60 //* in sec
+const INTERVAL_TIME = 60; //* in sec
 
 const Indicator = ({ unit }: IProps): JSX.Element => {
-  const [currentTime, setCurrentTime] = React.useState<string>()
+  const [currentTime, setCurrentTime] = React.useState<string>();
 
   React.useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentTime(moment().format('HH:mm:ss'))
-    }, INTERVAL_TIME)
+      setCurrentTime(moment().format("HH:mm:ss"));
+    }, INTERVAL_TIME);
 
-    return () => clearInterval(interval)
-  }, [])
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <IndicatorBlock
@@ -26,7 +26,7 @@ const Indicator = ({ unit }: IProps): JSX.Element => {
     >
       <Title>{currentTime}</Title>
     </IndicatorBlock>
-  )
-}
+  );
+};
 
-export default Indicator
+export default Indicator;

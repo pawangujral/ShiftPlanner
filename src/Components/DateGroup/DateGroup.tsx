@@ -1,18 +1,19 @@
-import * as React from 'react'
-import moment from 'moment'
-import { Current, Location } from './DateGroup.style'
-import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight'
-import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft'
-import IconButton from '@mui/material/IconButton'
-import Stack from '@mui/material/Stack'
-import { IMetaData } from './../../Utils'
+import * as React from "react";
+import moment from "moment";
+import { Current, Location } from "./DateGroup.style";
+import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
+import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
+import IconButton from "@mui/material/IconButton";
+import FmdGoodIcon from "@mui/icons-material/FmdGood";
+import Stack from "@mui/material/Stack";
+import { IMetaData } from "./../../Utils";
 
 export interface IProps {
-  metadata: IMetaData
-  disabled: boolean
+  metaData: IMetaData;
+  disabled: boolean;
 }
 
-const DateGroup = ({ metadata, disabled }: IProps): JSX.Element => {
+const DateGroup = ({ metaData, disabled }: IProps): JSX.Element => {
   return (
     <Stack
       direction="row"
@@ -20,32 +21,36 @@ const DateGroup = ({ metadata, disabled }: IProps): JSX.Element => {
       justifyContent="center"
       alignItems="center"
     >
-      {metadata.onPrevDateClick && (
+      {metaData?.onPrevDateClick && (
         <IconButton
           size="small"
           color="info"
-          onClick={metadata.onPrevDateClick}
+          onClick={metaData.onPrevDateClick}
           disabled={disabled}
         >
           <ArrowCircleLeftIcon />
         </IconButton>
       )}
       <Current>
-        {moment(metadata.scheduled_date).format('MMM Do YYYY')}
-        <Location>{metadata.location}</Location>
+        {moment(metaData?.scheduledDate).format("MMM Do YYYY")}
+        {metaData?.location && (
+          <Location>
+            <FmdGoodIcon sx={{ fontSize: "inherit" }} /> {metaData.location}
+          </Location>
+        )}
       </Current>
-      {metadata.onNextDateClick && (
+      {metaData?.onNextDateClick && (
         <IconButton
           size="small"
           color="info"
-          onClick={metadata.onNextDateClick}
+          onClick={metaData.onNextDateClick}
           disabled={disabled}
         >
           <ArrowCircleRightIcon />
         </IconButton>
       )}
     </Stack>
-  )
-}
+  );
+};
 
-export default React.memo(DateGroup)
+export default React.memo(DateGroup);

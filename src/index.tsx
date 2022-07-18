@@ -1,10 +1,12 @@
 import * as React from 'react'
+import _ from 'lodash'
 import CssBaseline from '@mui/material/CssBaseline'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Timeline from './Modules/Timeline'
+import Mayday from './Components/Mayday'
 import { ITimeline } from './Utils'
 interface IProps {
-  collection: ITimeline
+  collection: ITimeline | null | undefined
 }
 
 const Scheduler = ({ collection }: IProps): JSX.Element => {
@@ -17,6 +19,11 @@ const Scheduler = ({ collection }: IProps): JSX.Element => {
       }),
     []
   )
+
+  if (!collection || _.isEmpty(collection)) {
+    return <Mayday />
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

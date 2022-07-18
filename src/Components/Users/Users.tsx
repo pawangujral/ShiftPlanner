@@ -11,7 +11,11 @@ export interface IProps {
 
 const Users = ({ collection, size = 24 }: IProps): JSX.Element => {
   return (
-    <AvatarGroupContainer>
+    <AvatarGroupContainer
+      sx={{
+        "& .MuiAvatar-root": { width: size, height: size, fontSize: 10 },
+      }}
+    >
       {collection.map(
         ({ id, name, image, description, onClick: handleClick }) => {
           return (

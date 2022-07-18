@@ -30,10 +30,10 @@ const Event = ({ collection, unit }: IProps): JSX.Element => {
   return (
     <>
       {collection.map(
-        ({ id, duration, start_time, assignments = [], name }: IEvent) => (
+        ({ id, duration, startTime, assignments = [], name }: IEvent) => (
           <EventContainer
             width={CALCULATE_TIMELINE_BOX_WIDTH(duration, unit)}
-            left={CALCULATE_BLOCK_POSITION(start_time, unit)}
+            left={CALCULATE_BLOCK_POSITION(startTime, unit)}
             key={id}
             count={assignments.length}
           >

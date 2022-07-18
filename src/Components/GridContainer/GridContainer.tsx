@@ -1,15 +1,15 @@
-import * as React from 'react'
-import type { ITime } from './../../Utils'
+import * as React from "react";
+import type { ITime } from "./../../Utils";
 
-import { GridRow, GridColumn } from './GridContainer.style'
-import moment from 'moment'
+import { GridRow, GridColumn } from "./GridContainer.style";
+import moment from "moment";
 
 export interface IProps {
-  unit: number
-  gridCount: number
-  gridSize: { width: number; height: number }
-  time: ITime
-  count: number
+  unit: number;
+  gridCount: number;
+  gridSize: { width: number; height: number };
+  time: ITime;
+  count: number;
 }
 
 const GridContainer = ({
@@ -20,9 +20,9 @@ const GridContainer = ({
 }: IProps): JSX.Element => {
   const renderTimeText = (index: number) => {
     return moment({ hour: index }).format(
-      time.format === '24' ? 'HH:mm' : 'hh:mm A'
-    )
-  }
+      time.format === "24" ? "HH:mm" : "hh:mm A"
+    );
+  };
 
   return (
     <GridRow count={gridCount} size={gridSize} unit={unit}>
@@ -34,10 +34,10 @@ const GridContainer = ({
             data-title={renderTimeText(index)}
             data-type="GridColumn"
           />
-        )
+        );
       })}
     </GridRow>
-  )
-}
+  );
+};
 
-export default GridContainer
+export default GridContainer;

@@ -10,15 +10,15 @@ export interface IProps {
 }
 
 const AssignmentInfo = ({ collection }: IProps): JSX.Element => {
-  const { title, id, start_time, end_time, Icon, additionalInfo } = collection;
+  const { name, id, startTime, endTime, Icon, additionalInfo } = collection;
   return (
     <InfoContainer>
       <span data-type={id}>
         <span>
           {Icon}
-          <strong>{title}</strong>
+          <strong>{name}</strong>
         </span>
-        <span>{`${FORMAT_HOUR(start_time)}–${FORMAT_HOUR(end_time)}`}</span>
+        <span>{`${FORMAT_HOUR(startTime)}–${FORMAT_HOUR(endTime)}`}</span>
         <span>{additionalInfo}</span>
       </span>
     </InfoContainer>

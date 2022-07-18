@@ -31,7 +31,7 @@ export const IndicatorBlock = styled("span", {
 
 export const Title = styled("small")({
   position: "absolute",
-  top: "0",
+  top: 12,
   padding: ".2em",
   backgroundColor: orange[300],
   fontSize: 8,

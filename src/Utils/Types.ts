@@ -47,13 +47,13 @@ export interface IAssignee extends IBase {
 }
 
 export interface IAssignment extends IBase{
-  title: string, 
+  name: string, 
   duration: number,
-  start_time: string,
-  end_time: string,
+  startTime: string,
+  endTime: string,
   assignee?: IAssignee[],
-  created_at?: string,
-  updated_at?: string,
+  createdAt?: string,
+  updatedAt?: string,
   additionalInfo?: string,
   Icon?: ReactNode,
   color?: string | Color,
@@ -62,30 +62,30 @@ export interface IAssignment extends IBase{
 
 export interface IEvent extends IBase {
   duration:number,
-  start_time:string,
-  end_time:string,
+  startTime:string,
+  endTime:string,
   name:string,
-  created_at:string,
-  updated_at:string,
+  createdAt:string,
+  updatedAt:string,
   assignments:IAssignment[],
 }
 
 export interface ISchedule extends IBase {
   name: string,
-  start_time: string,
-  end_time: string,
+  startTime: string,
+  endTime: string,
   duration:number,
-  created_at: string,
-  updated_at:string,
+  createdAt: string,
+  updatedAt:string,
   events: IEvent[],
   assignee?: IAssignee[],
   actions? : IActions[]
 }
 
 export interface IMetaData {
-  scheduled_date: string,
-  created_at: string,
-  updated_at: string,
+  scheduledDate: string,
+  createdAt: string,
+  updatedAt: string,
   location: string,
   status?: string,
   rawData?: any,
@@ -95,7 +95,7 @@ export interface IMetaData {
 
 
 export interface ITimeline extends IBase {  
-  metadata: IMetaData,
+  metaData: IMetaData,
   schedules: ISchedule[],
 
 }
