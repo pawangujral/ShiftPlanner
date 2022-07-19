@@ -2,8 +2,7 @@ import * as React from 'react';
 
 import ShiftPlanner from '../index';
 
-// import { mockServer } from '../Mocks/MockData';
-import { DummyData } from '../Mocks/converter';
+import { mockServer } from '../Mocks/MockData';
 
 export default {
   title: 'Shift Planner',
@@ -14,5 +13,5 @@ const Template = (args) => <ShiftPlanner {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  plan: DummyData,
+  plan: mockServer(),
 };
