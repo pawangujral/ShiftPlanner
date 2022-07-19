@@ -18,6 +18,20 @@ import ShiftPlanner from 'shiftplanner';
 <ShiftPlanner plan={}/> // Pass value in `plan` prop as per schema below.
 ```
 
+#### For `NextJs` Project
+
+You need to disable SSR for this component. There are many ways to disable CSS for Non-SSR Friendly component. Simple way is to use `react-no-ssr` package.
+
+```bash
+npm i --save react-no-ssr
+npm i --save-dev @types/react-no-ssr // for typescript
+
+& than wrap this component with 
+ <NoSSR>
+    <ShiftPlanner plan={DummyData} />
+</NoSSR>
+```
+
 ## Example:
 coming soon...
 
