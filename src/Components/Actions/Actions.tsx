@@ -1,28 +1,28 @@
-import * as React from 'react'
-import _ from 'lodash'
-import Tooltip from '@mui/material/Tooltip'
-import IconButton from '@mui/material/IconButton'
-import Stack from '@mui/material/Stack'
-import Grid from '@mui/material/Grid'
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
-import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline'
-import DateGroup from './../../Components/DateGroup'
-import { IZoom } from './../../Utils'
-import MenuIcon from '@mui/icons-material/Menu'
-import DataObjectIcon from '@mui/icons-material/DataObject'
-import Dialog from '@mui/material/Dialog'
-import type { IPlanner } from './../../Utils'
-import DialogTitle from '@mui/material/DialogTitle'
-import DialogContent from '@mui/material/DialogContent'
-import JSONPretty from 'react-json-pretty'
+import * as React from 'react';
+import _ from 'lodash';
+import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import Stack from '@mui/material/Stack';
+import Grid from '@mui/material/Grid';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import DateGroup from './../../Components/DateGroup';
+import { IZoom } from './../../Utils';
+import MenuIcon from '@mui/icons-material/Menu';
+import DataObjectIcon from '@mui/icons-material/DataObject';
+import Dialog from '@mui/material/Dialog';
+import type { IPlanner } from './../../Utils';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import JSONPretty from 'react-json-pretty';
 
 interface IProps {
-  data: IPlanner
-  zoom: IZoom
-  unit: number
-  disabled: boolean
-  handleToggleZoom: (type: 'increase' | 'decrease') => void
-  handleToggle: () => void
+  data: IPlanner;
+  zoom: IZoom;
+  unit: number;
+  disabled: boolean;
+  handleToggleZoom: (type: 'increase' | 'decrease') => void;
+  handleToggle: () => void;
 }
 
 const JSONViewerTheme = {
@@ -32,7 +32,7 @@ const JSONViewerTheme = {
   string: 'color:#fd971f;',
   value: 'color:#a6e22e;',
   boolean: 'color:#ac81fe;',
-}
+};
 
 const Actions = ({
   data,
@@ -42,10 +42,10 @@ const Actions = ({
   handleToggle,
   handleToggleZoom,
 }: IProps): JSX.Element => {
-  const [isOpen, setOpen] = React.useState<boolean>(false)
+  const [isOpen, setOpen] = React.useState<boolean>(false);
   const previewData = data.metaData?.rawData
     ? JSON.parse(data.metaData.rawData)
-    : data
+    : data;
 
   return (
     <React.Fragment>
@@ -121,7 +121,7 @@ const Actions = ({
         </DialogContent>
       </Dialog>
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default React.memo(Actions)
+export default Actions;

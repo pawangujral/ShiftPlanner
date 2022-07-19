@@ -1,43 +1,43 @@
-import * as React from 'react'
-import _ from 'lodash'
-import Task from '../Task'
-import GroupDetail from './../../Components/GroupDetail'
+import * as React from 'react';
+import _ from 'lodash';
+import Task from '../Task';
+import GroupDetail from './../../Components/GroupDetail';
 
 import {
   FORMAT_DURATION,
   CALCULATE_WIDTH,
   CALCULATE_BLOCK_POSITION,
   CALCULATE_DURATION,
-} from '../../Utils'
+} from '../../Utils';
 
-import { Container, Title } from './Group.style'
-import Drawer from '@mui/material/Drawer'
+import { Container, Title } from './Group.style';
+import Drawer from '@mui/material/Drawer';
 
-import type { ITask, IGroup } from '../../Utils'
+import type { ITask, IGroup } from '../../Utils';
 
 export interface IProps {
-  data: IGroup
-  unit: number
+  data: IGroup;
+  unit: number;
 }
 
 const Group = ({ data, unit }: IProps): JSX.Element => {
-  const [isOpen, setOpen] = React.useState<boolean>(false)
-  const { id, startTime, endTime, tasks = [], name } = data
-  const duration = CALCULATE_DURATION(startTime, endTime)
-  const [isHovering, setHovering] = React.useState<boolean>(false)
+  const [isOpen, setOpen] = React.useState<boolean>(false);
+  const { id, startTime, endTime, tasks = [], name } = data;
+  const duration = CALCULATE_DURATION(startTime, endTime);
+  const [isHovering, setHovering] = React.useState<boolean>(false);
 
-  const handleMouseEnter = React.useCallback(() => {
-    setHovering(true)
-  }, [])
+  const handleMouseEnter = () => {
+    setHovering(true);
+  };
 
-  const handleMouseLeave = React.useCallback(() => {
-    setHovering(false)
-  }, [])
+  const handleMouseLeave = () => {
+    setHovering(false);
+  };
 
-  const handleGroupClick = React.useCallback((event: React.MouseEvent) => {
-    event.preventDefault()
-    setOpen(true)
-  }, [])
+  const handleGroupClick = (event: React.MouseEvent) => {
+    event.preventDefault();
+    setOpen(true);
+  };
 
   return (
     <React.Fragment>
@@ -67,7 +67,7 @@ const Group = ({ data, unit }: IProps): JSX.Element => {
         <GroupDetail data={tasks} />
       </Drawer>
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default React.memo(Group)
+export default Group;

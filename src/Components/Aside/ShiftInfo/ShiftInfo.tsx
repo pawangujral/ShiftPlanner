@@ -1,33 +1,34 @@
-import * as React from 'react'
-import _ from 'lodash'
-import { CALCULATE_DURATION, FORMAT_DURATION } from './../../../Utils'
-import type { IShift } from './../../../Utils'
-import { TotalTime } from './JobInfo.style'
-import { AsideBlock, AsideItem, Name } from './../Aside.style'
-import Users from './../../../Components/Users'
-import MoreVertIcon from '@mui/icons-material/MoreVert'
-import IconButton from '@mui/material/IconButton'
-import AlarmOnIcon from '@mui/icons-material/AlarmOn'
-import Menu from '@mui/material/Menu'
-import MenuItem from '@mui/material/MenuItem'
+import * as React from 'react';
+import _ from 'lodash';
+import { CALCULATE_DURATION, FORMAT_DURATION } from '../../../Utils';
+import type { IShift } from '../../../Utils';
+import { TotalTime } from './ShiftInfo.style';
+import { AsideBlock, AsideItem, Name } from '../Aside.style';
+import Users from '../../Users';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import IconButton from '@mui/material/IconButton';
+import AlarmOnIcon from '@mui/icons-material/AlarmOn';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 interface IProps {
-  data: IShift
-  size: number
+  data: IShift;
+  size: number;
 }
 
-const JobInfo = ({ data, size }: IProps) => {
-  const { id, name, assignee, actions, startTime, endTime } = data
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+const ShiftInfo = ({ data, size }: IProps) => {
+  const { id, name, assignee, actions, startTime, endTime } = data;
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-  const openMenu = Boolean(anchorEl)
+  const openMenu = Boolean(anchorEl);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget)
-  }
+    setAnchorEl(event.currentTarget);
+  };
+
   const handleClose = () => {
-    setAnchorEl(null)
-  }
+    setAnchorEl(null);
+  };
 
   return (
     <React.Fragment>
@@ -77,11 +78,11 @@ const JobInfo = ({ data, size }: IProps) => {
             <MenuItem onClick={handleActionClick} key={index} dense>
               {_.upperFirst(text)}
             </MenuItem>
-          )
+          );
         })}
       </Menu>
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default JobInfo
+export default ShiftInfo;

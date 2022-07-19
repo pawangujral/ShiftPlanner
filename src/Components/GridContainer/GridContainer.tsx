@@ -18,11 +18,11 @@ const GridContainer = ({
   gridSize,
   time,
 }: IProps): JSX.Element => {
-  const renderTimeText = React.useCallback((index: number) => {
+  const renderTimeText = (index: number) => {
     return moment({ hour: index }).format(
       time.format === '24' ? 'HH:mm' : 'hh:mm A'
     );
-  }, []);
+  };
 
   return (
     <GridRow count={gridCount} size={gridSize} unit={unit}>
@@ -40,4 +40,4 @@ const GridContainer = ({
   );
 };
 
-export default React.memo(GridContainer);
+export default GridContainer;

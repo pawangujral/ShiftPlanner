@@ -37,16 +37,13 @@ function Task({
 
   const openMenu = Boolean(anchorEl);
 
-  const handleClick = React.useCallback(
-    (event: React.MouseEvent<HTMLElement>) => {
-      setAnchorEl(event.currentTarget);
-    },
-    []
-  );
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-  const handleClose = React.useCallback(() => {
+  const handleClose = () => {
     setAnchorEl(null);
-  }, []);
+  };
 
   return (
     <>
@@ -100,7 +97,7 @@ function Task({
         id={id}
         aria-labelledby={id}
         anchorEl={anchorEl}
-        open={openMenu}
+        open={openMenu && !_.isEmpty(actions)}
         onClose={handleClose}
         anchorOrigin={{
           vertical: 'top',
@@ -121,4 +118,4 @@ function Task({
   );
 }
 
-export default React.memo(Task);
+export default Task;

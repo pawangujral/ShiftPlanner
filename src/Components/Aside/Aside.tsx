@@ -1,7 +1,7 @@
-import * as React from "react";
-import type { IShift } from "./../../Utils";
-import { Container } from "./Aside.style";
-import JobInfo from "./JobInfo";
+import * as React from 'react';
+import type { IShift } from './../../Utils';
+import { Container } from './Aside.style';
+import ShiftInfo from './ShiftInfo';
 
 interface IProps {
   data: IShift[];
@@ -11,7 +11,7 @@ interface IProps {
 const Aside = ({ data, size }: IProps) => (
   <Container>
     {data.map((item) => (
-      <JobInfo data={item} key={item.id} size={size} />
+      <ShiftInfo data={item} key={item.id} size={size} />
     ))}
   </Container>
 );
