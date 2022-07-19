@@ -14,7 +14,7 @@ const handleUserClick = () => {
 };
 
 const handleActionClick = () => {
-  alert("On Click testing");
+  alert("On Click test");
 };
  
 
