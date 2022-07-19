@@ -1,14 +1,14 @@
-import * as React from "react";
-import type { IDefaultState, IShift } from "../../Utils";
-import Group from "../Group";
-import GridContainer from "../../Components/GridContainer";
-import { Block, Container } from "./Shift.style";
+import * as React from 'react'
+import type { IDefaultState, IShift } from '../../Utils'
+import Group from '../Group'
+import GridContainer from '../../Components/GridContainer'
+import { Block, Container } from './Shift.style'
 
 interface IProps {
-  data: IShift[];
-  unit: number;
-  state: IDefaultState;
-  gridSize: number;
+  data: IShift[]
+  unit: number
+  state: IDefaultState
+  gridSize: number
 }
 
 const Schedule = ({ data, unit, state, gridSize }: IProps): JSX.Element => (
@@ -25,7 +25,7 @@ const Schedule = ({ data, unit, state, gridSize }: IProps): JSX.Element => (
             height: gridSize,
           }}
         >
-          <>
+          <React.Fragment>
             <GridContainer
               unit={unit}
               gridCount={state.gridColumnCount}
@@ -39,11 +39,11 @@ const Schedule = ({ data, unit, state, gridSize }: IProps): JSX.Element => (
             {groups.map((item, index) => (
               <Group data={item} unit={unit} key={index} />
             ))}
-          </>
+          </React.Fragment>
         </Block>
       </React.Fragment>
     ))}
   </Container>
-);
+)
 
-export default Schedule;
+export default Schedule

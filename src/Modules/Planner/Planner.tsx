@@ -1,18 +1,18 @@
-import * as React from "react";
+import * as React from 'react'
 
-import { Container, Main } from "./Planner.style";
-import _ from "lodash";
-import moment from "moment";
-import { CALCULATE_BLOCK_POSITION } from "../../Utils";
-import type { IDefaultState, IPlanner } from "../../Utils";
-import Aside from "../../Components/Aside";
-import Actions from "../../Components/Actions";
-import Indicator from "../../Components/Indicator";
-import Shift from "../Shift";
-import Mayday from "../../Components/Mayday";
+import { Container, Main } from './Planner.style'
+import _ from 'lodash'
+import moment from 'moment'
+import { CALCULATE_BLOCK_POSITION } from '../../Utils'
+import type { IDefaultState, IPlanner } from '../../Utils'
+import Aside from '../../Components/Aside'
+import Actions from '../../Components/Actions'
+import Indicator from '../../Components/Indicator'
+import Shift from '../Shift'
+import Mayday from '../../Components/Mayday'
 
 interface IProps {
-  data: IPlanner;
+  data: IPlanner
 }
 
 const DEFAULT_STATE: IDefaultState = {
@@ -29,15 +29,15 @@ const DEFAULT_STATE: IDefaultState = {
     max: 8,
   },
   time: {
-    format: "24",
+    format: '24',
   },
-};
+}
 
 const Planner = ({ data }: IProps): JSX.Element => {
-  const [toggleAside, setToggleAside] = React.useState<boolean>(true);
-  const [unit, setUnit] = React.useState<number>(DEFAULT_STATE.default);
+  const [toggleAside, setToggleAside] = React.useState<boolean>(true)
+  const [unit, setUnit] = React.useState<number>(DEFAULT_STATE.default)
 
-  const elRef = React.useRef<HTMLDivElement>(null);
+  const elRef = React.useRef<HTMLDivElement>(null)
 
   React.useEffect(() => {
     if (elRef.current) {
@@ -47,28 +47,28 @@ const Planner = ({ data }: IProps): JSX.Element => {
           CALCULATE_BLOCK_POSITION(moment().format(), unit) -
           DEFAULT_STATE.offset,
         top: 0,
-        behavior: "smooth",
-      });
+        behavior: 'smooth',
+      })
     }
-  }, [unit]);
+  }, [unit])
 
-  const handleToggleZoom = (type: "increase" | "decrease") => {
-    type === "increase" &&
+  const handleToggleZoom = (type: 'increase' | 'decrease') => {
+    type === 'increase' &&
       unit < DEFAULT_STATE.zoom.max &&
-      setUnit((prevState) => prevState + 1);
+      setUnit((prevState) => prevState + 1)
 
-    type === "decrease" &&
+    type === 'decrease' &&
       unit > DEFAULT_STATE.zoom.min &&
-      setUnit((prevState) => prevState - 1);
-  };
+      setUnit((prevState) => prevState - 1)
+  }
 
   const handleToggle = () => {
-    setToggleAside(!toggleAside);
-  };
+    setToggleAside(!toggleAside)
+  }
 
   if (!data.shifts || _.isEmpty(data.shifts)) {
     return (
-      <>
+      <React.Fragment>
         <Actions
           unit={unit}
           data={data}
@@ -78,12 +78,12 @@ const Planner = ({ data }: IProps): JSX.Element => {
           handleToggle={handleToggle}
         />
         <Mayday message="Nothing scheduled for this date" />
-      </>
-    );
+      </React.Fragment>
+    )
   }
 
   return (
-    <>
+    <React.Fragment>
       <Actions
         unit={unit}
         data={data}
@@ -109,7 +109,7 @@ const Planner = ({ data }: IProps): JSX.Element => {
           />
         </Main>
       </Container>
-    </>
-  );
-};
-export default Planner;
+    </React.Fragment>
+  )
+}
+export default Planner

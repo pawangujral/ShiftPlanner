@@ -1,28 +1,31 @@
-import * as React from "react";
-import Avatar from "@mui/material/Avatar";
-import Tooltip from "@mui/material/Tooltip";
-import { IAssignee } from "./../../Utils";
-import { AvatarGroupContainer, Name, Description } from "./Users.style";
+import * as React from 'react'
+import _ from 'lodash'
+import Avatar from '@mui/material/Avatar'
+import Tooltip from '@mui/material/Tooltip'
+import { IAssignee } from './../../Utils'
+import { AvatarGroupContainer, Name, Description } from './Users.style'
 
 export interface IProps {
-  data: IAssignee[];
-  size?: number;
+  data: IAssignee[]
+  size?: number
+  max?: number
 }
 
-const Users = ({ data, size = 24 }: IProps): JSX.Element => {
+const Users = ({ data, size = 24, max = 5 }: IProps): JSX.Element => {
   return (
     <AvatarGroupContainer
       sx={{
-        "& .MuiAvatar-root": { width: size, height: size, fontSize: 10 },
+        '& .MuiAvatar-root': { width: size, height: size, fontSize: 10 },
       }}
+      max={max}
     >
       {data.map(({ id, name, image, description, onClick: handleClick }) => {
         return (
           <Tooltip
             title={
               <span>
-                <Name>{name}</Name>
-                <Description>{description}</Description>
+                <Name>{_.upperFirst(name)}</Name>
+                <Description>{_.upperFirst(description)}</Description>
               </span>
             }
             placement="top"
@@ -36,10 +39,10 @@ const Users = ({ data, size = 24 }: IProps): JSX.Element => {
               onClick={handleClick}
             />
           </Tooltip>
-        );
+        )
       })}
     </AvatarGroupContainer>
-  );
-};
+  )
+}
 
-export default Users;
+export default Users

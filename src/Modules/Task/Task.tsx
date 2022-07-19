@@ -1,20 +1,20 @@
-import * as React from "react";
-import _ from "lodash";
-import Users from "../../Components/Users";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import IconButton from "@mui/material/IconButton";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import AlarmOnIcon from "@mui/icons-material/AlarmOn";
-import Stack from "@mui/material/Stack";
+import * as React from 'react';
+import _ from 'lodash';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import IconButton from '@mui/material/IconButton';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import AlarmOnIcon from '@mui/icons-material/AlarmOn';
+import Stack from '@mui/material/Stack';
+import Users from '../../Components/Users';
 
 import {
-  CALCULATE_TIMELINE_BOX_WIDTH,
+  CALCULATE_WIDTH,
   FORMAT_DURATION,
   CALCULATE_DURATION,
-} from "../../Utils";
-import { Container, Title, Info } from "./Task.style";
-import type { ITask } from "../../Utils";
+} from '../../Utils';
+import { Container, Title, Info, InfoBox } from './Task.style';
+import type { ITask } from '../../Utils';
 
 export interface IProps {
   data: ITask;
@@ -24,32 +24,36 @@ export interface IProps {
   handleMouseLeave: () => void;
 }
 
-const Task = ({
+function Task({
   data,
   unit,
   isHover,
   handleMouseEnter,
   handleMouseLeave,
-}: IProps): JSX.Element => {
+}: IProps): JSX.Element {
   const { id, name, color, assignee = [], actions, startTime, endTime } = data;
   const duration = CALCULATE_DURATION(startTime, endTime);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const openMenu = Boolean(anchorEl);
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
+  const handleClick = React.useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      setAnchorEl(event.currentTarget);
+    },
+    []
+  );
+
+  const handleClose = React.useCallback(() => {
     setAnchorEl(null);
-  };
+  }, []);
 
   return (
-    <React.Fragment>
+    <>
       <Container
         key={id}
-        width={CALCULATE_TIMELINE_BOX_WIDTH(duration, unit)}
-        padding={CALCULATE_TIMELINE_BOX_WIDTH(duration, unit)}
+        width={CALCULATE_WIDTH(duration, unit)}
+        padding={CALCULATE_WIDTH(duration, unit)}
         data-type={id}
         color={color}
         data-hover={isHover}
@@ -62,13 +66,13 @@ const Task = ({
           justifyContent="space-between"
           alignItems="center"
         >
-          <div>
-            <Title>{name}</Title>
+          <InfoBox>
+            <Title>{_.upperFirst(name)}</Title>
             <Info>
-              <AlarmOnIcon sx={{ fontSize: "inherit" }} />
+              <AlarmOnIcon sx={{ fontSize: 'inherit' }} />
               {FORMAT_DURATION(duration)}
             </Info>
-          </div>
+          </InfoBox>
 
           <Stack
             direction="row"
@@ -82,11 +86,11 @@ const Task = ({
               component="label"
               aria-controls={openMenu ? id : undefined}
               aria-haspopup="true"
-              aria-expanded={openMenu ? "true" : undefined}
+              aria-expanded={openMenu ? 'true' : undefined}
               onClick={handleClick}
               size="small"
             >
-              <MoreVertIcon sx={{ fontSize: 17, color: "#2d3843" }} />
+              <MoreVertIcon sx={{ fontSize: 17, color: '#2d3843' }} />
             </IconButton>
           </Stack>
         </Stack>
@@ -99,24 +103,22 @@ const Task = ({
         open={openMenu}
         onClose={handleClose}
         anchorOrigin={{
-          vertical: "top",
-          horizontal: "left",
+          vertical: 'top',
+          horizontal: 'left',
         }}
         transformOrigin={{
-          vertical: "top",
-          horizontal: "left",
+          vertical: 'top',
+          horizontal: 'left',
         }}
       >
-        {actions?.map(({ text, onClick: handleActionClick }, index) => {
-          return (
-            <MenuItem onClick={handleActionClick} key={index} dense>
-              {text}
-            </MenuItem>
-          );
-        })}
+        {actions?.map(({ text, onClick: handleActionClick }, index) => (
+          <MenuItem onClick={handleActionClick} key={index} dense>
+            {_.upperFirst(text)}
+          </MenuItem>
+        ))}
       </Menu>
-    </React.Fragment>
+    </>
   );
-};
+}
 
 export default React.memo(Task);

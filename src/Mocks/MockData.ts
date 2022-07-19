@@ -57,17 +57,17 @@ export function mockServer() {
         groups: [...Array(1)].map((_, ) => ({
             id: faker.datatype.uuid(),
             startTime: "2022-07-13T06:00:00.000Z",
-            endTime: "2022-07-13T14:12:00.000Z",
-            createdAt: "2022-07-12T11:29:53.896Z",
-            updatedAt: "2022-07-12T11:29:53.896Z",
-            name: faker.company.bsNoun(), 
+            endTime: "2022-07-13T10:20:00.000Z",
+            createdAt: "2022-07-12T11:29:53.945Z",
+            updatedAt: "2022-07-12T11:29:53.945Z",
+            name: faker.lorem.words(10), 
             tasks:[...Array(1)].map((_, ) => ({
                 id: faker.datatype.uuid(),
                 startTime: "2022-07-13T06:00:00.000Z",
-          endTime: "2022-07-13T10:20:00.000Z",
-          createdAt: "2022-07-12T11:29:53.945Z",
-          updatedAt: "2022-07-12T11:29:53.945Z",
-                name: faker.company.bsNoun(), 
+                endTime: "2022-07-13T10:20:00.000Z",
+                createdAt: "2022-07-12T11:29:53.945Z",
+                updatedAt: "2022-07-12T11:29:53.945Z",
+                name: faker.lorem.words(10), 
                 assignee: [...Array(randomNumber(0, 10))].map(
                     (_, ) => ({
                       id: faker.datatype.uuid(),

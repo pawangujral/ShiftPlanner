@@ -1,54 +1,54 @@
-import * as React from "react";
-import _ from "lodash";
-import Task from "../Task";
-import GroupDetail from "./../../Components/GroupDetail";
+import * as React from 'react'
+import _ from 'lodash'
+import Task from '../Task'
+import GroupDetail from './../../Components/GroupDetail'
 
 import {
   FORMAT_DURATION,
-  CALCULATE_TIMELINE_BOX_WIDTH,
+  CALCULATE_WIDTH,
   CALCULATE_BLOCK_POSITION,
   CALCULATE_DURATION,
-} from "../../Utils";
+} from '../../Utils'
 
-import { Container, Title } from "./Group.style";
-import Drawer from "@mui/material/Drawer";
+import { Container, Title } from './Group.style'
+import Drawer from '@mui/material/Drawer'
 
-import type { ITask, IGroup } from "../../Utils";
+import type { ITask, IGroup } from '../../Utils'
 
 export interface IProps {
-  data: IGroup;
-  unit: number;
+  data: IGroup
+  unit: number
 }
 
 const Group = ({ data, unit }: IProps): JSX.Element => {
-  const [isOpen, setOpen] = React.useState<boolean>(false);
-  const { id, startTime, endTime, tasks = [], name } = data;
-  const duration = CALCULATE_DURATION(startTime, endTime);
-  const [isHovering, setHovering] = React.useState<boolean>(false);
+  const [isOpen, setOpen] = React.useState<boolean>(false)
+  const { id, startTime, endTime, tasks = [], name } = data
+  const duration = CALCULATE_DURATION(startTime, endTime)
+  const [isHovering, setHovering] = React.useState<boolean>(false)
 
-  const handleMouseEnter = () => {
-    setHovering(true);
-  };
-  const handleMouseLeave = () => {
-    setHovering(false);
-  };
+  const handleMouseEnter = React.useCallback(() => {
+    setHovering(true)
+  }, [])
 
-  const handleGroupClick = (event: React.MouseEvent) => {
-    event.preventDefault();
-    setOpen(true);
-  };
+  const handleMouseLeave = React.useCallback(() => {
+    setHovering(false)
+  }, [])
+
+  const handleGroupClick = React.useCallback((event: React.MouseEvent) => {
+    event.preventDefault()
+    setOpen(true)
+  }, [])
 
   return (
     <React.Fragment>
       <Container
-        width={CALCULATE_TIMELINE_BOX_WIDTH(duration, unit)}
+        width={CALCULATE_WIDTH(duration, unit)}
         left={CALCULATE_BLOCK_POSITION(startTime, unit)}
         key={id}
       >
         <Title onClick={handleGroupClick}>
-          {name
-            ? `${name}: ${FORMAT_DURATION(duration)}`
-            : FORMAT_DURATION(duration)}
+          <span>{name && _.upperFirst(name)}</span>
+          <em>{FORMAT_DURATION(duration)}</em>
         </Title>
 
         {!_.isEmpty(tasks) &&
@@ -67,7 +67,7 @@ const Group = ({ data, unit }: IProps): JSX.Element => {
         <GroupDetail data={tasks} />
       </Drawer>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Group;
+export default React.memo(Group)

@@ -1,8 +1,8 @@
-import * as React from "react";
-import type { ITime } from "./../../Utils";
+import * as React from 'react';
+import type { ITime } from './../../Utils';
 
-import { GridRow, GridColumn } from "./GridContainer.style";
-import moment from "moment";
+import { GridRow, GridColumn } from './GridContainer.style';
+import moment from 'moment';
 
 export interface IProps {
   unit: number;
@@ -18,11 +18,11 @@ const GridContainer = ({
   gridSize,
   time,
 }: IProps): JSX.Element => {
-  const renderTimeText = (index: number) => {
+  const renderTimeText = React.useCallback((index: number) => {
     return moment({ hour: index }).format(
-      time.format === "24" ? "HH:mm" : "hh:mm A"
+      time.format === '24' ? 'HH:mm' : 'hh:mm A'
     );
-  };
+  }, []);
 
   return (
     <GridRow count={gridCount} size={gridSize} unit={unit}>
@@ -40,4 +40,4 @@ const GridContainer = ({
   );
 };
 
-export default GridContainer;
+export default React.memo(GridContainer);

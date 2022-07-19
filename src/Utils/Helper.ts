@@ -1,6 +1,5 @@
 import moment from 'moment';
  
-
 export function FORMAT_DURATION(duration: number) {
   return moment
     .utc(moment.duration(duration, 'minutes').asMilliseconds())
@@ -21,7 +20,7 @@ export function CALCULATE_BLOCK_POSITION(time: string, unit: number) {
   return Math.ceil(FORMAT_DATE_TO_MINS(time) * unit);
 }
 
-export function CALCULATE_TIMELINE_BOX_WIDTH(duration: number, unit: number) {
+export function CALCULATE_WIDTH(duration: number, unit: number) {
   return Math.ceil(duration) * unit;
 }
 

@@ -1,15 +1,16 @@
-import * as React from 'react'
-import _ from 'lodash'
-import CssBaseline from '@mui/material/CssBaseline'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
-import Planner from './Modules/Planner'
-import Mayday from './Components/Mayday'
-import { IPlanner } from './Utils'
+import * as React from 'react';
+import _ from 'lodash';
+import CssBaseline from '@mui/material/CssBaseline';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Planner from './Modules/Planner';
+import Mayday from './Components/Mayday';
+import { IPlanner } from './Utils';
+
 interface IProps {
-  data: IPlanner | null | undefined
+  plan: IPlanner | null | undefined;
 }
 
-const Scheduler = ({ data }: IProps): JSX.Element => {
+function ShiftPlanner({ plan }: IProps): JSX.Element {
   const theme = React.useMemo(
     () =>
       createTheme({
@@ -18,18 +19,18 @@ const Scheduler = ({ data }: IProps): JSX.Element => {
         },
       }),
     []
-  )
+  );
 
-  if (!data || _.isEmpty(data)) {
-    return <Mayday />
+  if (!plan || _.isEmpty(plan)) {
+    return <Mayday />;
   }
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Planner data={data} />
+      <Planner data={plan} />
     </ThemeProvider>
-  )
+  );
 }
 
-export default Scheduler
+export default ShiftPlanner;
