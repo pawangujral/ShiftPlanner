@@ -6,19 +6,25 @@
   "email": "gujral87@gmail.com",
   "url": "http://pawangujral.dev",
   "license": "Apache-2.0",
-  "repository": "pawangujral/ShiftPlanner",
   "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pawangujral/ShiftPlanner.git",
+    "bugs": "https://github.com/pawangujral/ShiftPlanner.git/issues"
+  },
   "engines": {
     "node": ">=8",
     "npm": ">=5"
   },
   "scripts": {
     "build": "rollup -c",
-    "start": "rollup -c -w",
+    "start": "node server.js",
     "start:storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "prepare": "husky install",
-    "lint": "eslint"
+    "lint": "eslint",
+    "format": "prettier --check \"**/*.{css,js,json,md,ts,tsx,yml,yaml}\"",
+    "format:fix": "prettier --write \"**/*.{css,js,json,md,ts,tsx,yml,yaml}\""
   },
   "files": [
     "dist"
@@ -52,9 +58,11 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^8.2.5",
     "babel-runtime": "^6.26.0",
+    "express": "^4.18.1",
     "husky": "^8.0.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
+    "prettier": "^2.7.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-json-pretty": "^2.2.0",
@@ -62,5 +70,10 @@
     "rollup-plugin-sass": "^1.2.12",
     "rollup-plugin-typescript2": "^0.32.1",
     "typescript": "^4.7.4"
+  },
+  "lint-staged": {
+    "*.{css,js,json,md,ts,tsx,jsx,yaml,yml}": [
+      "prettier --write"
+    ]
   }
 }
