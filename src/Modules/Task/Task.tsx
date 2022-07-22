@@ -14,24 +14,36 @@ import {
   CALCULATE_DURATION,
 } from '../../Utils';
 import { Container, Title, Info, InfoBox } from './Task.style';
-import type { ITask } from '../../Utils';
+import type { ITask, IAction } from '../../Utils';
 
 export interface IProps {
   data: ITask;
   unit: number;
   isHover: boolean;
+  actions: IAction[];
   handleMouseEnter: () => void;
   handleMouseLeave: () => void;
+  handleAssigneeClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 function Task({
   data,
   unit,
   isHover,
+  actions,
   handleMouseEnter,
   handleMouseLeave,
+  handleAssigneeClick,
 }: IProps): JSX.Element {
-  const { id, name, color, assignee = [], actions, startTime, endTime } = data;
+  const {
+    id: taskId,
+    name,
+    color,
+    assignee = [],
+    startTime,
+    endTime,
+    isActionEnabled = true,
+  } = data;
   const duration = CALCULATE_DURATION(startTime, endTime);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -48,10 +60,10 @@ function Task({
   return (
     <>
       <Container
-        key={id}
+        key={taskId}
         width={CALCULATE_WIDTH(duration, unit)}
         padding={CALCULATE_WIDTH(duration, unit)}
-        data-type={id}
+        data-type={taskId}
         color={color}
         data-hover={isHover}
         onMouseEnter={handleMouseEnter}
@@ -76,12 +88,17 @@ function Task({
             justifyContent="space-between"
             alignItems="center"
           >
-            {!_.isEmpty(assignee) && <Users data={assignee} />}
+            {!_.isEmpty(assignee) && (
+              <Users
+                data={assignee}
+                handleAssigneeClick={handleAssigneeClick}
+              />
+            )}
 
             <IconButton
               aria-label="Open actions"
               component="label"
-              aria-controls={openMenu ? id : undefined}
+              aria-controls={openMenu ? taskId : undefined}
               aria-haspopup="true"
               aria-expanded={openMenu ? 'true' : undefined}
               onClick={handleClick}
@@ -94,10 +111,10 @@ function Task({
       </Container>
 
       <Menu
-        id={id}
-        aria-labelledby={id}
+        id={taskId}
+        aria-labelledby={taskId}
         anchorEl={anchorEl}
-        open={openMenu && !_.isEmpty(actions)}
+        open={openMenu && !_.isEmpty(actions) && isActionEnabled}
         onClose={handleClose}
         anchorOrigin={{
           vertical: 'top',
@@ -109,7 +126,12 @@ function Task({
         }}
       >
         {actions?.map(({ text, onClick: handleActionClick }, index) => (
-          <MenuItem onClick={handleActionClick} key={index} dense>
+          <MenuItem
+            onClick={handleActionClick}
+            key={index}
+            data-id={taskId}
+            dense
+          >
             {_.upperFirst(text)}
           </MenuItem>
         ))}

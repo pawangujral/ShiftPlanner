@@ -4,13 +4,20 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Planner from './Modules/Planner';
 import Mayday from './Components/Mayday';
-import { IPlanner } from './Utils';
+import { IPlanner, IShiftPlannerProps } from './Utils';
 
-interface IProps {
+interface IProps extends Omit<IShiftPlannerProps, 'plan'> {
   plan: IPlanner | null | undefined;
 }
 
-function ShiftPlanner({ plan }: IProps): JSX.Element {
+function ShiftPlanner({
+  plan,
+  shiftActions,
+  taskActions,
+  onAssigneeClick,
+  onPrevDateClick,
+  onNextDateClick,
+}: IProps): JSX.Element {
   const theme = React.useMemo(
     () =>
       createTheme({
@@ -28,7 +35,14 @@ function ShiftPlanner({ plan }: IProps): JSX.Element {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Planner data={plan} />
+      <Planner
+        plan={plan}
+        shiftActions={shiftActions}
+        taskActions={taskActions}
+        onAssigneeClick={onAssigneeClick}
+        onPrevDateClick={onPrevDateClick}
+        onNextDateClick={onNextDateClick}
+      />
     </ThemeProvider>
   );
 }

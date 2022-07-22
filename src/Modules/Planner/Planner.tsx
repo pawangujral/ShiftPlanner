@@ -1,19 +1,17 @@
-import * as React from 'react'
+import * as React from 'react';
 
-import { Container, Main } from './Planner.style'
-import _ from 'lodash'
-import moment from 'moment'
-import { CALCULATE_BLOCK_POSITION } from '../../Utils'
-import type { IDefaultState, IPlanner } from '../../Utils'
-import Aside from '../../Components/Aside'
-import Actions from '../../Components/Actions'
-import Indicator from '../../Components/Indicator'
-import Shift from '../Shift'
-import Mayday from '../../Components/Mayday'
+import { Container, Main } from './Planner.style';
+import _ from 'lodash';
+import moment from 'moment';
+import { CALCULATE_BLOCK_POSITION } from '../../Utils';
+import type { IDefaultState, IShiftPlannerProps } from '../../Utils';
+import Aside from '../../Components/Aside';
+import Actions from '../../Components/Actions';
+import Indicator from '../../Components/Indicator';
+import Shift from '../Shift';
+import Mayday from '../../Components/Mayday';
 
-interface IProps {
-  data: IPlanner
-}
+interface IProps extends IShiftPlannerProps {}
 
 const DEFAULT_STATE: IDefaultState = {
   default: 1,
@@ -31,13 +29,20 @@ const DEFAULT_STATE: IDefaultState = {
   time: {
     format: '24',
   },
-}
+};
 
-const Planner = ({ data }: IProps): JSX.Element => {
-  const [toggleAside, setToggleAside] = React.useState<boolean>(true)
-  const [unit, setUnit] = React.useState<number>(DEFAULT_STATE.default)
+const Planner = ({
+  plan,
+  shiftActions = [],
+  taskActions = [],
+  onAssigneeClick,
+  onPrevDateClick,
+  onNextDateClick,
+}: IProps): JSX.Element => {
+  const [toggleAside, setToggleAside] = React.useState<boolean>(true);
+  const [unit, setUnit] = React.useState<number>(DEFAULT_STATE.default);
 
-  const elRef = React.useRef<HTMLDivElement>(null)
+  const elRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     if (elRef.current) {
@@ -48,30 +53,30 @@ const Planner = ({ data }: IProps): JSX.Element => {
           DEFAULT_STATE.offset,
         top: 0,
         behavior: 'smooth',
-      })
+      });
     }
-  }, [unit])
+  }, [unit]);
 
   const handleToggleZoom = (type: 'increase' | 'decrease') => {
     type === 'increase' &&
       unit < DEFAULT_STATE.zoom.max &&
-      setUnit((prevState) => prevState + 1)
+      setUnit((prevState) => prevState + 1);
 
     type === 'decrease' &&
       unit > DEFAULT_STATE.zoom.min &&
-      setUnit((prevState) => prevState - 1)
-  }
+      setUnit((prevState) => prevState - 1);
+  };
 
   const handleToggle = () => {
-    setToggleAside(!toggleAside)
-  }
+    setToggleAside(!toggleAside);
+  };
 
-  if (!data.shifts || _.isEmpty(data.shifts)) {
+  if (!plan.shifts || _.isEmpty(plan.shifts)) {
     return (
       <React.Fragment>
         <Actions
           unit={unit}
-          data={data}
+          data={plan}
           disabled={true}
           zoom={DEFAULT_STATE.zoom}
           handleToggleZoom={handleToggleZoom}
@@ -79,37 +84,46 @@ const Planner = ({ data }: IProps): JSX.Element => {
         />
         <Mayday message="Nothing scheduled for this date" />
       </React.Fragment>
-    )
+    );
   }
 
   return (
     <React.Fragment>
       <Actions
         unit={unit}
-        data={data}
+        data={plan}
         disabled={false}
         zoom={DEFAULT_STATE.zoom}
         handleToggleZoom={handleToggleZoom}
         handleToggle={handleToggle}
+        handlePrevDateChange={onPrevDateClick}
+        handleNextDateChange={onNextDateClick}
       />
 
       <Container toggle={toggleAside}>
         {toggleAside && (
-          <Aside data={data.shifts} size={DEFAULT_STATE.gridRowSize.max} />
+          <Aside
+            data={plan.shifts}
+            size={DEFAULT_STATE.gridRowSize.max}
+            actions={shiftActions}
+            handleAssigneeClick={onAssigneeClick}
+          />
         )}
 
         <Main ref={elRef}>
           <Indicator unit={unit} />
 
           <Shift
-            data={data.shifts}
+            data={plan.shifts}
             unit={unit}
             state={DEFAULT_STATE}
             gridSize={DEFAULT_STATE.gridRowSize.max}
+            actions={taskActions}
+            handleAssigneeClick={onAssigneeClick}
           />
         </Main>
       </Container>
     </React.Fragment>
-  )
-}
-export default Planner
+  );
+};
+export default Planner;

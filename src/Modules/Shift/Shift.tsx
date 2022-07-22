@@ -1,17 +1,26 @@
-import * as React from 'react'
-import type { IDefaultState, IShift } from '../../Utils'
-import Group from '../Group'
-import GridContainer from '../../Components/GridContainer'
-import { Block, Container } from './Shift.style'
+import * as React from 'react';
+import type { IDefaultState, IShift, IAction } from '../../Utils';
+import Group from '../Group';
+import GridContainer from '../../Components/GridContainer';
+import { Block, Container } from './Shift.style';
 
 interface IProps {
-  data: IShift[]
-  unit: number
-  state: IDefaultState
-  gridSize: number
+  data: IShift[];
+  unit: number;
+  state: IDefaultState;
+  gridSize: number;
+  actions: IAction[];
+  handleAssigneeClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
-const Schedule = ({ data, unit, state, gridSize }: IProps): JSX.Element => (
+const Shift = ({
+  data,
+  unit,
+  state,
+  gridSize,
+  actions,
+  handleAssigneeClick,
+}: IProps): JSX.Element => (
   <Container
     width={state.gridRowSize.width}
     count={state.gridColumnCount}
@@ -37,13 +46,19 @@ const Schedule = ({ data, unit, state, gridSize }: IProps): JSX.Element => (
               time={state.time}
             />
             {groups.map((item, index) => (
-              <Group data={item} unit={unit} key={index} />
+              <Group
+                data={item}
+                unit={unit}
+                key={index}
+                actions={actions}
+                handleAssigneeClick={handleAssigneeClick}
+              />
             ))}
           </React.Fragment>
         </Block>
       </React.Fragment>
     ))}
   </Container>
-)
+);
 
-export default Schedule
+export default Shift;

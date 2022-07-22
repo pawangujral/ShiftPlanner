@@ -23,6 +23,8 @@ interface IProps {
   disabled: boolean;
   handleToggleZoom: (type: 'increase' | 'decrease') => void;
   handleToggle: () => void;
+  handlePrevDateChange?: (event: React.MouseEvent<HTMLElement>) => void;
+  handleNextDateChange?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 const JSONViewerTheme = {
@@ -41,6 +43,8 @@ const Actions = ({
   unit,
   handleToggle,
   handleToggleZoom,
+  handlePrevDateChange,
+  handleNextDateChange,
 }: IProps): JSX.Element => {
   const [isOpen, setOpen] = React.useState<boolean>(false);
   const previewData = data.metaData?.rawData
@@ -65,7 +69,12 @@ const Actions = ({
           </Tooltip>
         </Grid>
         <Grid item xs={4}>
-          <DateGroup metaData={data.metaData} disabled={disabled} />
+          <DateGroup
+            metaData={data.metaData}
+            disabled={disabled}
+            handlePrevDateChange={handlePrevDateChange}
+            handleNextDateChange={handleNextDateChange}
+          />
         </Grid>
         <Grid item xs={4}>
           <Stack

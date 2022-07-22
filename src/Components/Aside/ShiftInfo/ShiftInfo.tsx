@@ -1,7 +1,7 @@
 import * as React from 'react';
 import _ from 'lodash';
 import { CALCULATE_DURATION, FORMAT_DURATION } from '../../../Utils';
-import type { IShift } from '../../../Utils';
+import type { IShift, IAction } from '../../../Utils';
 import { TotalTime } from './ShiftInfo.style';
 import { AsideBlock, AsideItem, Name } from '../Aside.style';
 import Users from '../../Users';
@@ -14,10 +14,19 @@ import MenuItem from '@mui/material/MenuItem';
 interface IProps {
   data: IShift;
   size: number;
+  actions: IAction[];
+  handleAssigneeClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
-const ShiftInfo = ({ data, size }: IProps) => {
-  const { id, name, assignee, actions, startTime, endTime } = data;
+const ShiftInfo = ({ data, size, actions, handleAssigneeClick }: IProps) => {
+  const {
+    id: shiftId,
+    name,
+    assignee,
+    startTime,
+    endTime,
+    isActionEnabled = true,
+  } = data;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const openMenu = Boolean(anchorEl);
@@ -32,11 +41,15 @@ const ShiftInfo = ({ data, size }: IProps) => {
 
   return (
     <React.Fragment>
-      <AsideBlock height={size} key={id}>
+      <AsideBlock height={size} key={shiftId}>
         <AsideItem>
           <Name>{_.upperFirst(name)}</Name>
           {assignee && !_.isEmpty(assignee) ? (
-            <Users data={assignee} size={18} />
+            <Users
+              data={assignee}
+              size={18}
+              handleAssigneeClick={handleAssigneeClick}
+            />
           ) : (
             <TotalTime>
               <AlarmOnIcon sx={{ fontSize: 'inherit' }} />{' '}
@@ -48,7 +61,7 @@ const ShiftInfo = ({ data, size }: IProps) => {
         <IconButton
           aria-label="Open actions"
           component="label"
-          aria-controls={openMenu ? id : undefined}
+          aria-controls={openMenu ? shiftId : undefined}
           aria-haspopup="true"
           aria-expanded={openMenu ? 'true' : undefined}
           onClick={handleClick}
@@ -59,10 +72,10 @@ const ShiftInfo = ({ data, size }: IProps) => {
       </AsideBlock>
 
       <Menu
-        id={id}
-        aria-labelledby={id}
+        id={shiftId}
+        aria-labelledby={shiftId}
         anchorEl={anchorEl}
-        open={openMenu && !_.isEmpty(actions)}
+        open={openMenu && !_.isEmpty(actions) && isActionEnabled}
         onClose={handleClose}
         anchorOrigin={{
           vertical: 'top',
@@ -75,7 +88,12 @@ const ShiftInfo = ({ data, size }: IProps) => {
       >
         {actions?.map(({ text, onClick: handleActionClick }, index) => {
           return (
-            <MenuItem onClick={handleActionClick} key={index} dense>
+            <MenuItem
+              onClick={handleActionClick}
+              key={index}
+              data-id={shiftId}
+              dense
+            >
               {_.upperFirst(text)}
             </MenuItem>
           );

@@ -18,15 +18,15 @@ export interface IZoom {
 
 export interface IGridSize extends Pick<IZoom, 'max'> {
   width: number;
-}
+} 
 
 export interface ITime {
   format: '12' | '24';
-}
+} 
 
-export interface IActions {
+export interface IAction {
   text: string;
-  onClick: (event: React.MouseEvent) => void;
+  onClick: (event:  React.MouseEvent<HTMLElement>) => void;
 }
 
 export interface IDefaultState {
@@ -41,8 +41,7 @@ export interface IDefaultState {
 
 export interface IAssignee extends IBase {
   name: string;
-  image: string;
-  onClick?: (event: React.MouseEvent) => void;
+  image: string; 
   description?: string;
 }
 
@@ -55,8 +54,8 @@ export interface ITask extends IBase {
   updatedAt?: string;
   additionalInfo?: string;
   Icon?: ReactNode;
-  color?: string | Color;
-  actions?: IActions[];
+  color?: string | Color; 
+  isActionEnabled?: boolean;
 }
 
 export interface IGroup extends IBase {
@@ -75,19 +74,26 @@ export interface IShift extends IBase {
   createdAt: string;
   updatedAt: string;
   groups: IGroup[];
-  assignee?: IAssignee[];
-  actions?: IActions[];
+  assignee?: IAssignee[]; 
+  isActionEnabled?: boolean;
 }
 
 export interface IMetaData {
-  scheduledDate: string; 
+  currentDate: string; 
   location: string;
   status?: string;
-  rawData?: any;
-  onPrevDateClick?: (event: React.MouseEvent) => void;
-  onNextDateClick?: (event: React.MouseEvent) => void;
+  rawData?: any; 
 }
 export interface IPlanner extends IBase {
   metaData: IMetaData;
   shifts: IShift[];
+}
+
+export interface IShiftPlannerProps {
+  plan: IPlanner;
+  shiftActions?: IAction[];
+  taskActions?: IAction[]; 
+  onPrevDateClick?: (event: React.MouseEvent<HTMLElement>) => void;
+  onNextDateClick?: (event: React.MouseEvent<HTMLElement>) => void;
+  onAssigneeClick?: (event:  React.MouseEvent<HTMLElement>) => void;
 }

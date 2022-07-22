@@ -11,9 +11,16 @@ import { IMetaData } from './../../Utils';
 export interface IProps {
   metaData: IMetaData;
   disabled: boolean;
+  handlePrevDateChange?: (event: React.MouseEvent<HTMLElement>) => void;
+  handleNextDateChange?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
-const DateGroup = ({ metaData, disabled }: IProps): JSX.Element => {
+const DateGroup = ({
+  metaData,
+  disabled,
+  handlePrevDateChange,
+  handleNextDateChange,
+}: IProps): JSX.Element => {
   return (
     <Stack
       direction="row"
@@ -21,29 +28,29 @@ const DateGroup = ({ metaData, disabled }: IProps): JSX.Element => {
       justifyContent="center"
       alignItems="center"
     >
-      {metaData?.onPrevDateClick && (
+      {handlePrevDateChange && (
         <IconButton
           size="small"
           color="info"
-          onClick={metaData.onPrevDateClick}
+          onClick={handlePrevDateChange}
           disabled={disabled}
         >
           <ArrowCircleLeftIcon />
         </IconButton>
       )}
       <Current>
-        {moment(metaData?.scheduledDate).format('MMM Do YYYY')}
+        {moment(metaData?.currentDate).format('MMM Do YYYY')}
         {metaData?.location && (
           <Location>
             <FmdGoodIcon sx={{ fontSize: 'inherit' }} /> {metaData.location}
           </Location>
         )}
       </Current>
-      {metaData?.onNextDateClick && (
+      {handleNextDateChange && (
         <IconButton
           size="small"
           color="info"
-          onClick={metaData.onNextDateClick}
+          onClick={handleNextDateChange}
           disabled={disabled}
         >
           <ArrowCircleRightIcon />
