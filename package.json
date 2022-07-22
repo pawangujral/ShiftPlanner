@@ -12,10 +12,6 @@
     "url": "https://github.com/pawangujral/ShiftPlanner.git",
     "bugs": "https://github.com/pawangujral/ShiftPlanner.git/issues"
   },
-  "engines": {
-    "node": ">=8",
-    "npm": ">=5"
-  },
   "scripts": {
     "build": "rollup -c && build-storybook",
     "build:storybook": "build-storybook",
