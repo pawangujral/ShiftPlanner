@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+
+import { IShiftPlannerProps } from 'src/Utils';
 
 import ShiftPlanner from '../index';
 
@@ -12,17 +15,35 @@ import {
 export default {
   title: 'Shift Planner',
   component: ShiftPlanner,
-};
+  args: {},
+} as ComponentMeta<typeof ShiftPlanner>;
 
-const Template = (args: any) => <ShiftPlanner {...args} />;
+const Template: ComponentStory<typeof ShiftPlanner> = (
+  args: IShiftPlannerProps
+) => <ShiftPlanner {...args} />;
 
 export const Default = Template.bind({});
+export const WithActions = Template.bind({});
+export const WithDateChange = Template.bind({});
+export const NoData = Template.bind({});
 
 Default.args = {
   plan: mockServer(),
-  shiftActions: mockActions(),
-  taskActions: mockActions(),
-  onAssigneeClick: handleUserClick,
-  onPrevDateClick: handleDateChange,
-  onNextDateClick: handleDateChange,
 };
+
+WithActions.args = {
+  plan: mockServer(),
+  actions: {
+    shift: mockActions(),
+    task: mockActions(),
+  },
+  handleAssigneeClick: handleUserClick,
+};
+
+WithDateChange.args = {
+  plan: mockServer(),
+  handlePrevDateClick: handleDateChange,
+  handleNextDateClick: handleDateChange,
+};
+
+NoData.args = {};

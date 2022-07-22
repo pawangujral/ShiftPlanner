@@ -89,11 +89,14 @@ export interface IPlanner extends IBase {
   shifts: IShift[];
 }
 
+export interface IPlanActions {
+  shift: IAction[],
+  task: IAction[], 
+}
 export interface IShiftPlannerProps {
   plan: IPlanner;
-  shiftActions?: IAction[];
-  taskActions?: IAction[]; 
-  onPrevDateClick?: (event: React.MouseEvent<HTMLElement>) => void;
-  onNextDateClick?: (event: React.MouseEvent<HTMLElement>) => void;
-  onAssigneeClick?: (event:  React.MouseEvent<HTMLElement>) => void;
+  actions: IPlanActions, 
+  handlePrevDateClick?: (event: React.MouseEvent<HTMLElement>) => void;
+  handleNextDateClick?: (event: React.MouseEvent<HTMLElement>) => void;
+  handleAssigneeClick?: (event:  React.MouseEvent<HTMLElement>) => void;
 }

@@ -12,11 +12,10 @@ interface IProps extends Omit<IShiftPlannerProps, 'plan'> {
 
 function ShiftPlanner({
   plan,
-  shiftActions,
-  taskActions,
-  onAssigneeClick,
-  onPrevDateClick,
-  onNextDateClick,
+  actions,
+  handleAssigneeClick,
+  handlePrevDateClick,
+  handleNextDateClick,
 }: IProps): JSX.Element {
   const theme = React.useMemo(
     () =>
@@ -37,11 +36,10 @@ function ShiftPlanner({
       <CssBaseline />
       <Planner
         plan={plan}
-        shiftActions={shiftActions}
-        taskActions={taskActions}
-        onAssigneeClick={onAssigneeClick}
-        onPrevDateClick={onPrevDateClick}
-        onNextDateClick={onNextDateClick}
+        actions={actions}
+        handleAssigneeClick={handleAssigneeClick}
+        handlePrevDateClick={handlePrevDateClick}
+        handleNextDateClick={handleNextDateClick}
       />
     </ThemeProvider>
   );

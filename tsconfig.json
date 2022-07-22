@@ -23,6 +23,6 @@
       "src/*": ["src/*"],
     },
   },
-  "include": ["src", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "dist", "example", "rollup.config.js"]
+  "include": ["src", "**/*.ts", "**/*.tsx",  "src/custom.d.ts"],
+  "exclude": ["node_modules", "dist", "example", "rollup.config.js",]
 }

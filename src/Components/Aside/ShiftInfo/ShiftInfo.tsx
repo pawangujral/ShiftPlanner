@@ -1,7 +1,7 @@
 import * as React from 'react';
 import _ from 'lodash';
 import { CALCULATE_DURATION, FORMAT_DURATION } from '../../../Utils';
-import type { IShift, IAction } from '../../../Utils';
+import type { IShift, IPlanActions } from '../../../Utils';
 import { TotalTime } from './ShiftInfo.style';
 import { AsideBlock, AsideItem, Name } from '../Aside.style';
 import Users from '../../Users';
@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 interface IProps {
   data: IShift;
   size: number;
-  actions: IAction[];
+  actions: IPlanActions;
   handleAssigneeClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
@@ -43,7 +43,9 @@ const ShiftInfo = ({ data, size, actions, handleAssigneeClick }: IProps) => {
     <React.Fragment>
       <AsideBlock height={size} key={shiftId}>
         <AsideItem>
-          <Name>{_.upperFirst(name)}</Name>
+          <Name>
+            {name && _.trim(name).length ? _.upperFirst(name) : shiftId}
+          </Name>
           {assignee && !_.isEmpty(assignee) ? (
             <Users
               data={assignee}
@@ -75,7 +77,7 @@ const ShiftInfo = ({ data, size, actions, handleAssigneeClick }: IProps) => {
         id={shiftId}
         aria-labelledby={shiftId}
         anchorEl={anchorEl}
-        open={openMenu && !_.isEmpty(actions) && isActionEnabled}
+        open={openMenu && actions && !_.isEmpty(actions) && isActionEnabled}
         onClose={handleClose}
         anchorOrigin={{
           vertical: 'top',
@@ -86,18 +88,20 @@ const ShiftInfo = ({ data, size, actions, handleAssigneeClick }: IProps) => {
           horizontal: 'left',
         }}
       >
-        {actions?.map(({ text, onClick: handleActionClick }, index) => {
-          return (
-            <MenuItem
-              onClick={handleActionClick}
-              key={index}
-              data-id={shiftId}
-              dense
-            >
-              {_.upperFirst(text)}
-            </MenuItem>
-          );
-        })}
+        {actions &&
+          !_.isEmpty(actions) &&
+          actions.shift.map(({ text, onClick: handleActionClick }, index) => {
+            return (
+              <MenuItem
+                onClick={handleActionClick}
+                key={index}
+                data-id={shiftId}
+                dense
+              >
+                {_.upperFirst(text)}
+              </MenuItem>
+            );
+          })}
       </Menu>
     </React.Fragment>
   );

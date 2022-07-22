@@ -21,6 +21,7 @@ const DateGroup = ({
   handlePrevDateChange,
   handleNextDateChange,
 }: IProps): JSX.Element => {
+  console.log(handlePrevDateChange, handleNextDateChange);
   return (
     <Stack
       direction="row"

@@ -33,11 +33,10 @@ const DEFAULT_STATE: IDefaultState = {
 
 const Planner = ({
   plan,
-  shiftActions = [],
-  taskActions = [],
-  onAssigneeClick,
-  onPrevDateClick,
-  onNextDateClick,
+  actions,
+  handleAssigneeClick,
+  handlePrevDateClick,
+  handleNextDateClick,
 }: IProps): JSX.Element => {
   const [toggleAside, setToggleAside] = React.useState<boolean>(true);
   const [unit, setUnit] = React.useState<number>(DEFAULT_STATE.default);
@@ -96,8 +95,8 @@ const Planner = ({
         zoom={DEFAULT_STATE.zoom}
         handleToggleZoom={handleToggleZoom}
         handleToggle={handleToggle}
-        handlePrevDateChange={onPrevDateClick}
-        handleNextDateChange={onNextDateClick}
+        handlePrevDateChange={handlePrevDateClick}
+        handleNextDateChange={handleNextDateClick}
       />
 
       <Container toggle={toggleAside}>
@@ -105,8 +104,8 @@ const Planner = ({
           <Aside
             data={plan.shifts}
             size={DEFAULT_STATE.gridRowSize.max}
-            actions={shiftActions}
-            handleAssigneeClick={onAssigneeClick}
+            actions={actions}
+            handleAssigneeClick={handleAssigneeClick}
           />
         )}
 
@@ -118,8 +117,8 @@ const Planner = ({
             unit={unit}
             state={DEFAULT_STATE}
             gridSize={DEFAULT_STATE.gridRowSize.max}
-            actions={taskActions}
-            handleAssigneeClick={onAssigneeClick}
+            actions={actions}
+            handleAssigneeClick={handleAssigneeClick}
           />
         </Main>
       </Container>

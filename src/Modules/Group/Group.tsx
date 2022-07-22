@@ -13,12 +13,12 @@ import {
 import { Container, Title } from './Group.style';
 import Drawer from '@mui/material/Drawer';
 
-import type { ITask, IGroup, IAction } from '../../Utils';
+import type { ITask, IGroup, IPlanActions } from '../../Utils';
 
 export interface IProps {
   data: IGroup;
   unit: number;
-  actions: IAction[];
+  actions: IPlanActions;
   handleAssigneeClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 

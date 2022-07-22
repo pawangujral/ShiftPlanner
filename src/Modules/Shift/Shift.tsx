@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { IDefaultState, IShift, IAction } from '../../Utils';
+import type { IDefaultState, IShift, IPlanActions } from '../../Utils';
 import Group from '../Group';
 import GridContainer from '../../Components/GridContainer';
 import { Block, Container } from './Shift.style';
@@ -9,7 +9,7 @@ interface IProps {
   unit: number;
   state: IDefaultState;
   gridSize: number;
-  actions: IAction[];
+  actions: IPlanActions;
   handleAssigneeClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 

@@ -14,13 +14,13 @@ import {
   CALCULATE_DURATION,
 } from '../../Utils';
 import { Container, Title, Info, InfoBox } from './Task.style';
-import type { ITask, IAction } from '../../Utils';
+import type { ITask, IPlanActions } from '../../Utils';
 
 export interface IProps {
   data: ITask;
   unit: number;
   isHover: boolean;
-  actions: IAction[];
+  actions: IPlanActions;
   handleMouseEnter: () => void;
   handleMouseLeave: () => void;
   handleAssigneeClick?: (event: React.MouseEvent<HTMLElement>) => void;
@@ -114,7 +114,7 @@ function Task({
         id={taskId}
         aria-labelledby={taskId}
         anchorEl={anchorEl}
-        open={openMenu && !_.isEmpty(actions) && isActionEnabled}
+        open={openMenu && actions && !_.isEmpty(actions) && isActionEnabled}
         onClose={handleClose}
         anchorOrigin={{
           vertical: 'top',
@@ -125,16 +125,18 @@ function Task({
           horizontal: 'left',
         }}
       >
-        {actions?.map(({ text, onClick: handleActionClick }, index) => (
-          <MenuItem
-            onClick={handleActionClick}
-            key={index}
-            data-id={taskId}
-            dense
-          >
-            {_.upperFirst(text)}
-          </MenuItem>
-        ))}
+        {actions &&
+          !_.isEmpty(actions) &&
+          actions.task.map(({ text, onClick: handleActionClick }, index) => (
+            <MenuItem
+              onClick={handleActionClick}
+              key={index}
+              data-id={taskId}
+              dense
+            >
+              {_.upperFirst(text)}
+            </MenuItem>
+          ))}
       </Menu>
     </>
   );

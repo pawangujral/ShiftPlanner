@@ -18,6 +18,24 @@ const Users = ({
   max = 5,
   handleAssigneeClick,
 }: IProps): JSX.Element => {
+  const renderToolTipContent = (
+    name: string | undefined,
+    description: string | undefined
+  ) => {
+    if (
+      (name && _.trim(name).length) ||
+      (description && _.trim(description).length)
+    ) {
+      return (
+        <span>
+          <Name>{_.upperFirst(name)}</Name>
+          <Description>{_.upperFirst(description)}</Description>
+        </span>
+      );
+    }
+
+    return '';
+  };
   return (
     <AvatarGroupContainer
       sx={{
@@ -28,12 +46,7 @@ const Users = ({
       {data.map(({ id, name, image, description }) => {
         return (
           <Tooltip
-            title={
-              <span>
-                <Name>{_.upperFirst(name)}</Name>
-                <Description>{_.upperFirst(description)}</Description>
-              </span>
-            }
+            title={renderToolTipContent(name, description)}
             placement="top"
             key={id}
             arrow

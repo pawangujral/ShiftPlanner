@@ -36,14 +36,13 @@ import ShiftPlanner from 'shiftplanner';
 
 You can pass following props to `ShiftPlanner` component
 
- | Prop           | Type           | Default Value  | Required  | Description               |
-| --------------- | -------------| -----------|-------------| --------------------------|
-| plan            | `IPlanner`    | `undefined` | true         | Plan values                |
-| shiftActions    | `IAction[]`   | `undefined` | false        | Actions for Shift          |
-| taskActions     | `IAction[]`   | `undefined` | false        | Actions for Task           |
-| onPrevDateClick | `fn`          | `undefined` | false        | Change date to previous    |
-| onNextDateClick | `fn`          | `undefined` | false        | Change date to next        |
-| onAssigneeClick | `fn`          | `undefined` | false        | Click `fn` for assignee    |
+| Prop                | Type             | Default Value  | Required     | Description               |
+| ------------------- | ---------------- | ---------------|--------------| --------------------------|
+| plan                | `IPlanner`       | `undefined`    | true         | Plan values               |
+| Actions             | `IPlanActions[]` | `undefined`    | false        | Actions for Shift         |
+| handlePrevDateClick | `fn`             | `undefined`    | false        | Change date to previous   |
+| handleNextDateClick | `fn`             | `undefined`    | false        | Change date to next       |
+| handleAssigneeClick | `fn`             | `undefined`    | false        | Click `fn` for assignee   |
 
 
 ## Example:
@@ -129,8 +128,16 @@ FYI: `duration` of task/shift is figured out by `startTime` & `endTime`.
 }
 ```
 
-### Action Prop
+* `IPlanActions` 
 You can attach action to shift & task & even disable is specific shift/task. 
+```ts
+{
+  shift: IAction[],
+  task: IAction[], 
+}
+```
+
+### Action Prop
 
 * `IAction` 
 ```ts

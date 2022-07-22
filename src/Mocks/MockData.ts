@@ -26,6 +26,17 @@ export function mockActions() {
   }))
 }; 
 
+export function mockAssignee() {
+  return [...Array(randomNumber(0, 10))].map(
+    (_, ) => ({
+      id: faker.datatype.uuid(),
+      name: faker.name.findName(),
+      description: faker.internet.email(),
+      image: faker.image.avatar(), 
+    })
+  )
+};
+
 
 export function mockServer() {
   return  {
@@ -46,14 +57,7 @@ export function mockServer() {
         updatedAt: faker.date.past().toString(),
         name: faker.lorem.words(10), 
         isActionEnabled: true,
-        assignee: [...Array(randomNumber(0, 10))].map((_, ) => ({
-            id: faker.datatype.uuid(),
-            name: faker.name.findName(),
-            description: faker.internet.email(),
-            image: faker.image.avatar(),  
-            onClick: handleUserClick, 
-        })),
-       
+        assignee: mockAssignee(),
         groups: [...Array(1)].map((_, ) => ({
             id: faker.datatype.uuid(),
             startTime: "2022-07-13T06:00:00.000Z",
@@ -69,15 +73,7 @@ export function mockServer() {
                 updatedAt: "2022-07-12T11:29:53.945Z",
                 name: faker.lorem.words(10), 
                 isActionEnabled: true,
-                assignee: [...Array(randomNumber(0, 10))].map(
-                    (_, ) => ({
-                      id: faker.datatype.uuid(),
-                      name: faker.name.findName(),
-                      description: faker.internet.email(),
-                      image: faker.image.avatar(),
-                      onClick: handleUserClick, 
-                    })
-                  ),
+                assignee: mockAssignee(),
                 additionalInfo: faker.lorem.lines(),
                 color: faker.color.human()
               })),

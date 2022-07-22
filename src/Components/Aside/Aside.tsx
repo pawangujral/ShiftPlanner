@@ -1,12 +1,12 @@
 import * as React from 'react';
-import type { IShift, IAction } from './../../Utils';
+import type { IShift, IPlanActions } from './../../Utils';
 import { Container } from './Aside.style';
 import ShiftInfo from './ShiftInfo';
 
 interface IProps {
   data: IShift[];
   size: number;
-  actions: IAction[];
+  actions: IPlanActions;
   handleAssigneeClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
