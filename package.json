@@ -13,8 +13,8 @@
     "bugs": "https://github.com/pawangujral/ShiftPlanner.git/issues"
   },
   "scripts": {
-    "build": "rollup -c && build-storybook -s public",
-    "build:storybook": "build-storybook -s public",
+    "build": "rollup -c && build-storybook",
+    "build:storybook": "build-storybook",
     "start": "node server.js",
     "start:storybook": "start-storybook -p 6006 -s public",
     "prepare": "husky install",
