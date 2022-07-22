@@ -1,6 +1,6 @@
 # Shift Planner
 > A react package to plan your shifts/tasks & show them in nice & interactive mode.
-> Live demo hosted on heroku - (here)[https://shifty-shift.herokuapp.com/]).
+> Live demo hosted on heroku - (here)[https://shiftplanner-pawangujral.herokuapp.com/]).
 
 ## Table of Contents 
 * [Tech Stack](#tech-stack)
