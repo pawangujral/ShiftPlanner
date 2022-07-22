@@ -45,4 +45,5 @@ typings/
 .yarn-integrity
 
 # generate output
-dist 
+dist
+storybook-static

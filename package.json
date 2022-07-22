@@ -17,12 +17,13 @@
     "npm": ">=5"
   },
   "scripts": {
-    "build": "rollup -c",
+    "build:package": "rollup -c",
     "start": "node server.js",
     "start:storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "build": "build-storybook",
     "prepare": "husky install",
-    "lint": "eslint",
+    "lint": "run-p lint:ts",
+    "lint:fix": "run-p lint:*:fix",
     "format": "prettier --check \"**/*.{css,js,json,md,ts,tsx,yml,yaml}\"",
     "format:fix": "prettier --write \"**/*.{css,js,json,md,ts,tsx,yml,yaml}\""
   },
