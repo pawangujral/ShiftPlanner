@@ -4,7 +4,8 @@ import { Container, Main } from './Planner.style';
 import _ from 'lodash';
 import moment from 'moment';
 import { CALCULATE_BLOCK_POSITION } from '../../Utils';
-import type { IDefaultState, IShiftPlannerProps } from '../../Utils';
+import type { IShiftPlannerProps } from '../../Utils';
+import { DEFAULT_STATE } from './../../Config';
 import Aside from '../../Components/Aside';
 import Actions from '../../Components/Actions';
 import Indicator from '../../Components/Indicator';
@@ -12,24 +13,6 @@ import Shift from '../Shift';
 import Mayday from '../../Components/Mayday';
 
 interface IProps extends IShiftPlannerProps {}
-
-const DEFAULT_STATE: IDefaultState = {
-  default: 1,
-  offset: 600,
-  condensed: false,
-  gridColumnCount: 25, //! this should be dynamic
-  gridRowSize: {
-    max: 75,
-    width: 60,
-  },
-  zoom: {
-    min: 1,
-    max: 8,
-  },
-  time: {
-    format: '24',
-  },
-};
 
 const Planner = ({
   plan,

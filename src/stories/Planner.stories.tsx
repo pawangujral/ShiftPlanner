@@ -13,9 +13,8 @@ import {
 } from '../Mocks/MockData';
 
 export default {
-  title: 'Shift Planner',
+  title: 'Package/Shift Planner',
   component: ShiftPlanner,
-  args: {},
 } as ComponentMeta<typeof ShiftPlanner>;
 
 const Template: ComponentStory<typeof ShiftPlanner> = (

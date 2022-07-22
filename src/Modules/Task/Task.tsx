@@ -129,7 +129,10 @@ function Task({
           !_.isEmpty(actions) &&
           actions.task.map(({ text, onClick: handleActionClick }, index) => (
             <MenuItem
-              onClick={handleActionClick}
+              onClick={(event: React.MouseEvent<HTMLElement>) => {
+                handleActionClick(event);
+                handleClose();
+              }}
               key={index}
               data-id={taskId}
               dense

@@ -4,7 +4,7 @@ import Group from '../Group';
 import GridContainer from '../../Components/GridContainer';
 import { Block, Container } from './Shift.style';
 
-interface IProps {
+export interface IProps {
   data: IShift[];
   unit: number;
   state: IDefaultState;

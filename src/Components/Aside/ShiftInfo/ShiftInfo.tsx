@@ -93,7 +93,10 @@ const ShiftInfo = ({ data, size, actions, handleAssigneeClick }: IProps) => {
           actions.shift.map(({ text, onClick: handleActionClick }, index) => {
             return (
               <MenuItem
-                onClick={handleActionClick}
+                onClick={(event: React.MouseEvent<HTMLElement>) => {
+                  handleActionClick(event);
+                  handleClose();
+                }}
                 key={index}
                 data-id={shiftId}
                 dense
