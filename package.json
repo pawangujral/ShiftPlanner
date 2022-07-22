@@ -19,7 +19,7 @@
   "scripts": {
     "build": "rollup -c && build-storybook",
     "build:storybook": "build-storybook",
-    "start": "node server.js",
+    "start": "node server.js --openssl-legacy-provider ",
     "start:storybook": "start-storybook -p 6006",
     "prepare": "husky install",
     "lint": "run-p lint:ts",
