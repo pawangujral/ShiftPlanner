@@ -29,7 +29,7 @@ Default.args = {
   plan: mockServer(),
   config: {
     zoom: {
-      default: 3,
+      default: 1,
     },
   },
 };

@@ -5,7 +5,7 @@ import { blue } from '@mui/material/colors';
 
 const defaultTheme: ThemeOptions = {
   palette: {
-    mode: 'dark',
+    mode: 'light',
     primary: {
       main: blue[600],
     },

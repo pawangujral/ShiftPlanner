@@ -30,6 +30,13 @@ const Planner = ({
 
   React.useEffect(() => {
     if (config) {
+      if (
+        config.zoom &&
+        !_.inRange(config.zoom.default, settings.zoom.min, settings.zoom.max)
+      ) {
+        return;
+      }
+      console.log(config);
       setSettings(_.merge(DEFAULT_STATE, config));
     }
   }, [config]);
