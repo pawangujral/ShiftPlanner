@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import { Container, Main } from './Planner.style';
+import { Container, Main, SideBar } from './Planner.style';
 import _ from 'lodash';
 import moment from 'moment';
 import { CALCULATE_BLOCK_POSITION } from '../../Utils';
 import type { IShiftPlannerProps, IDefaultState } from '../../Utils';
 import { DEFAULT_STATE } from './../../Config';
-import Aside from '../../Components/Aside';
+import ShiftInfo from '../../Components/Aside/ShiftInfo';
 import Actions from '../../Components/Actions';
 import Indicator from '../../Components/Indicator';
 import Shift from '../Shift';
@@ -98,12 +98,17 @@ const Planner = ({
 
       <Container toggle={toggleAside}>
         {toggleAside && (
-          <Aside
-            data={plan.shifts}
-            size={settings.gridRowSize.max}
-            actions={actions}
-            handleAssigneeClick={handleAssigneeClick}
-          />
+          <SideBar>
+            {plan.shifts.map((item) => (
+              <ShiftInfo
+                data={item}
+                key={item.id}
+                size={settings.gridRowSize.max}
+                actions={actions}
+                handleAssigneeClick={handleAssigneeClick}
+              />
+            ))}
+          </SideBar>
         )}
 
         <Main ref={elRef}>

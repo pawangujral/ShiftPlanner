@@ -156,7 +156,7 @@ Task of shift/task is already set by data attribute `data-id`. You can access it
 ```ts
 const handleClick = (event: React.MouseEvent<HTMLElement>) => {
   const elem = event.target as HTMLElement; 
-  console.log(elem.dataset.id) // This will be the ID of shift/task you are clicking.
+  console.log(elem.dataset.id) // This will be the ID of shift/task you have clicked.
 };
 ```
 
