@@ -17,7 +17,7 @@ export interface IShiftPlannerProps {
   handleNextDateClick?: (event: React.MouseEvent<HTMLElement>) => void;
   handleAssigneeClick?: (event:  React.MouseEvent<HTMLElement>) => void;
   config?: IConfig;
-  theme: 'dark' | 'light';
+  theme?: 'dark' | 'light';
 }
 
 
