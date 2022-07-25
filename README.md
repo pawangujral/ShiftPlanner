@@ -5,6 +5,7 @@
 ## Table of Contents 
 * [Tech Stack](#tech-stack)
 * [Installation](#installation) 
+* [Theme](#theme) 
 * [Contact](#contact)
 * [License](#license)
  
@@ -43,6 +44,7 @@ You can pass following props to `ShiftPlanner` component
 | handlePrevDateClick | `fn`             | `undefined`    | false        | Change date to previous   |
 | handleNextDateClick | `fn`             | `undefined`    | false        | Change date to next       |
 | handleAssigneeClick | `fn`             | `undefined`    | false        | Click `fn` for assignee   |
+| theme               | `ThemeOptions`   | `defaultTheme` | false        | Customized `MUI` theme    |
 
 
 ## Example:
@@ -162,7 +164,12 @@ const handleClick = (event: React.MouseEvent<HTMLElement>) => {
 coming soon...
 
 ## Theme 
-coming soon...
+Package is build on material UI. You can customize theme as per your choice & pass as prop to component.
+Feel free to use these tools.
+
+- [MUI Theme](https://mui.com/material-ui/customization/theming/)
+- [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/)
+- [Material palette generator](https://material.io/inline-tools/color/)
 
 #### For SSR (e.g: `NextJs`) Project
 

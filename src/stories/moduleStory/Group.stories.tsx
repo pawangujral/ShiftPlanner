@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
-import { defaultTheme } from '../../Theme';
+import { themeCreator } from '../../Theme';
 import Group from '../../Modules/Group';
 import type { IProps } from '../../Modules/Group';
 import { DEFAULT_STATE } from '../../Config';
@@ -13,7 +13,7 @@ export default {
   component: Group,
   decorators: [
     (Story) => (
-      <ThemeProvider theme={defaultTheme}>
+      <ThemeProvider theme={themeCreator()}>
         <CssBaseline />
         <Story />
       </ThemeProvider>

@@ -12,7 +12,6 @@ export interface IProps {
 const Mayday = ({ message }: IProps): JSX.Element => (
   <ImageBlock>
     <ImageContainer src={notfound} />
-
     <Title>{message ?? defaultMessage}</Title>
   </ImageBlock>
 );

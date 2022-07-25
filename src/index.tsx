@@ -2,7 +2,7 @@ import * as React from 'react';
 import _ from 'lodash';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
-import { defaultTheme } from './Theme';
+import { themeCreator } from './Theme';
 import Planner from './Modules/Planner';
 import Mayday from './Components/Mayday';
 import { IPlanner, IShiftPlannerProps } from './Utils';
@@ -18,13 +18,14 @@ function ShiftPlanner({
   handlePrevDateClick,
   handleNextDateClick,
   config,
+  theme,
 }: IProps): JSX.Element {
   if (!plan || _.isEmpty(plan)) {
     return <Mayday />;
   }
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={themeCreator(theme)}>
       <CssBaseline />
       <Planner
         plan={plan}

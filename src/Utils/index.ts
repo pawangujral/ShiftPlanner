@@ -7,6 +7,8 @@ export * from "./Types/Grid";
 export * from "./Types/Meta";
 export * from "./Types/Shift";
 export * from "./Types/State";
+export * from "./Types/Group";
+export * from "./Types/Assignee";
 export * from "./Types/Task";
 export * from "./Types/Time";
 export * from "./Types/Zoom";

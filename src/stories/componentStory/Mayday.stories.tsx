@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
-import { defaultTheme } from '../../Theme';
+import { themeCreator } from '../../Theme';
 import Mayday from '../../Components/Mayday';
 import type { IProps } from '../../Components/Mayday';
 
@@ -11,7 +11,7 @@ export default {
   component: Mayday,
   decorators: [
     (Story) => (
-      <ThemeProvider theme={defaultTheme}>
+      <ThemeProvider theme={themeCreator()}>
         <CssBaseline />
         <Story />
       </ThemeProvider>

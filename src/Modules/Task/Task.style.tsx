@@ -1,6 +1,6 @@
 import { styled } from '@mui/system';
 import Paper from '@mui/material/Paper';
-import { Color } from '../../Utils';
+import type { TColor } from '../../Utils';
 import { grey } from '@mui/material/colors';
 
 export const Container = styled(Paper, {
@@ -8,7 +8,7 @@ export const Container = styled(Paper, {
 })<{
   width: number;
   padding: number;
-  color?: Color | string;
+  color?: TColor | string;
 }>(({ width, padding }) => ({
   width: width,
   overflow: 'hidden',
