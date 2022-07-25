@@ -1,7 +1,6 @@
-import { IDefaultState } from './../Utils';
+import { IDefaultState } from '../Utils';
 
 export const DEFAULT_STATE: IDefaultState = {
-  default: 1,
   offset: 600,
   condensed: false,
   gridColumnCount: 25, //! this should be dynamic
@@ -10,10 +9,11 @@ export const DEFAULT_STATE: IDefaultState = {
     width: 60,
   },
   zoom: {
+    default: 1,
     min: 1,
     max: 8,
   },
   time: {
-    format: '24',
+    format: 24,
   },
 };

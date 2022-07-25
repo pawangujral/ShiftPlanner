@@ -29,7 +29,7 @@ export const GroupModule = GroupTemplate.bind({});
 
 GroupModule.args = {
   data: mockGroup(),
-  unit: DEFAULT_STATE.default,
+  unit: DEFAULT_STATE.zoom.default,
   actions: { task: mockActions() },
   handleAssigneeClick: handleUserClick,
 };

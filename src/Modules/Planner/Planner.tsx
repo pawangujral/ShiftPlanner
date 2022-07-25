@@ -4,7 +4,7 @@ import { Container, Main } from './Planner.style';
 import _ from 'lodash';
 import moment from 'moment';
 import { CALCULATE_BLOCK_POSITION } from '../../Utils';
-import type { IShiftPlannerProps } from '../../Utils';
+import type { IShiftPlannerProps, IDefaultState } from '../../Utils';
 import { DEFAULT_STATE } from './../../Config';
 import Aside from '../../Components/Aside';
 import Actions from '../../Components/Actions';
@@ -20,19 +20,26 @@ const Planner = ({
   handleAssigneeClick,
   handlePrevDateClick,
   handleNextDateClick,
+  config,
 }: IProps): JSX.Element => {
+  const [settings, setSettings] = React.useState<IDefaultState>(DEFAULT_STATE);
   const [toggleAside, setToggleAside] = React.useState<boolean>(true);
-  const [unit, setUnit] = React.useState<number>(DEFAULT_STATE.default);
+  const [unit, setUnit] = React.useState<number>(settings.zoom.default);
 
   const elRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    if (config) {
+      setSettings(_.merge(DEFAULT_STATE, config));
+    }
+  }, [config]);
 
   React.useEffect(() => {
     if (elRef.current) {
       // Scroll to current time to keep view in
       elRef.current.scrollTo({
         left:
-          CALCULATE_BLOCK_POSITION(moment().format(), unit) -
-          DEFAULT_STATE.offset,
+          CALCULATE_BLOCK_POSITION(moment().format(), unit) - settings.offset,
         top: 0,
         behavior: 'smooth',
       });
@@ -60,7 +67,7 @@ const Planner = ({
           unit={unit}
           data={plan}
           disabled={true}
-          zoom={DEFAULT_STATE.zoom}
+          zoom={settings.zoom}
           handleToggleZoom={handleToggleZoom}
           handleToggle={handleToggle}
         />
@@ -75,7 +82,7 @@ const Planner = ({
         unit={unit}
         data={plan}
         disabled={false}
-        zoom={DEFAULT_STATE.zoom}
+        zoom={settings.zoom}
         handleToggleZoom={handleToggleZoom}
         handleToggle={handleToggle}
         handlePrevDateChange={handlePrevDateClick}
@@ -86,7 +93,7 @@ const Planner = ({
         {toggleAside && (
           <Aside
             data={plan.shifts}
-            size={DEFAULT_STATE.gridRowSize.max}
+            size={settings.gridRowSize.max}
             actions={actions}
             handleAssigneeClick={handleAssigneeClick}
           />
@@ -98,8 +105,8 @@ const Planner = ({
           <Shift
             data={plan.shifts}
             unit={unit}
-            state={DEFAULT_STATE}
-            gridSize={DEFAULT_STATE.gridRowSize.max}
+            state={settings}
+            gridSize={settings.gridRowSize.max}
             actions={actions}
             handleAssigneeClick={handleAssigneeClick}
           />

@@ -29,7 +29,7 @@ export const TaskModule = TaskTemplate.bind({});
 
 TaskModule.args = {
   data: mockTask()[0],
-  unit: DEFAULT_STATE.default,
+  unit: DEFAULT_STATE.zoom.default,
   actions: { task: mockActions() },
   isHover: false,
   handleMouseEnter: () => {},

@@ -17,6 +17,7 @@ function ShiftPlanner({
   handleAssigneeClick,
   handlePrevDateClick,
   handleNextDateClick,
+  config,
 }: IProps): JSX.Element {
   if (!plan || _.isEmpty(plan)) {
     return <Mayday />;
@@ -31,6 +32,7 @@ function ShiftPlanner({
         handleAssigneeClick={handleAssigneeClick}
         handlePrevDateClick={handlePrevDateClick}
         handleNextDateClick={handleNextDateClick}
+        config={config}
       />
     </ThemeProvider>
   );

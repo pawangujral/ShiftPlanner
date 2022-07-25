@@ -114,7 +114,9 @@ function Task({
         id={taskId}
         aria-labelledby={taskId}
         anchorEl={anchorEl}
-        open={openMenu && actions && !_.isEmpty(actions) && isActionEnabled}
+        open={
+          openMenu && actions && !_.isEmpty(actions.task) && isActionEnabled
+        }
         onClose={handleClose}
         anchorOrigin={{
           vertical: 'top',

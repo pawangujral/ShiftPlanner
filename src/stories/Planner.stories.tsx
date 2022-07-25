@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-
 import { IShiftPlannerProps } from 'src/Utils';
 
 import ShiftPlanner from '../index';
@@ -28,6 +27,11 @@ export const NoData = Template.bind({});
 
 Default.args = {
   plan: mockServer(),
+  config: {
+    zoom: {
+      default: 3,
+    },
+  },
 };
 
 WithActions.args = {
