@@ -97,21 +97,19 @@ const Planner = ({
       />
 
       <Container toggle={toggleAside}>
-        {toggleAside && (
-          <SideBar>
-            {plan.shifts.map((item) => (
-              <ShiftInfo
-                data={item}
-                key={item.id}
-                size={settings.gridRowSize.max}
-                actions={actions}
-                handleAssigneeClick={handleAssigneeClick}
-              />
-            ))}
-          </SideBar>
-        )}
+        <SideBar toggle={toggleAside}>
+          {plan.shifts.map((item) => (
+            <ShiftInfo
+              data={item}
+              key={item.id}
+              size={settings.gridRowSize.max}
+              actions={actions}
+              handleAssigneeClick={handleAssigneeClick}
+            />
+          ))}
+        </SideBar>
 
-        <Main ref={elRef}>
+        <Main ref={elRef} toggle={toggleAside}>
           <Indicator unit={unit} />
 
           <Shift
