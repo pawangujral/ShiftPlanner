@@ -9,11 +9,11 @@ export const Container = styled(Paper, {
   width: number;
   padding: number;
   color?: TColor | string;
-}>(({ width, padding }) => ({
+}>(({ width }) => ({
   width: width,
   overflow: 'hidden',
   transition: 'all .2s linear',
-  padding: `${padding < 20 ? '.5em 0px' : '.5em'}`,
+  padding: '.5em',
   position: 'relative',
   display: 'inline-block',
 }));

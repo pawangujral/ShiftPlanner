@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import { faker } from '@faker-js/faker';
+import moment from 'moment';
 
 export const handleDateChange = (_: React.MouseEvent<HTMLElement>) => {
   alert('Render data for date change');
@@ -26,21 +27,25 @@ export function mockActions() {
 }
 
 export function mockAssignee() {
-  return [...Array(randomNumber(0, 10))].map((_) => ({
+  return [...Array(randomNumber(0, 3))].map((_) => ({
     id: faker.datatype.uuid(),
     name: faker.name.findName(),
     description: faker.internet.email(),
     image: faker.image.avatar(),
   }));
 }
+const now = moment()
+console.log('now ' + now.toString())
+console.log('start ' + now.startOf('day').toString())
+console.log('end ' + now.endOf('day').toString())
 
 export function mockTask() {
-  return [...Array(1)].map((_) => ({
+  return [...Array(randomNumber(1,1))].map((_) => ({
     id: faker.datatype.uuid(),
-    startTime: '2022-07-13T06:00:00.000Z',
-    endTime: '2022-07-13T10:20:00.000Z',
-    createdAt: '2022-07-12T11:29:53.945Z',
-    updatedAt: '2022-07-12T11:29:53.945Z',
+    startTime:  faker.date.between(now.startOf('day').toString(),now.endOf('day').toString()),
+    endTime:  faker.date.between(now.startOf('day').toString(), now.endOf('day').toString()),
+    createdAt: faker.date.recent(),
+    updatedAt: faker.date.recent(),
     name: faker.lorem.words(10),
     isActionEnabled: true,
     assignee: mockAssignee(),
@@ -50,13 +55,11 @@ export function mockTask() {
 }
 
 export function mockGroup() {
-  return [...Array(1)].map((_) => ({
+  return [...Array(randomNumber(1,1))].map((_) => ({
     id: faker.datatype.uuid(),
-    startTime: '2022-07-13T06:00:00.000Z',
-    endTime: '2022-07-13T10:20:00.000Z',
-    createdAt: '2022-07-12T11:29:53.945Z',
-    updatedAt: '2022-07-12T11:29:53.945Z',
-    name: faker.lorem.words(10),
+    createdAt: faker.date.recent(),
+    updatedAt: faker.date.recent(),
+    name: faker.lorem.words(randomNumber(0,10)),
     tasks: mockTask(),
   }));
 }

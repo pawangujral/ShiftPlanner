@@ -29,8 +29,11 @@ const Group = ({
   handleAssigneeClick,
 }: IProps): JSX.Element => {
   const [isOpen, setOpen] = React.useState<boolean>(false);
-  const { id, startTime, endTime, tasks = [], name } = data;
-  const duration = CALCULATE_DURATION(startTime, endTime);
+  const { id, tasks, name } = data;
+  const duration = CALCULATE_DURATION(
+    tasks[0].startTime,
+    tasks[tasks.length - 1].endTime
+  );
   const [isHovering, setHovering] = React.useState<boolean>(false);
 
   const handleMouseEnter = () => {
@@ -50,7 +53,7 @@ const Group = ({
     <React.Fragment>
       <Container
         width={CALCULATE_WIDTH(duration, unit)}
-        left={CALCULATE_BLOCK_POSITION(startTime, unit)}
+        left={CALCULATE_BLOCK_POSITION(tasks[0].startTime, unit)}
         key={id}
       >
         <Title onClick={handleGroupClick}>

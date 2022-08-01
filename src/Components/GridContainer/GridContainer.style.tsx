@@ -1,13 +1,13 @@
-import { styled } from '@mui/system'
-import { grey } from '@mui/material/colors'
+import { styled } from '@mui/system';
+import { grey } from '@mui/material/colors';
 
 export const GridRow = styled('span', {
   shouldForwardProp: (prop) =>
     prop !== 'column' && prop !== 'row' && prop !== 'gridSize',
 })<{
-  unit: number
-  count: number
-  size: { width: number; height: number }
+  unit: number;
+  count: number;
+  size: { width: number; height: number };
 }>(({ size, count, unit }) => ({
   position: 'absolute',
   width: '100%',
@@ -16,7 +16,7 @@ export const GridRow = styled('span', {
   transition: 'all .2s linear',
   gridTemplateColumns: `repeat(${count}, calc(${size.width}px * ${unit}))`,
   gridTemplateRows: size.height,
-}))
+}));
 
 export const GridColumn = styled('span')({
   display: 'block',
@@ -25,7 +25,7 @@ export const GridColumn = styled('span')({
   fontSize: '10px',
   borderLeft: '1px solid',
   borderBottom: '1px solid',
-  borderColor: grey[300],
+  borderColor: grey[200],
   transition: 'all .2s linear',
   overflow: 'hidden',
   opacity: '.5',
@@ -57,7 +57,7 @@ export const GridColumn = styled('span')({
     left: 'calc(-0.5em - 1px)',
     borderLeft: '1px solid',
     borderBottom: '1px solid',
-    borderColor: grey[300],
+    borderColor: grey[200],
     textIndent: '.5em',
   },
-})
+});

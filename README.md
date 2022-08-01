@@ -93,9 +93,7 @@ FYI: `duration` of task/shift is figured out by `startTime` & `endTime`.
 * `IGroup` // Collection of Tasks
 ```ts
 {
-    id: string; 
-    startTime: string;
-    endTime: string;
+    id: string;  
     name: string;
     createdAt: string;
     updatedAt: string;
