@@ -96,7 +96,7 @@ const Planner = ({
         handleNextDateChange={handleNextDateClick}
       />
 
-      <Container toggle={toggleAside}>
+      <Container>
         <SideBar toggle={toggleAside}>
           {plan.shifts.map((item) => (
             <ShiftInfo
