@@ -1,5 +1,5 @@
 import moment from 'moment';
- 
+
 export function FORMAT_DURATION(duration: number) {
   return moment
     .utc(moment.duration(duration, 'minutes').asMilliseconds())
@@ -8,7 +8,7 @@ export function FORMAT_DURATION(duration: number) {
 
 export function FORMAT_HOUR(dateTime: string) {
   return moment(dateTime).format('HH:mm');
-} 
+}
 
 export function FORMAT_DATE_TO_MINS(dateTime: string) {
   const currentTime = moment(dateTime);
@@ -26,6 +26,6 @@ export function CALCULATE_WIDTH(duration: number, unit: number) {
 
 export function CALCULATE_DURATION(start:string, end: string) {
   const startDate = moment(start); // start date
-  const endDate = moment(end); // end date 
+  const endDate = moment(end); // end date
   return endDate.diff(startDate, "minutes", true)
 }

@@ -46,7 +46,7 @@ export function mockTask() {
     endTime:  faker.date.between(now.startOf('day').toString(), now.endOf('day').toString()),
     createdAt: faker.date.recent(),
     updatedAt: faker.date.recent(),
-    name: faker.lorem.words(10),
+    name: faker.company.catchPhrase(),
     isActionEnabled: true,
     assignee: mockAssignee(),
     additionalInfo: faker.lorem.lines(),

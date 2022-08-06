@@ -31,8 +31,6 @@ function Task({
   unit,
   isHover,
   actions,
-  handleMouseEnter,
-  handleMouseLeave,
   handleAssigneeClick,
 }: IProps): JSX.Element {
   const {
@@ -66,8 +64,6 @@ function Task({
         data-type={taskId}
         color={color}
         data-hover={isHover}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
       >
         <Stack
           direction="row"
