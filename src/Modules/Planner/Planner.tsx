@@ -5,7 +5,7 @@ import _ from 'lodash';
 import moment from 'moment';
 import { CALCULATE_BLOCK_POSITION } from '../../Utils';
 import type { IShiftPlannerProps, IDefaultState } from '../../Utils';
-import { DEFAULT_STATE } from './../../Config';
+import DEFAULT_STATE from './../../Config';
 import ShiftInfo from '../../Components/Aside/ShiftInfo';
 import Actions from '../../Components/Actions';
 import Indicator from '../../Components/Indicator';
