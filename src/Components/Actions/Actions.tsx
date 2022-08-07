@@ -2,6 +2,7 @@ import * as React from 'react';
 import _ from 'lodash';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
+import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Grid';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
@@ -55,18 +56,20 @@ const Actions = ({
     <React.Fragment>
       <Grid container spacing={2} mb={2} mt={1}>
         <Grid item xs={4}>
-          <Tooltip title="Toggle sidebar" placement="top" arrow>
-            <span>
-              <IconButton
-                size="small"
-                color="info"
-                onClick={handleToggle}
-                disabled={disabled}
-              >
-                <MenuIcon />
-              </IconButton>
-            </span>
-          </Tooltip>
+          <Box display="flex" justifyContent="flex-start">
+            <Tooltip title="Toggle sidebar" placement="top" arrow>
+              <span>
+                <IconButton
+                  size="small"
+                  color="info"
+                  onClick={handleToggle}
+                  disabled={disabled}
+                >
+                  <MenuIcon />
+                </IconButton>
+              </span>
+            </Tooltip>
+          </Box>
         </Grid>
         <Grid item xs={4}>
           <DateGroup

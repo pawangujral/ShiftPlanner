@@ -1,6 +1,6 @@
 {
   "name": "shiftplanner",
-  "version": "1.6.0",
+  "version": "1.5.12",
   "description": "A Shift planner package",
   "author": "Pawan Gujral",
   "email": "gujral87@gmail.com",
@@ -40,8 +40,8 @@
     "npm"
   ],
   "peerDependencies": {
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.3.0",
