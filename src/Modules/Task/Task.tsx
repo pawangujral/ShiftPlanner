@@ -20,7 +20,7 @@ export interface IProps {
   data: ITask;
   unit: number;
   isHover: boolean;
-  actions: IPlanActions;
+  actions?: IPlanActions;
   handleMouseEnter: () => void;
   handleMouseLeave: () => void;
   handleAssigneeClick?: (event: React.MouseEvent<HTMLElement>) => void;
@@ -111,7 +111,7 @@ function Task({
         aria-labelledby={taskId}
         anchorEl={anchorEl}
         open={
-          openMenu && actions && !_.isEmpty(actions.task) && isActionEnabled
+          openMenu && !!actions && !_.isEmpty(actions.task) && isActionEnabled
         }
         onClose={handleClose}
         anchorOrigin={{

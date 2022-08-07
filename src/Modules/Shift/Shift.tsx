@@ -9,7 +9,7 @@ export interface IProps {
   unit: number;
   state: IDefaultState;
   gridSize: number;
-  actions: IPlanActions;
+  actions?: IPlanActions;
   handleAssigneeClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 

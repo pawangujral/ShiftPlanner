@@ -18,7 +18,7 @@ import type { ITask, IGroup, IPlanActions } from '../../Utils';
 export interface IProps {
   data: IGroup;
   unit: number;
-  actions: IPlanActions;
+  actions?: IPlanActions;
   handleAssigneeClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 

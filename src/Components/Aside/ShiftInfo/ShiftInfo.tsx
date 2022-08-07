@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 interface IProps {
   data: IShift;
   size: number;
-  actions: IPlanActions;
+  actions?: IPlanActions;
   handleAssigneeClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
@@ -77,7 +77,7 @@ const ShiftInfo = ({ data, size, actions, handleAssigneeClick }: IProps) => {
         id={shiftId}
         aria-labelledby={shiftId}
         anchorEl={anchorEl}
-        open={openMenu && actions && !_.isEmpty(actions) && isActionEnabled}
+        open={openMenu && !!actions && !_.isEmpty(actions) && isActionEnabled}
         onClose={handleClose}
         anchorOrigin={{
           vertical: 'top',
