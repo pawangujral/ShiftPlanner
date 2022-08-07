@@ -36,7 +36,7 @@ export function themeCreator(CustomTheme?: ThemeOptions) {
     return createTheme(getDesignTokens('light'), ['light']);
   }
   else {
-    // return createTheme(_.merge(defaultTheme, CustomTheme));
+    return createTheme(_.merge(getDesignTokens('light'), CustomTheme));
   }
 }
 
