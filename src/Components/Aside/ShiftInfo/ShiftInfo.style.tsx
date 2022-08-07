@@ -5,4 +5,5 @@ export const TotalTime = styled('span')({
   fontSize: '10px',
   color: grey[600],
   textAlign: 'left',
+  display: 'block',
 });
