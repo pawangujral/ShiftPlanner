@@ -1,36 +1,38 @@
-# Shift Planner
-> A react package to plan your shifts/tasks & show them in nice & interactive mode.
-> Live demo hosted on heroku - [here](https://shiftplanner-pawangujral.herokuapp.com/).
-
-## Table of Contents 
-* [Tech Stack](#tech-stack)
-* [Installation](#installation) 
-* [Theme](#theme) 
-* [Contact](#contact)
-* [License](#license)
+<h1 align="center"> 
+  <br>
+  Shift Planner
+</h1>
  
+<p align="center">
+  <a href="https://www.npmjs.com/package/shiftplanner" rel="nofollow"><img alt="npm" src="https://img.shields.io/npm/v/shiftplanner"></a> 
+</p>
 
-## Tech Stack
-Package is created by using the following
-- React
-- Typescrip
-- Material UI
-- Storybook
+<blockquote align="center">
+  <em>Shift Planner</em> is a lightweight React library to plan your shifts/tasks & show them in nice & interactive mode.
+</blockquote>
 
-## Installation
+<p align="center"> 
+  <a href="#getting-started">Getting started</a>&nbsp;|&nbsp;
+  <a href="#theme">Theme</a>&nbsp;|&nbsp;
+  <a href="#Contact">Contact</a>&nbsp;|&nbsp;
+  <a href="#license">License</a>&nbsp;|&nbsp;
+  <a href="https://shiftplanner-pawangujral.herokuapp.com/">Demo</a>
+</p> 
+
+## Getting started
 
 Use the package manager yarn/npm to install ShiftPlanner.
 
 ```bash
-npm i shiftplanner
-OR
-yarn add shiftplanner
+$ npm install shiftplanner 
 ```
 
-Now include it in your project.
+### Usage
 
-```bash
-import ShiftPlanner from 'shiftplanner';
+#### ES6 modules
+
+```javascript
+import ShiftPlanner from 'shiftplanner'; 
 
  <ShiftPlanner plan={data} /> // Pass value in `plan` prop as per schema below.
 ```
@@ -47,10 +49,7 @@ You can pass following props to `ShiftPlanner` component
 | theme               | `ThemeOptions`   | `defaultTheme` | false        | Customized `MUI` theme    |
 
 
-## Example:
-coming soon...
-
-### Schema
+#### Schema
 
 You can pass your values in `plan` prop. Shift Planner component required data in specific way.
 
