@@ -1,5 +1,5 @@
-import { styled } from '@mui/system'
-import { grey } from '@mui/material/colors'
+import { styled } from '@mui/system';
+import { grey } from '@mui/material/colors';
 
 export const Container = styled('div', {
   shouldForwardProp: (prop) => prop !== 'width' && prop !== 'left',
@@ -16,7 +16,7 @@ export const Container = styled('div', {
     position: 'absolute',
     top: -5,
   },
-}))
+}));
 
 export const Title = styled('h5')({
   margin: 0,
@@ -33,8 +33,9 @@ export const Title = styled('h5')({
     textOverflow: 'ellipsis',
     display: 'inline-block',
     marginRight: 10,
+    textAlign: 'left',
   },
   em: {
     fontStyle: 'normal',
   },
-})
+});
