@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Container, Main, SideBar } from './Planner.style';
+import { Container, Main, SideBar, Wrapper } from './Planner.style';
 import _ from 'lodash';
 import moment from 'moment';
 import { CALCULATE_BLOCK_POSITION } from '../../Utils';
@@ -22,9 +22,11 @@ const Planner = ({
   handleNextDateClick,
   config,
 }: IProps): JSX.Element => {
+  console.log(DEFAULT_STATE);
   const [settings, setSettings] = React.useState<IDefaultState>(DEFAULT_STATE);
   const [toggleAside, setToggleAside] = React.useState<boolean>(true);
   const [unit, setUnit] = React.useState<number>(settings.zoom.default);
+  console.log(unit);
 
   const elRef = React.useRef<HTMLDivElement>(null);
 
@@ -69,7 +71,7 @@ const Planner = ({
 
   if (!plan.shifts || _.isEmpty(plan.shifts)) {
     return (
-      <React.Fragment>
+      <Wrapper>
         <Actions
           unit={unit}
           data={plan}
@@ -79,12 +81,12 @@ const Planner = ({
           handleToggle={handleToggle}
         />
         <Mayday message="Nothing scheduled for this date" />
-      </React.Fragment>
+      </Wrapper>
     );
   }
 
   return (
-    <React.Fragment>
+    <Wrapper>
       <Actions
         unit={unit}
         data={plan}
@@ -122,7 +124,7 @@ const Planner = ({
           />
         </Main>
       </Container>
-    </React.Fragment>
+    </Wrapper>
   );
 };
 export default Planner;

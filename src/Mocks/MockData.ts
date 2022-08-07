@@ -27,7 +27,7 @@ export function mockActions() {
 }
 
 export function mockAssignee() {
-  return [...Array(randomNumber(0, 3))].map((_) => ({
+  return [...Array(randomNumber(0, 5))].map((_) => ({
     id: faker.datatype.uuid(),
     name: faker.name.findName(),
     description: faker.internet.email(),
@@ -71,7 +71,7 @@ export function mockShit() {
     endTime: faker.date.future().toString(),
     createdAt: faker.date.past().toString(),
     updatedAt: faker.date.past().toString(),
-    name: faker.lorem.words(10),
+    name:  faker.company.catchPhrase(),
     isActionEnabled: true,
     assignee: mockAssignee(),
     groups: mockGroup(),
@@ -81,9 +81,9 @@ export function mockShit() {
 export function mockMetaData() {
   return {
     location: faker.address.city(),
-    currentDate: '2022-07-13T11:29:47.000Z',
-    createdAt: '2022-07-12T11:29:53.885Z',
-    updatedAt: '2022-07-12T11:29:53.885Z',
+    currentDate: faker.date.future().toString(),
+    createdAt: faker.date.future().toString(),
+    updatedAt: faker.date.future().toString(),
     status: 'NEW',
     rawData: faker.datatype.json(),
   }

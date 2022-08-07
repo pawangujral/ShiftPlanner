@@ -1,5 +1,4 @@
 import { styled } from '@mui/system';
-import { grey } from '@mui/material/colors';
 
 export const GridRow = styled('span', {
   shouldForwardProp: (prop) =>
@@ -18,26 +17,18 @@ export const GridRow = styled('span', {
   gridTemplateRows: size.height,
 }));
 
-export const GridColumn = styled('span')({
+export const GridColumn = styled('span')(({ theme }) => ({
   display: 'block',
-  padding: '0.5em',
-  color: 'gray',
   fontSize: '10px',
   borderLeft: '1px solid',
   borderBottom: '1px solid',
-  borderColor: grey[200],
+  borderColor: theme.palette.divider,
   transition: 'all .2s linear',
   overflow: 'hidden',
   opacity: '.5',
 
   '&:nth-child(even)': {
-    backgroundColor: grey[50],
-    '&:before': {
-      backgroundColor: 'transparent',
-    },
-  },
-  '&:nth-child(odd)': {
-    backgroundColor: grey[100],
+    backgroundColor: theme.palette.background.default,
     '&:before': {
       backgroundColor: 'transparent',
     },
@@ -50,14 +41,15 @@ export const GridColumn = styled('span')({
   '&:before': {
     content: 'attr(data-title)',
     position: 'relative',
-    top: -20,
-    color: grey[900],
-    width: 'calc(100% + 1em + 1px)',
+    top: -16,
+    color: theme.palette.text.secondary,
+    width: '100%',
     display: 'block',
-    left: 'calc(-0.5em - 1px)',
+    left: -1,
     borderLeft: '1px solid',
     borderBottom: '1px solid',
-    borderColor: grey[200],
-    textIndent: '.5em',
+    borderColor: theme.palette.divider,
+    textIndent: theme.spacing(0.5),
+    textAlign: 'left',
   },
-});
+}));

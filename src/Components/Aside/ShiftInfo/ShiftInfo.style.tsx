@@ -1,9 +1,8 @@
 import { styled } from '@mui/system';
-import { grey } from '@mui/material/colors';
 
-export const TotalTime = styled('span')({
+export const TotalTime = styled('span')(({ theme }) => ({
   fontSize: '10px',
-  color: grey[600],
+  color: theme.palette.text.secondary,
   textAlign: 'left',
   display: 'block',
-});
+}));

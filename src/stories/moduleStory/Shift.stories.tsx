@@ -5,7 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { themeCreator } from '../../Theme';
 import Shift from '../../Modules/Shift';
 import type { IProps } from '../../Modules/Shift';
-import { DEFAULT_STATE } from '../../Config';
+import DEFAULT_STATE from '../../Config';
 import { mockGroup, handleUserClick, mockActions } from '../../Mocks/MockData';
 
 export default {

@@ -1,7 +1,6 @@
 import { styled } from '@mui/system';
 import Paper from '@mui/material/Paper';
 import type { TColor } from '../../Utils';
-import { grey } from '@mui/material/colors';
 
 export const Container = styled(Paper, {
   shouldForwardProp: (prop) => prop !== 'width' && prop !== 'padding',
@@ -9,13 +8,15 @@ export const Container = styled(Paper, {
   width: number;
   padding: number;
   color?: TColor | string;
-}>(({ width }) => ({
+}>(({ width, theme }) => ({
   width: width,
   overflow: 'hidden',
   transition: 'all .2s linear',
-  padding: '.5em',
+  padding: theme.spacing(1),
   position: 'relative',
   display: 'inline-block',
+  border: '1px solid',
+  borderColor: theme.palette.divider,
 }));
 
 export const Block = styled('div')({
@@ -32,22 +33,22 @@ export const InfoBox = styled('div')({
 
 export const Title = styled('h6')<{ theme?: { status: { danger: string } } }>(
   ({ theme }) => ({
-    margin: 0,
+    margin: theme.spacing(0),
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
     overflow: 'hidden',
-    color: theme.palette.primary.main,
+    color: theme.palette.text.primary,
   })
 );
 
-export const Info = styled('small')({
-  margin: 0,
+export const Info = styled('small')(({ theme }) => ({
+  margin: theme.spacing(0),
   display: 'flex',
   alignItems: 'center',
   fontSize: '10px',
-  color: grey[600],
+  color: theme.palette.text.secondary,
 
   '.MuiSvgIcon-root': {
     // color: theme.palette.primary.main,
   },
-});
+}));

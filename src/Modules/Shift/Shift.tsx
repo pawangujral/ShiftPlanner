@@ -33,6 +33,7 @@ const Shift = ({
             width: state.gridRowSize.width,
             height: gridSize,
           }}
+          data-wrapper="block"
         >
           <React.Fragment>
             <GridContainer

@@ -1,51 +1,36 @@
-import { styled } from '@mui/system'
-import { grey } from '@mui/material/colors'
+import { styled } from '@mui/system';
 
-export const Container = styled('aside')({
-  margin: '15px 0 0 0',
-})
+export const Container = styled('aside')(({ theme }) => ({
+  margin: theme.spacing(2, 0, 0, 0),
+}));
 
 export const AsideBlock = styled('div')<{
-  height: number
-}>(({ height }) => ({
+  height: number;
+}>(({ height, theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
   borderBottom: '1px solid',
   borderRight: '1px solid',
-  borderColor: grey[200],
+  borderColor: theme.palette.divider,
   height: height,
-  padding: '.5em',
+  padding: theme.spacing(1),
   alignItems: 'center',
   transition: 'all .2s ease',
   '&:last-of-type': {
     borderBottom: 0,
   },
-}))
+}));
 
 export const AsideItem = styled('div')({
   width: '80%',
-})
+});
 
-export const Footer = styled('footer')({
-  margin: 0,
-  fontSize: 11,
-
-  span: {
-    marginRight: 10,
-    color: grey[600],
-  },
-})
-
-export const Name = styled('h5')({
+export const Name = styled('h5')(({ theme }) => ({
   fontSize: 12,
   fontWeight: 400,
-  margin: 0,
-  color: grey[800],
+  margin: theme.spacing(0),
+  color: theme.palette.text.primary,
   overflow: 'hidden',
   whiteSpace: 'nowrap',
   textOverflow: 'ellipsis',
-  small: {
-    display: 'block',
-    color: grey[700],
-  },
-})
+}));

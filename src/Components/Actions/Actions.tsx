@@ -16,6 +16,9 @@ import type { IPlanner } from './../../Utils';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import JSONPretty from 'react-json-pretty';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import { useTheme } from '@mui/material/styles';
 
 interface IProps {
   data: IPlanner;
@@ -47,6 +50,7 @@ const Actions = ({
   handlePrevDateChange,
   handleNextDateChange,
 }: IProps): JSX.Element => {
+  const theme = useTheme();
   const [isOpen, setOpen] = React.useState<boolean>(false);
   const previewData = data.metaData?.rawData
     ? JSON.parse(data.metaData.rawData)
@@ -54,14 +58,14 @@ const Actions = ({
 
   return (
     <React.Fragment>
-      <Grid container spacing={2} mb={2} mt={1}>
+      <Grid container>
         <Grid item xs={4}>
           <Box display="flex" justifyContent="flex-start">
             <Tooltip title="Toggle sidebar" placement="top" arrow>
               <span>
                 <IconButton
                   size="small"
-                  color="info"
+                  color="inherit"
                   onClick={handleToggle}
                   disabled={disabled}
                 >
@@ -74,7 +78,6 @@ const Actions = ({
         <Grid item xs={4}>
           <DateGroup
             metaData={data.metaData}
-            disabled={disabled}
             handlePrevDateChange={handlePrevDateChange}
             handleNextDateChange={handleNextDateChange}
           />
@@ -90,7 +93,7 @@ const Actions = ({
               <span>
                 <IconButton
                   size="small"
-                  color="info"
+                  color="inherit"
                   onClick={() => setOpen(true)}
                   disabled={disabled}
                 >
@@ -102,7 +105,7 @@ const Actions = ({
               <span>
                 <IconButton
                   size="small"
-                  color="info"
+                  color="inherit"
                   onClick={() => handleToggleZoom('increase')}
                   disabled={unit === zoom.max || disabled}
                 >
@@ -114,11 +117,27 @@ const Actions = ({
               <span>
                 <IconButton
                   size="small"
-                  color="info"
+                  color="inherit"
                   onClick={() => handleToggleZoom('decrease')}
                   disabled={unit === zoom.min || disabled}
                 >
                   <RemoveCircleOutlineIcon />
+                </IconButton>
+              </span>
+            </Tooltip>
+            <Tooltip title="Toggle Theme" placement="top" arrow>
+              <span>
+                <IconButton
+                  size="small"
+                  color="inherit"
+                  onClick={handleToggle}
+                  disabled={disabled}
+                >
+                  {theme.palette.mode === 'dark' ? (
+                    <Brightness7Icon />
+                  ) : (
+                    <Brightness4Icon />
+                  )}
                 </IconButton>
               </span>
             </Tooltip>

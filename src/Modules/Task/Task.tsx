@@ -64,6 +64,8 @@ function Task({
         data-type={taskId}
         color={color}
         data-hover={isHover}
+        square
+        elevation={0}
       >
         <Stack
           direction="row"

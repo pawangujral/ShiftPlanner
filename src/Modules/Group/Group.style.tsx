@@ -1,14 +1,13 @@
 import { styled } from '@mui/system';
-import { grey } from '@mui/material/colors';
 
 export const Container = styled('div', {
   shouldForwardProp: (prop) => prop !== 'width' && prop !== 'left',
-})<{ width: number; left: number }>(({ width, left }) => ({
+})<{ width: number; left: number }>(({ width, left, theme }) => ({
   position: 'absolute',
   zIndex: 1,
   width: width,
   left: left,
-  marginTop: 5,
+  marginTop: theme.spacing(0.5),
   cursor: 'pointer',
   '&:before': {
     content: 'attr(data-title)',
@@ -18,13 +17,13 @@ export const Container = styled('div', {
   },
 }));
 
-export const Title = styled('h5')({
-  margin: 0,
+export const Title = styled('h5')(({ theme }) => ({
+  margin: theme.spacing(0),
   fontSize: 10,
   display: 'flex',
   justifyContent: 'space-between',
   letterSpacing: '0.02em',
-  color: grey[600],
+  color: theme.palette.text.secondary,
   fontWeight: 400,
   span: {
     width: '70%',
@@ -38,4 +37,4 @@ export const Title = styled('h5')({
   em: {
     fontStyle: 'normal',
   },
-});
+}));

@@ -1,17 +1,16 @@
-import { styled } from "@mui/system";
-import { grey } from "@mui/material/colors";
+import { styled } from '@mui/system';
 
-export const InfoContainer = styled("div")({
-  padding: "1em",
-});
+export const InfoContainer = styled('div')(({ theme }) => ({
+  padding: theme.spacing(2),
+}));
 
-export const InfoBlock = styled("div")({
-  marginBottom: ".5em",
-});
+export const InfoBlock = styled('div')(({ theme }) => ({
+  marginBottom: theme.spacing(1),
+}));
 
-export const Title = styled("p")({
+export const Title = styled('p')(({ theme }) => ({
   fontSize: 12,
-  color: grey[600],
+  color: theme.palette.text.secondary,
   fontWeight: 400,
-  margin: 0,
-});
+  margin: theme.spacing(0),
+}));

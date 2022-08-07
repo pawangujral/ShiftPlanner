@@ -9,7 +9,7 @@ const DEFAULT_STATE: IDefaultState = {
     width: 60,
   },
   zoom: {
-    default: 1,
+    default: 2,
     min: 1,
     max: 8,
   },

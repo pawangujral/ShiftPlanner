@@ -5,7 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { themeCreator } from '../../Theme';
 import Task from '../../Modules/Task';
 import type { IProps } from '../../Modules/Task';
-import { DEFAULT_STATE } from '../../Config';
+import DEFAULT_STATE from '../../Config';
 import { mockTask, handleUserClick, mockActions } from '../../Mocks/MockData';
 
 export default {

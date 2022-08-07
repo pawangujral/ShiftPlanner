@@ -1,38 +1,38 @@
-import { styled } from "@mui/system";
-import { orange } from "@mui/material/colors";
+import { styled } from '@mui/system';
+import { orange } from '@mui/material/colors';
 
-export const IndicatorBlock = styled("span", {
-  shouldForwardProp: (prop) => prop !== "position",
+export const IndicatorBlock = styled('span', {
+  shouldForwardProp: (prop) => prop !== 'position',
 })<{
   position: number;
 }>(({ position }) => ({
-  display: "block",
+  display: 'block',
   width: 1,
-  height: "100%",
+  height: '100%',
   backgroundColor: orange[300],
-  position: "absolute",
+  position: 'absolute',
   top: 0,
   left: position,
-  opacity: ".8",
+  opacity: '.8',
   zIndex: 9,
 
-  "&:before": {
+  '&:before': {
     content: '""',
     width: 0,
     height: 0,
-    borderLeft: "5px solid transparent",
-    borderRight: "5px solid transparent",
+    borderLeft: '5px solid transparent',
+    borderRight: '5px solid transparent',
     borderTop: `5px solid ${orange[300]}`,
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     left: -5,
   },
 }));
 
-export const Title = styled("small")({
-  position: "absolute",
+export const Title = styled('small')(({ theme }) => ({
+  position: 'absolute',
   top: 12,
-  padding: ".2em",
+  padding: theme.spacing(0.5),
   backgroundColor: orange[300],
   fontSize: 8,
-});
+}));

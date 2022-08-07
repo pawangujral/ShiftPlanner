@@ -27,11 +27,6 @@ export const NoData = Template.bind({});
 
 Default.args = {
   plan: mockServer(),
-  config: {
-    zoom: {
-      default: 1,
-    },
-  },
 };
 
 WithActions.args = {

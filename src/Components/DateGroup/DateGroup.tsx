@@ -1,5 +1,6 @@
 import * as React from 'react';
 import moment from 'moment';
+import Tooltip from '@mui/material/Tooltip';
 import { Current, Location } from './DateGroup.style';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
@@ -10,18 +11,15 @@ import { IMetaData } from './../../Utils';
 
 export interface IProps {
   metaData: IMetaData;
-  disabled: boolean;
   handlePrevDateChange?: (event: React.MouseEvent<HTMLElement>) => void;
   handleNextDateChange?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 const DateGroup = ({
   metaData,
-  disabled,
   handlePrevDateChange,
   handleNextDateChange,
 }: IProps): JSX.Element => {
-  console.log(handlePrevDateChange, handleNextDateChange);
   return (
     <Stack
       direction="row"
@@ -29,34 +27,34 @@ const DateGroup = ({
       justifyContent="center"
       alignItems="center"
     >
-      {handlePrevDateChange && (
+      <Tooltip title="Previous Shift" placement="top" arrow>
         <IconButton
           size="small"
           color="info"
           onClick={handlePrevDateChange}
-          disabled={disabled}
+          disabled={!handlePrevDateChange}
         >
           <ArrowCircleLeftIcon />
         </IconButton>
-      )}
+      </Tooltip>
       <Current>
-        {moment(metaData?.currentDate).format('MMM Do YYYY')}
+        {moment(metaData?.currentDate).format('MMM Do, YYYY')}
         {metaData?.location && (
           <Location>
             <FmdGoodIcon sx={{ fontSize: 'inherit' }} /> {metaData.location}
           </Location>
         )}
       </Current>
-      {handleNextDateChange && (
+      <Tooltip title="Next Shift" placement="top" arrow>
         <IconButton
           size="small"
           color="info"
           onClick={handleNextDateChange}
-          disabled={disabled}
+          disabled={!handleNextDateChange}
         >
           <ArrowCircleRightIcon />
         </IconButton>
-      )}
+      </Tooltip>
     </Stack>
   );
 };

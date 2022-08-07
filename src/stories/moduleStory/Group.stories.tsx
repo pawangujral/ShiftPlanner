@@ -5,7 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { themeCreator } from '../../Theme';
 import Group from '../../Modules/Group';
 import type { IProps } from '../../Modules/Group';
-import { DEFAULT_STATE } from '../../Config';
+import DEFAULT_STATE from '../../Config';
 import { mockGroup, handleUserClick, mockActions } from '../../Mocks/MockData';
 
 export default {
