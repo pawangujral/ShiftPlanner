@@ -1,28 +1,20 @@
 import _ from 'lodash';
 import { createTheme } from '@mui/material/styles';
 import type {ThemeOptions} from '@mui/material/styles';
-import { blue } from '@mui/material/colors';
 
 const getDesignTokens = (mode: 'dark' | 'light') => ({
   palette: {
     mode,
     ...(mode === 'light'
       ? {
-          secondary: {
-            main: '#FFBA00',
+          primary: {
+            main: '#FF5134'
           },
           common: {
-            white: '#fefefe'
+            white: 'rgb(252, 252, 252)'
           }
         }
       : {
-          primary: {
-            main: blue[500],
-          },
-          secondary: {
-            main: '#FFBA00',
-          },
-
           common: {
             white: 'rgba(255, 255, 255, 0.16)'
           }
@@ -31,12 +23,13 @@ const getDesignTokens = (mode: 'dark' | 'light') => ({
 });
 
 
-export function themeCreator(CustomTheme?: ThemeOptions) {
+export function themeCreator(CustomTheme?: ThemeOptions, darks?: boolean) {
+  const mode = darks ? 'dark' : 'light';
   if(!CustomTheme){
-    return createTheme(getDesignTokens('light'), ['light']);
+    return createTheme(getDesignTokens(mode), [mode]);
   }
   else {
-    return createTheme(_.merge(getDesignTokens('light'), CustomTheme));
+    return createTheme(_.merge(getDesignTokens(mode), CustomTheme));
   }
 }
 

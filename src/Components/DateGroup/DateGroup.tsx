@@ -28,14 +28,16 @@ const DateGroup = ({
       alignItems="center"
     >
       <Tooltip title="Previous Shift" placement="top" arrow>
-        <IconButton
-          size="small"
-          color="info"
-          onClick={handlePrevDateChange}
-          disabled={!handlePrevDateChange}
-        >
-          <ArrowCircleLeftIcon />
-        </IconButton>
+        <span>
+          <IconButton
+            size="small"
+            color="info"
+            onClick={handlePrevDateChange}
+            disabled={!handlePrevDateChange}
+          >
+            <ArrowCircleLeftIcon />
+          </IconButton>
+        </span>
       </Tooltip>
       <Current>
         {moment(metaData?.currentDate).format('MMM Do, YYYY')}
@@ -46,14 +48,16 @@ const DateGroup = ({
         )}
       </Current>
       <Tooltip title="Next Shift" placement="top" arrow>
-        <IconButton
-          size="small"
-          color="info"
-          onClick={handleNextDateChange}
-          disabled={!handleNextDateChange}
-        >
-          <ArrowCircleRightIcon />
-        </IconButton>
+        <span>
+          <IconButton
+            size="small"
+            color="info"
+            onClick={handleNextDateChange}
+            disabled={!handleNextDateChange}
+          >
+            <ArrowCircleRightIcon />
+          </IconButton>
+        </span>
       </Tooltip>
     </Stack>
   );

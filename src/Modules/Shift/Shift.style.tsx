@@ -6,7 +6,7 @@ export const Container = styled('div', {
   ({ width, count, unit }) => ({
     width: `calc(${width}px * ${count} * ${unit})`,
 
-    '[data-wrapper="block"]: not(:first-child)': {
+    '[data-wrapper="block"]: not(:first-of-type)': {
       '[data-type="GridColumn"]': {
         '&:before': {
           content: 'none',
@@ -23,7 +23,7 @@ export const Block = styled('div', {
 }>(({ gridSize }) => ({
   height: gridSize.height,
 
-  '&:first-child': {
+  '&:first-of-type': {
     '[data-type=GridColumn]': {
       overflow: 'visible',
     },

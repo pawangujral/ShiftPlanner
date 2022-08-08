@@ -7,6 +7,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import AlarmOnIcon from '@mui/icons-material/AlarmOn';
 import Stack from '@mui/material/Stack';
 import Users from '../../Components/Users';
+import { generateRandomColor } from './../../Utils';
 
 import {
   CALCULATE_WIDTH,
@@ -15,7 +16,6 @@ import {
 } from '../../Utils';
 import { Container, Title, Info, InfoBox } from './Task.style';
 import type { ITask, IPlanActions } from '../../Utils';
-
 export interface IProps {
   data: ITask;
   unit: number;
@@ -36,7 +36,6 @@ function Task({
   const {
     id: taskId,
     name,
-    color,
     assignee = [],
     startTime,
     endTime,
@@ -62,7 +61,7 @@ function Task({
         width={CALCULATE_WIDTH(duration, unit)}
         padding={CALCULATE_WIDTH(duration, unit)}
         data-type={taskId}
-        color={color}
+        color={generateRandomColor(50)}
         data-hover={isHover}
         square
         elevation={0}

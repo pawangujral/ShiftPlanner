@@ -13,12 +13,13 @@ export interface IPlanner extends IBase {
 
 export interface IShiftPlannerProps {
   plan: IPlanner;
-  actions?: IPlanActions,
+  actions?: IPlanActions;
   handlePrevDateClick?: (event: React.MouseEvent<HTMLElement>) => void;
   handleNextDateClick?: (event: React.MouseEvent<HTMLElement>) => void;
   handleAssigneeClick?: (event:  React.MouseEvent<HTMLElement>) => void;
   config?: IConfig;
-  theme?: ThemeOptions
+  theme?: ThemeOptions;
+  dark?: boolean;
 }
 
 

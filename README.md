@@ -47,6 +47,7 @@ You can pass following props to `ShiftPlanner` component
 | handleNextDateClick | `fn`             | `undefined`    | false        | Change date to next       |
 | handleAssigneeClick | `fn`             | `undefined`    | false        | Click `fn` for assignee   |
 | theme               | `ThemeOptions`   | `defaultTheme` | false        | Customized `MUI` theme    |
+| dark                | `boolean`        | `false`        | false        | enable dark theme         |
 
 
 #### Schema
@@ -110,9 +111,7 @@ FYI: `duration` of task/shift is figured out by `startTime` & `endTime`.
     assignee?: IAssignee[];
     createdAt?: string;
     updatedAt?: string;
-    additionalInfo?: string;
-    Icon?: ReactNode;
-    color?: string | Color; 
+    additionalInfo?: string; 
     isActionEnabled?: boolean;
 }
 ```

@@ -25,16 +25,16 @@ export const GridColumn = styled('span')(({ theme }) => ({
   borderColor: theme.palette.divider,
   transition: 'all .2s linear',
   overflow: 'hidden',
-  opacity: '.5',
+  opacity: 0.5,
 
-  '&:nth-child(even)': {
+  '&:nth-of-type(even)': {
     backgroundColor: theme.palette.background.default,
     '&:before': {
       backgroundColor: 'transparent',
     },
   },
 
-  '&:first-child': {
+  '&:first-of-type': {
     borderLeft: 0,
   },
 
@@ -42,14 +42,12 @@ export const GridColumn = styled('span')(({ theme }) => ({
     content: 'attr(data-title)',
     position: 'relative',
     top: -16,
-    color: theme.palette.text.secondary,
+    color: theme.palette.text.primary,
     width: '100%',
     display: 'block',
     left: -1,
-    borderLeft: '1px solid',
-    borderBottom: '1px solid',
-    borderColor: theme.palette.divider,
     textIndent: theme.spacing(0.5),
     textAlign: 'left',
+    fontWeight: 'bold',
   },
 }));

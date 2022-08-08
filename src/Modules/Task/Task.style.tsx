@@ -8,15 +8,15 @@ export const Container = styled(Paper, {
   width: number;
   padding: number;
   color?: TColor | string;
-}>(({ width, theme }) => ({
+}>(({ width, theme, color }) => ({
   width: width,
   overflow: 'hidden',
   transition: 'all .2s linear',
   padding: theme.spacing(1),
   position: 'relative',
   display: 'inline-block',
-  border: '1px solid',
-  borderColor: theme.palette.divider,
+  backgroundColor:
+    theme.palette.mode === 'dark' ? theme.palette.background.paper : color,
 }));
 
 export const Block = styled('div')({

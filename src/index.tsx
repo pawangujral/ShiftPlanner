@@ -19,6 +19,7 @@ function ShiftPlanner({
   handleNextDateClick,
   config,
   theme,
+  dark = false,
 }: IProps): JSX.Element {
   console.log(plan);
   if (!plan || _.isEmpty(plan)) {
@@ -26,7 +27,7 @@ function ShiftPlanner({
   }
 
   return (
-    <ThemeProvider theme={themeCreator(theme)}>
+    <ThemeProvider theme={themeCreator(theme, dark)}>
       <CssBaseline />
       <Planner
         plan={plan}

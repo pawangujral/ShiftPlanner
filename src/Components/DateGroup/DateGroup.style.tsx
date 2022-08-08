@@ -9,5 +9,5 @@ export const Current = styled('div')(({ theme }) => ({
 export const Location = styled('small')(({ theme }) => ({
   display: 'block',
   fontSize: 8,
-  color: theme.palette.text.primary,
+  color: theme.palette.text.secondary,
 }));

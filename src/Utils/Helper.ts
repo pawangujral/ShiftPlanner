@@ -29,3 +29,8 @@ export function CALCULATE_DURATION(start:string, end: string) {
   const endDate = moment(end); // end date
   return endDate.diff(startDate, "minutes", true)
 }
+
+
+export function randomNumber(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}

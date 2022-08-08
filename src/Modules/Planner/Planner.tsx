@@ -22,11 +22,9 @@ const Planner = ({
   handleNextDateClick,
   config,
 }: IProps): JSX.Element => {
-  console.log(DEFAULT_STATE);
   const [settings, setSettings] = React.useState<IDefaultState>(DEFAULT_STATE);
   const [toggleAside, setToggleAside] = React.useState<boolean>(true);
   const [unit, setUnit] = React.useState<number>(settings.zoom.default);
-  console.log(unit);
 
   const elRef = React.useRef<HTMLDivElement>(null);
 

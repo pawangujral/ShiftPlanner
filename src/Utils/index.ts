@@ -13,3 +13,4 @@ export * from "./Types/Task";
 export * from "./Types/Time";
 export * from "./Types/Zoom";
 export * from "./Types/Config"
+export * from "./color"

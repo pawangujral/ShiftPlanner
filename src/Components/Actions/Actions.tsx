@@ -16,8 +16,6 @@ import type { IPlanner } from './../../Utils';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import JSONPretty from 'react-json-pretty';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { useTheme } from '@mui/material/styles';
 
 interface IProps {
@@ -50,7 +48,6 @@ const Actions = ({
   handlePrevDateChange,
   handleNextDateChange,
 }: IProps): JSX.Element => {
-  const theme = useTheme();
   const [isOpen, setOpen] = React.useState<boolean>(false);
   const previewData = data.metaData?.rawData
     ? JSON.parse(data.metaData.rawData)
@@ -122,22 +119,6 @@ const Actions = ({
                   disabled={unit === zoom.min || disabled}
                 >
                   <RemoveCircleOutlineIcon />
-                </IconButton>
-              </span>
-            </Tooltip>
-            <Tooltip title="Toggle Theme" placement="top" arrow>
-              <span>
-                <IconButton
-                  size="small"
-                  color="inherit"
-                  onClick={handleToggle}
-                  disabled={disabled}
-                >
-                  {theme.palette.mode === 'dark' ? (
-                    <Brightness7Icon />
-                  ) : (
-                    <Brightness4Icon />
-                  )}
                 </IconButton>
               </span>
             </Tooltip>
