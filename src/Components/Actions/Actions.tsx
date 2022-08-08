@@ -16,7 +16,6 @@ import type { IPlanner } from './../../Utils';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import JSONPretty from 'react-json-pretty';
-import { useTheme } from '@mui/material/styles';
 
 interface IProps {
   data: IPlanner;

@@ -14,6 +14,22 @@ import {
 export default {
   title: 'Package/Shift Planner',
   component: ShiftPlanner,
+  args: {
+    dark: false,
+  },
+  parameters: {
+    controls: {
+      exclude: [
+        'plan',
+        'actions',
+        'handleAssigneeClick',
+        'handlePrevDateClick',
+        'handleNextDateClick',
+        'config',
+        'theme',
+      ],
+    },
+  },
 } as ComponentMeta<typeof ShiftPlanner>;
 
 const Template: ComponentStory<typeof ShiftPlanner> = (
