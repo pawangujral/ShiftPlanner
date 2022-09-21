@@ -7,7 +7,7 @@ import { CALCULATE_BLOCK_POSITION } from '../../Utils';
 import type { IShiftPlannerProps, IDefaultState } from '../../Utils';
 import DEFAULT_STATE from './../../Config';
 import ShiftInfo from '../../Components/Aside/ShiftInfo';
-import Actions from '../../Components/Actions';
+import ActionsBar from '../../Components/ActionsBar';
 import Indicator from '../../Components/Indicator';
 import Shift from '../Shift';
 import Mayday from '../../Components/Mayday';
@@ -70,7 +70,7 @@ const Planner = ({
   if (!plan.shifts || _.isEmpty(plan.shifts)) {
     return (
       <Wrapper>
-        <Actions
+        <ActionsBar
           unit={unit}
           data={plan}
           disabled={true}
@@ -85,7 +85,7 @@ const Planner = ({
 
   return (
     <Wrapper>
-      <Actions
+      <ActionsBar
         unit={unit}
         data={plan}
         disabled={false}

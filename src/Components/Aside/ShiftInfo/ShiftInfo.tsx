@@ -1,8 +1,13 @@
 import * as React from 'react';
 import _ from 'lodash';
-import { CALCULATE_DURATION, FORMAT_DURATION } from '../../../Utils';
+import {
+  CALCULATE_DURATION,
+  FORMAT_DURATION,
+  FORMAT_HOUR,
+} from '../../../Utils';
 import type { IShift, IPlanActions } from '../../../Utils';
-import { TotalTime } from './ShiftInfo.style';
+import { TotalTime, StartTime, EndTime, Duration } from './ShiftInfo.style';
+import Tooltip from '@mui/material/Tooltip';
 import { AsideBlock, AsideItem, Name } from '../Aside.style';
 import Users from '../../Users';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -43,9 +48,11 @@ const ShiftInfo = ({ data, size, actions, handleAssigneeClick }: IProps) => {
     <React.Fragment>
       <AsideBlock height={size} key={shiftId}>
         <AsideItem>
-          <Name>
-            {name && _.trim(name).length ? _.upperFirst(name) : shiftId}
-          </Name>
+          <Tooltip title={name} placement="top" arrow>
+            <Name>
+              {name && _.trim(name).length ? _.upperFirst(name) : shiftId}
+            </Name>
+          </Tooltip>
           {assignee && !_.isEmpty(assignee) ? (
             <Users
               data={assignee}
@@ -58,6 +65,10 @@ const ShiftInfo = ({ data, size, actions, handleAssigneeClick }: IProps) => {
               {FORMAT_DURATION(CALCULATE_DURATION(startTime, endTime))}
             </TotalTime>
           )}
+          <Duration>
+            <StartTime>Start: {FORMAT_HOUR(startTime)}</StartTime>
+            <EndTime>End: {FORMAT_HOUR(endTime)}</EndTime>
+          </Duration>
         </AsideItem>
 
         <IconButton

@@ -30,6 +30,8 @@ export const Block = styled('div', {
   },
 
   '&:last-child': {
-    borderBottom: 0,
+    span: {
+      borderBottom: 0,
+    },
   },
 }));

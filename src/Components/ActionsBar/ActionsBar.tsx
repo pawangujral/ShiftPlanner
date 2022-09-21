@@ -2,17 +2,17 @@ import * as React from 'react';
 import _ from 'lodash';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
-import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Grid';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-import DateGroup from './../../Components/DateGroup';
-import { IZoom } from './../../Utils';
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import DateGroup from '../DateGroup';
+import { IZoom } from '../../Utils';
 import MenuIcon from '@mui/icons-material/Menu';
 import DataObjectIcon from '@mui/icons-material/DataObject';
 import Dialog from '@mui/material/Dialog';
-import type { IPlanner } from './../../Utils';
+import type { IPlanner } from '../../Utils';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import JSONPretty from 'react-json-pretty';
@@ -37,7 +37,7 @@ const JSONViewerTheme = {
   boolean: 'color:#ac81fe;',
 };
 
-const Actions = ({
+const ActionsBar = ({
   data,
   disabled,
   zoom,
@@ -56,7 +56,12 @@ const Actions = ({
     <React.Fragment>
       <Grid container>
         <Grid item xs={4}>
-          <Box display="flex" justifyContent="flex-start">
+          <Stack
+            direction="row"
+            spacing={2}
+            justifyContent="flex-start"
+            alignItems="center"
+          >
             <Tooltip title="Toggle sidebar" placement="top" arrow>
               <span>
                 <IconButton
@@ -69,7 +74,20 @@ const Actions = ({
                 </IconButton>
               </span>
             </Tooltip>
-          </Box>
+
+            <Tooltip title="Toggle filters" placement="top" arrow>
+              <span>
+                <IconButton
+                  size="small"
+                  color="inherit"
+                  onClick={handleToggle}
+                  disabled={disabled}
+                >
+                  <FilterAltIcon />
+                </IconButton>
+              </span>
+            </Tooltip>
+          </Stack>
         </Grid>
         <Grid item xs={4}>
           <DateGroup
@@ -135,4 +153,4 @@ const Actions = ({
   );
 };
 
-export default Actions;
+export default ActionsBar;
