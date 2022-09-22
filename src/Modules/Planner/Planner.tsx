@@ -11,6 +11,9 @@ import ActionsBar from '../../Components/ActionsBar';
 import Indicator from '../../Components/Indicator';
 import Shift from '../Shift';
 import Mayday from '../../Components/Mayday';
+import FilterBar from '../../Components/FilterBar';
+import Collapse from '@mui/material/Collapse';
+import Slide from '@mui/material/Slide';
 
 interface IProps extends IShiftPlannerProps {}
 
@@ -22,8 +25,10 @@ const Planner = ({
   handleNextDateClick,
   config,
 }: IProps): JSX.Element => {
+  const containerRef = React.useRef(null);
   const [settings, setSettings] = React.useState<IDefaultState>(DEFAULT_STATE);
   const [toggleAside, setToggleAside] = React.useState<boolean>(true);
+  const [toggleFilter, setToggleFilter] = React.useState<boolean>(true);
   const [unit, setUnit] = React.useState<number>(settings.zoom.default);
 
   const elRef = React.useRef<HTMLDivElement>(null);
@@ -63,8 +68,12 @@ const Planner = ({
       setUnit((prevState) => prevState - 1);
   };
 
-  const handleToggle = () => {
+  const handleToggleSideBar = () => {
     setToggleAside(!toggleAside);
+  };
+
+  const handleToggleFilter = () => {
+    setToggleFilter(!toggleFilter);
   };
 
   if (!plan.shifts || _.isEmpty(plan.shifts)) {
@@ -76,7 +85,8 @@ const Planner = ({
           disabled={true}
           zoom={settings.zoom}
           handleToggleZoom={handleToggleZoom}
-          handleToggle={handleToggle}
+          handleToggleSideBar={handleToggleSideBar}
+          handleToggleFilter={handleToggleFilter}
         />
         <Mayday message="Nothing scheduled for this date" />
       </Wrapper>
@@ -84,32 +94,47 @@ const Planner = ({
   }
 
   return (
-    <Wrapper>
+    <Wrapper ref={containerRef}>
       <ActionsBar
         unit={unit}
         data={plan}
         disabled={false}
         zoom={settings.zoom}
         handleToggleZoom={handleToggleZoom}
-        handleToggle={handleToggle}
+        handleToggleSideBar={handleToggleSideBar}
+        handleToggleFilter={handleToggleFilter}
         handlePrevDateChange={handlePrevDateClick}
         handleNextDateChange={handleNextDateClick}
       />
 
-      <Container>
-        <SideBar toggle={toggleAside}>
-          {plan.shifts.map((item) => (
-            <ShiftInfo
-              data={item}
-              key={item.id}
-              size={settings.gridRowSize.max}
-              actions={actions}
-              handleAssigneeClick={handleAssigneeClick}
-            />
-          ))}
-        </SideBar>
+      <Collapse in={toggleFilter} mountOnEnter unmountOnExit>
+        <FilterBar>
+          <span>hello</span>
+        </FilterBar>
+      </Collapse>
 
-        <Main ref={elRef} toggle={toggleAside}>
+      <Container>
+        <Slide
+          direction="right"
+          in={toggleAside}
+          mountOnEnter
+          unmountOnExit
+          container={containerRef.current}
+        >
+          <SideBar>
+            {plan.shifts.map((item) => (
+              <ShiftInfo
+                data={item}
+                key={item.id}
+                size={settings.gridRowSize.max}
+                actions={actions}
+                handleAssigneeClick={handleAssigneeClick}
+              />
+            ))}
+          </SideBar>
+        </Slide>
+
+        <Main ref={elRef}>
           <Indicator unit={unit} />
 
           <Shift

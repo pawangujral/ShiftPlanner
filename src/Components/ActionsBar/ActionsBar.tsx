@@ -23,7 +23,8 @@ interface IProps {
   unit: number;
   disabled: boolean;
   handleToggleZoom: (type: 'increase' | 'decrease') => void;
-  handleToggle: () => void;
+  handleToggleSideBar: () => void;
+  handleToggleFilter: () => void;
   handlePrevDateChange?: (event: React.MouseEvent<HTMLElement>) => void;
   handleNextDateChange?: (event: React.MouseEvent<HTMLElement>) => void;
 }
@@ -42,7 +43,8 @@ const ActionsBar = ({
   disabled,
   zoom,
   unit,
-  handleToggle,
+  handleToggleSideBar,
+  handleToggleFilter,
   handleToggleZoom,
   handlePrevDateChange,
   handleNextDateChange,
@@ -67,7 +69,7 @@ const ActionsBar = ({
                 <IconButton
                   size="small"
                   color="inherit"
-                  onClick={handleToggle}
+                  onClick={handleToggleSideBar}
                   disabled={disabled}
                 >
                   <MenuIcon />
@@ -80,7 +82,7 @@ const ActionsBar = ({
                 <IconButton
                   size="small"
                   color="inherit"
-                  onClick={handleToggle}
+                  onClick={handleToggleFilter}
                   disabled={disabled}
                 >
                   <FilterAltIcon />

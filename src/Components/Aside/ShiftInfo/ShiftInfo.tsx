@@ -6,9 +6,16 @@ import {
   FORMAT_HOUR,
 } from '../../../Utils';
 import type { IShift, IPlanActions } from '../../../Utils';
-import { TotalTime, StartTime, EndTime, Duration } from './ShiftInfo.style';
+import {
+  TotalTime,
+  StartTime,
+  EndTime,
+  Duration,
+  AsideBlock,
+  AsideItem,
+  Name,
+} from './ShiftInfo.style';
 import Tooltip from '@mui/material/Tooltip';
-import { AsideBlock, AsideItem, Name } from '../Aside.style';
 import Users from '../../Users';
 import AlarmOnIcon from '@mui/icons-material/AlarmOn';
 import ShiftMenu from './ShiftMenu';

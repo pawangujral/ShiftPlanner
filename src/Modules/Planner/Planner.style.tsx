@@ -7,6 +7,7 @@ export const Wrapper = styled(Box)(({ theme }) => ({
   borderRadius: 4,
   background: theme.palette.common.white,
   padding: theme.spacing(2),
+  overflow: 'hidden',
 }));
 
 export const Container = styled('div')(({ theme }) => ({
@@ -18,22 +19,14 @@ export const Container = styled('div')(({ theme }) => ({
   paddingTop: theme.spacing(2),
 }));
 
-export const Main = styled('main', {
-  shouldForwardProp: (prop) => prop !== 'toggle',
-})<{ toggle: boolean }>(({ toggle, theme }) => ({
+export const Main = styled('main')(({ theme }) => ({
   overflow: 'hidden',
   overflowX: 'scroll',
   padding: theme.spacing(2, 0, 0, 0),
   transition: 'all .2s linear',
   position: 'relative',
-  marginLeft: `${toggle ? 0 : '-250px'}`,
 }));
 
-export const SideBar = styled('aside', {
-  shouldForwardProp: (prop) => prop !== 'toggle',
-})<{ toggle: boolean }>(({ toggle, theme }) => ({
-  margin: theme.spacing(2, 0, 0, 0),
-  opacity: `${toggle ? 1 : 0}`,
-  transition: ' all .3s ease',
-  width: 250,
-}));
+export const SideBar = styled('aside')({
+  maxWidth: 250,
+});
