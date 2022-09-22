@@ -7,13 +7,13 @@ export const TotalTime = styled('span')(({ theme }) => ({
   display: 'block',
 }));
 
-export const StartTime = styled('span')(({ theme }) => ({
+export const StartTime = styled('span')({
   fontSize: '10px',
-}));
+});
 
-export const EndTime = styled('span')(({ theme }) => ({
+export const EndTime = styled('span')({
   fontSize: '10px',
-}));
+});
 
 export const Duration = styled('div')(({ theme }) => ({
   display: 'flex',
