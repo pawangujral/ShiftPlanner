@@ -28,7 +28,7 @@ const Planner = ({
   const containerRef = React.useRef(null);
   const [settings, setSettings] = React.useState<IDefaultState>(DEFAULT_STATE);
   const [toggleAside, setToggleAside] = React.useState<boolean>(true);
-  const [toggleFilter, setToggleFilter] = React.useState<boolean>(true);
+  const [toggleFilter, setToggleFilter] = React.useState<boolean>(false);
   const [unit, setUnit] = React.useState<number>(settings.zoom.default);
 
   const elRef = React.useRef<HTMLDivElement>(null);
