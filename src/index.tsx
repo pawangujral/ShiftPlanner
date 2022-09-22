@@ -21,7 +21,6 @@ function ShiftPlanner({
   theme,
   dark = false,
 }: IProps): JSX.Element {
-  console.log(plan);
   if (!plan || _.isEmpty(plan)) {
     return <Mayday />;
   }

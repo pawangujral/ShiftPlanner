@@ -4,7 +4,11 @@ import { Container, Main, SideBar, Wrapper } from './Planner.style';
 import _ from 'lodash';
 import moment from 'moment';
 import { CALCULATE_BLOCK_POSITION } from '../../Utils';
-import type { IShiftPlannerProps, IDefaultState } from '../../Utils';
+import type {
+  IShiftPlannerProps,
+  IDefaultState,
+  TFilterString,
+} from '../../Utils';
 import DEFAULT_STATE from './../../Config';
 import ShiftInfo from '../../Components/Aside/ShiftInfo';
 import ActionsBar from '../../Components/ActionsBar';
@@ -41,7 +45,6 @@ const Planner = ({
       ) {
         return;
       }
-      console.log(config);
       setSettings(_.merge(DEFAULT_STATE, config));
     }
   }, [config]);
@@ -76,6 +79,10 @@ const Planner = ({
     setToggleFilter(!toggleFilter);
   };
 
+  const handleFilterValue = (key: TFilterString, value: string) => {
+    console.log(key, value);
+  };
+
   if (!plan.shifts || _.isEmpty(plan.shifts)) {
     return (
       <Wrapper>
@@ -108,9 +115,7 @@ const Planner = ({
       />
 
       <Collapse in={toggleFilter} mountOnEnter unmountOnExit>
-        <FilterBar>
-          <span>hello</span>
-        </FilterBar>
+        <FilterBar handleFilterValue={handleFilterValue} />
       </Collapse>
 
       <Container>

@@ -42,9 +42,13 @@ export const AsideBlock = styled('div')<{
   },
 }));
 
-export const AsideItem = styled('div')({
-  width: '80%',
-});
+export const AsideItem = styled('div', {
+  shouldForwardProp: (prop) => prop !== 'width',
+})<{
+  width: string;
+}>(({ width }) => ({
+  width: width,
+}));
 
 export const Name = styled('h5')(({ theme }) => ({
   fontSize: 12,

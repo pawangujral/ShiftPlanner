@@ -40,7 +40,7 @@ const ShiftInfo = ({ data, size, actions, handleAssigneeClick }: IProps) => {
   return (
     <React.Fragment>
       <AsideBlock height={size} key={shiftId}>
-        <AsideItem>
+        <AsideItem width={actions ? '80%' : '100%'}>
           <Tooltip title={name} placement="top" arrow>
             <Name>
               {name && _.trim(name).length ? _.upperFirst(name) : shiftId}
