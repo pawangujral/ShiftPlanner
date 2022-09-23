@@ -16,7 +16,6 @@ import VisibleFilter from './Filters/VisibleFilter';
 import Divider from '@mui/material/Divider';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import Popover from '@mui/material/Popover';
-import FormLabel from '@mui/material/FormLabel';
 import Button from '@mui/material/Button';
 
 export interface IProps {
