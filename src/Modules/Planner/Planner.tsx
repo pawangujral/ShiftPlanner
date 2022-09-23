@@ -7,7 +7,7 @@ import { CALCULATE_BLOCK_POSITION } from '../../Utils';
 import type {
   IShiftPlannerProps,
   IDefaultState,
-  TFilterString,
+  TFilterState,
 } from '../../Utils';
 import DEFAULT_STATE from './../../Config';
 import ShiftInfo from '../../Components/Aside/ShiftInfo';
@@ -15,8 +15,6 @@ import ActionsBar from '../../Components/ActionsBar';
 import Indicator from '../../Components/Indicator';
 import Shift from '../Shift';
 import Mayday from '../../Components/Mayday';
-import FilterBar from '../../Components/FilterBar';
-import Collapse from '@mui/material/Collapse';
 import Slide from '@mui/material/Slide';
 
 interface IProps extends IShiftPlannerProps {}
@@ -32,7 +30,7 @@ const Planner = ({
   const containerRef = React.useRef(null);
   const [settings, setSettings] = React.useState<IDefaultState>(DEFAULT_STATE);
   const [toggleAside, setToggleAside] = React.useState<boolean>(true);
-  const [toggleFilter, setToggleFilter] = React.useState<boolean>(false);
+
   const [unit, setUnit] = React.useState<number>(settings.zoom.default);
 
   const elRef = React.useRef<HTMLDivElement>(null);
@@ -75,12 +73,8 @@ const Planner = ({
     setToggleAside(!toggleAside);
   };
 
-  const handleToggleFilter = () => {
-    setToggleFilter(!toggleFilter);
-  };
-
-  const handleFilterValue = (key: TFilterString, value: string) => {
-    console.log(key, value);
+  const handleFilterValue = (values: TFilterState) => {
+    console.log(values);
   };
 
   if (!plan.shifts || _.isEmpty(plan.shifts)) {
@@ -93,7 +87,18 @@ const Planner = ({
           zoom={settings.zoom}
           handleToggleZoom={handleToggleZoom}
           handleToggleSideBar={handleToggleSideBar}
-          handleToggleFilter={handleToggleFilter}
+          filterOptions={{
+            sortByOptions: [
+              { text: 'Name', value: 'name' },
+              { text: 'Start date', value: 'startDate' },
+            ],
+            filterByOptions: [
+              { text: 'all', value: 'all' },
+              { text: 'Publish', value: 'published' },
+              { text: 'Unpublished', value: 'unpublished' },
+            ],
+          }}
+          handleFilterValue={handleFilterValue}
         />
         <Mayday message="Nothing scheduled for this date" />
       </Wrapper>
@@ -109,14 +114,21 @@ const Planner = ({
         zoom={settings.zoom}
         handleToggleZoom={handleToggleZoom}
         handleToggleSideBar={handleToggleSideBar}
-        handleToggleFilter={handleToggleFilter}
         handlePrevDateChange={handlePrevDateClick}
         handleNextDateChange={handleNextDateClick}
+        filterOptions={{
+          sortByOptions: [
+            { text: 'Name', value: 'name' },
+            { text: 'Start date', value: 'startDate' },
+          ],
+          filterByOptions: [
+            { text: 'all', value: 'all' },
+            { text: 'Publish', value: 'published' },
+            { text: 'Unpublished', value: 'unpublished' },
+          ],
+        }}
+        handleFilterValue={handleFilterValue}
       />
-
-      <Collapse in={toggleFilter} mountOnEnter unmountOnExit>
-        <FilterBar handleFilterValue={handleFilterValue} />
-      </Collapse>
 
       <Container>
         <Slide

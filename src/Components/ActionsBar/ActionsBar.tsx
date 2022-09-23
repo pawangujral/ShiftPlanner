@@ -16,6 +16,8 @@ import type { IPlanner } from '../../Utils';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import JSONPretty from 'react-json-pretty';
+import type { TFilterOptions, TFilterState } from './../../Utils';
+import FilterBar from './../FilterBar';
 
 interface IProps {
   data: IPlanner;
@@ -24,9 +26,10 @@ interface IProps {
   disabled: boolean;
   handleToggleZoom: (type: 'increase' | 'decrease') => void;
   handleToggleSideBar: () => void;
-  handleToggleFilter: () => void;
   handlePrevDateChange?: (event: React.MouseEvent<HTMLElement>) => void;
   handleNextDateChange?: (event: React.MouseEvent<HTMLElement>) => void;
+  handleFilterValue: (values: TFilterState) => void;
+  filterOptions: TFilterOptions;
 }
 
 const JSONViewerTheme = {
@@ -44,10 +47,11 @@ const ActionsBar = ({
   zoom,
   unit,
   handleToggleSideBar,
-  handleToggleFilter,
   handleToggleZoom,
   handlePrevDateChange,
   handleNextDateChange,
+  handleFilterValue,
+  filterOptions,
 }: IProps): JSX.Element => {
   const [isOpen, setOpen] = React.useState<boolean>(false);
   const previewData = data.metaData?.rawData
@@ -77,18 +81,11 @@ const ActionsBar = ({
               </span>
             </Tooltip>
 
-            <Tooltip title="Toggle filters" placement="top" arrow>
-              <span>
-                <IconButton
-                  size="small"
-                  color="inherit"
-                  onClick={handleToggleFilter}
-                  disabled={disabled}
-                >
-                  <FilterAltIcon />
-                </IconButton>
-              </span>
-            </Tooltip>
+            <FilterBar
+              handleFilterValue={handleFilterValue}
+              filterOptions={filterOptions}
+              disabled={disabled}
+            />
           </Stack>
         </Grid>
         <Grid item xs={4}>
