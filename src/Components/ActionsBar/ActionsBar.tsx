@@ -6,7 +6,6 @@ import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Grid';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import DateGroup from '../DateGroup';
 import { IZoom } from '../../Utils';
 import MenuIcon from '@mui/icons-material/Menu';
