@@ -29,7 +29,6 @@ const FilterBar = ({
   handleFilterValue,
   disabled,
 }: IProps): JSX.Element => {
-  const [toggleFilter, setToggleFilter] = React.useState<boolean>(true);
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null
   );
