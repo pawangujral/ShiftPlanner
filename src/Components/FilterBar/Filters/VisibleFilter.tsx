@@ -2,7 +2,7 @@ import * as React from 'react';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import FormLabel from '@mui/material/FormLabel';
+import Typography from '@mui/material/Typography';
 import type { TFilterState, TFilter } from './../../../Utils';
 import { EFilterKey } from './../../../Utils';
 
@@ -29,7 +29,7 @@ const VisibleFilter = ({
 
   return (
     <FormGroup>
-      <FormLabel id="sort-by">Filter by:</FormLabel>
+      <Typography variant="caption">Filter by:</Typography>
       {filterByOptions.map(({ text, value }) => {
         return (
           <FormControlLabel

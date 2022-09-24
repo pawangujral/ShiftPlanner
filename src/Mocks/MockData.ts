@@ -98,3 +98,19 @@ export function mockServer() {
     shifts: mockShit(),
   };
 }
+
+export const dummyFilterOptions = {
+  sortByOptions: [
+    { text: 'Name', value: 'name' },
+    { text: 'Start date', value: 'startDate' },
+  ],
+  filterByOptions: [
+    { text: 'all', value: 'all' },
+    { text: 'Publish', value: 'published' },
+    { text: 'Unpublished', value: 'unpublished' },
+  ],
+}
+
+export const handleFilterClick = (value: any) =>{
+  console.log(value)
+}

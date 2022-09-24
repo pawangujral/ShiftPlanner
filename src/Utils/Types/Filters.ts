@@ -16,6 +16,6 @@ export type TFilter = {
 };
 
 export type TFilterOptions = {
-  sortByOptions: TFilter[];
-  filterByOptions: TFilter[];
+  sortByOptions?: TFilter[];
+  filterByOptions?: TFilter[];
 };

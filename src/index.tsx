@@ -20,6 +20,8 @@ function ShiftPlanner({
   config,
   theme,
   dark = false,
+  filterOptions,
+  handleFilterClick,
 }: IProps): JSX.Element {
   if (!plan || _.isEmpty(plan)) {
     return <Mayday />;
@@ -35,6 +37,8 @@ function ShiftPlanner({
         handlePrevDateClick={handlePrevDateClick}
         handleNextDateClick={handleNextDateClick}
         config={config}
+        filterOptions={filterOptions}
+        handleFilterClick={handleFilterClick}
       />
     </ThemeProvider>
   );

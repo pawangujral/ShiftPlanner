@@ -20,13 +20,13 @@ import Button from '@mui/material/Button';
 
 export interface IProps {
   filterOptions: TFilterOptions;
-  handleFilterValue: (values: TFilterState) => void;
+  handleFilterChange?: (values: TFilterState) => void;
   disabled: boolean;
 }
 
 const FilterBar = ({
   filterOptions,
-  handleFilterValue,
+  handleFilterChange,
   disabled,
 }: IProps): JSX.Element => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
@@ -53,7 +53,7 @@ const FilterBar = ({
   };
 
   React.useEffect(() => {
-    handleFilterValue(filterState);
+    handleFilterChange && handleFilterChange(filterState);
   }, [filterState]);
 
   const handleClose = () => {
@@ -101,17 +101,23 @@ const FilterBar = ({
               value={filterState[EFilterKey.SEARCHBY]}
               handleFilterValue={handleFilterValueCombination}
             />
-            <SortFilter
-              value={filterState[EFilterKey.SORTBY]}
-              handleFilterValue={handleFilterValueCombination}
-              sortOptions={filterOptions.sortByOptions}
-            />
-            <Divider component="div" sx={{ width: '100%' }} />
-            <VisibleFilter
-              VisibilityOptions={filterState[EFilterKey.FILTERBY]}
-              handleFilterState={setFilterState}
-              filterByOptions={filterOptions.filterByOptions}
-            />
+            {filterOptions.sortByOptions && (
+              <SortFilter
+                value={filterState[EFilterKey.SORTBY]}
+                handleFilterValue={handleFilterValueCombination}
+                sortOptions={filterOptions.sortByOptions}
+              />
+            )}
+            {filterOptions.filterByOptions && (
+              <React.Fragment>
+                <Divider component="div" sx={{ width: '100%' }} />
+                <VisibleFilter
+                  VisibilityOptions={filterState[EFilterKey.FILTERBY]}
+                  handleFilterState={setFilterState}
+                  filterByOptions={filterOptions.filterByOptions}
+                />
+              </React.Fragment>
+            )}
           </Stack>
 
           <Stack

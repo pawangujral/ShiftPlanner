@@ -4,6 +4,7 @@ import type {IMetaData} from "./Meta";
 import type {IShift} from "./Shift";
 import type {IPlanActions} from "./Action";
 import type {ThemeOptions} from '@mui/material/styles';
+import type {TFilterOptions, TFilterState} from "./Filters";
 
 export interface IPlanner extends IBase {
   metaData: IMetaData;
@@ -20,6 +21,8 @@ export interface IShiftPlannerProps {
   config?: IConfig;
   theme?: ThemeOptions;
   dark?: boolean;
+  filterOptions?: TFilterOptions;
+  handleFilterClick?: (value: TFilterState) => void;
 }
 
 

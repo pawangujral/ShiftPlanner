@@ -3,10 +3,10 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
 
 import type { TFilterString, TFilter } from './../../../Utils';
 import { EFilterKey } from './../../../Utils';
+import Typography from '@mui/material/Typography';
 
 export interface IProps {
   value: string;
@@ -31,7 +31,7 @@ const SortFilter = ({
 
   return (
     <FormControl fullWidth size="small">
-      <FormLabel id="sort-by">Sort by:</FormLabel>
+      <Typography variant="caption">Sort by:</Typography>
       <RadioGroup
         aria-labelledby="sort-by"
         name="sort-by"

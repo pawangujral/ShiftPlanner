@@ -26,6 +26,8 @@ const Planner = ({
   handlePrevDateClick,
   handleNextDateClick,
   config,
+  filterOptions,
+  handleFilterClick,
 }: IProps): JSX.Element => {
   const containerRef = React.useRef(null);
   const [settings, setSettings] = React.useState<IDefaultState>(DEFAULT_STATE);
@@ -73,97 +75,58 @@ const Planner = ({
     setToggleAside(!toggleAside);
   };
 
-  const handleFilterValue = (values: TFilterState) => {
-    console.log(values);
-  };
-
-  if (!plan.shifts || _.isEmpty(plan.shifts)) {
-    return (
-      <Wrapper>
-        <ActionsBar
-          unit={unit}
-          data={plan}
-          disabled={true}
-          zoom={settings.zoom}
-          handleToggleZoom={handleToggleZoom}
-          handleToggleSideBar={handleToggleSideBar}
-          filterOptions={{
-            sortByOptions: [
-              { text: 'Name', value: 'name' },
-              { text: 'Start date', value: 'startDate' },
-            ],
-            filterByOptions: [
-              { text: 'all', value: 'all' },
-              { text: 'Publish', value: 'published' },
-              { text: 'Unpublished', value: 'unpublished' },
-            ],
-          }}
-          handleFilterValue={handleFilterValue}
-        />
-        <Mayday message="Nothing scheduled for this date" />
-      </Wrapper>
-    );
-  }
-
   return (
     <Wrapper ref={containerRef}>
       <ActionsBar
         unit={unit}
         data={plan}
-        disabled={false}
+        disabled={!plan.shifts || _.isEmpty(plan.shifts)}
         zoom={settings.zoom}
         handleToggleZoom={handleToggleZoom}
         handleToggleSideBar={handleToggleSideBar}
         handlePrevDateChange={handlePrevDateClick}
         handleNextDateChange={handleNextDateClick}
-        filterOptions={{
-          sortByOptions: [
-            { text: 'Name', value: 'name' },
-            { text: 'Start date', value: 'startDate' },
-          ],
-          filterByOptions: [
-            { text: 'all', value: 'all' },
-            { text: 'Publish', value: 'published' },
-            { text: 'Unpublished', value: 'unpublished' },
-          ],
-        }}
-        handleFilterValue={handleFilterValue}
+        filterOptions={filterOptions}
+        handleFilterChange={handleFilterClick}
       />
 
-      <Container>
-        <Slide
-          direction="right"
-          in={toggleAside}
-          mountOnEnter
-          unmountOnExit
-          container={containerRef.current}
-        >
-          <SideBar>
-            {plan.shifts.map((item) => (
-              <ShiftInfo
-                data={item}
-                key={item.id}
-                size={settings.gridRowSize.max}
-                actions={actions}
-                handleAssigneeClick={handleAssigneeClick}
-              />
-            ))}
-          </SideBar>
-        </Slide>
+      {!(!plan.shifts || _.isEmpty(plan.shifts)) ? (
+        <Container>
+          <Slide
+            direction="right"
+            in={toggleAside}
+            mountOnEnter
+            unmountOnExit
+            container={containerRef.current}
+          >
+            <SideBar>
+              {plan.shifts.map((item) => (
+                <ShiftInfo
+                  data={item}
+                  key={item.id}
+                  size={settings.gridRowSize.max}
+                  actions={actions}
+                  handleAssigneeClick={handleAssigneeClick}
+                />
+              ))}
+            </SideBar>
+          </Slide>
+          <Main ref={elRef}>
+            <Indicator unit={unit} />
 
-        <Main ref={elRef}>
-          <Indicator unit={unit} />
-
-          <Shift
-            data={plan.shifts}
-            unit={unit}
-            state={settings}
-            gridSize={settings.gridRowSize.max}
-            actions={actions}
-            handleAssigneeClick={handleAssigneeClick}
-          />
-        </Main>
-      </Container>
+            <Shift
+              data={plan.shifts}
+              unit={unit}
+              state={settings}
+              gridSize={settings.gridRowSize.max}
+              actions={actions}
+              handleAssigneeClick={handleAssigneeClick}
+            />
+          </Main>
+        </Container>
+      ) : (
+        <Mayday message="Nothing scheduled for this date" />
+      )}
     </Wrapper>
   );
 };

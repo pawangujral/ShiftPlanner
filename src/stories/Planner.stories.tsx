@@ -9,6 +9,8 @@ import {
   mockActions,
   handleUserClick,
   handleDateChange,
+  dummyFilterOptions,
+  handleFilterClick,
 } from '../Mocks/MockData';
 
 export default {
@@ -27,6 +29,8 @@ export default {
         'handleNextDateClick',
         'config',
         'theme',
+        'filterOptions',
+        'handleFilterClick',
       ],
     },
   },
@@ -43,6 +47,8 @@ export const NoData = Template.bind({});
 
 Default.args = {
   plan: mockServer(),
+  filterOptions: dummyFilterOptions,
+  handleFilterClick: handleFilterClick,
 };
 
 WithActions.args = {
