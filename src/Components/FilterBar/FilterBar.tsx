@@ -19,26 +19,26 @@ import Popover from '@mui/material/Popover';
 import Button from '@mui/material/Button';
 
 export interface IProps {
-  filterOptions?: TFilterOptions;
+  filterByOptions?: TFilterOptions;
   handleFilterValue?: (values: TFilterState) => void;
   disabled: boolean;
 }
 
 const FilterBar = ({
-  filterOptions,
-  handleFilterChange,
+  filterByOptions,
+  handleFilterValue,
   disabled,
 }: IProps): JSX.Element => {
   const FIlTER_DEFAULT_VALUE = {
     [EFilterKey.SEARCHBY]: '',
   };
 
-  if (filterOptions?.sortByOptions) {
+  if (filterByOptions?.sortByOptions) {
     FIlTER_DEFAULT_VALUE[EFilterKey.SORTBY] = '';
   }
-  if (filterOptions?.filterByOptions) {
+  if (filterByOptions?.filterByOptions) {
     FIlTER_DEFAULT_VALUE[EFilterKey.FILTERBY] =
-      filterOptions?.filterByOptions.reduce(
+      filterByOptions?.filterByOptions.reduce(
         (previousValue, currentValue) => ({
           ...previousValue,
           [currentValue.value]: true,
@@ -114,20 +114,20 @@ const FilterBar = ({
               value={filterState[EFilterKey.SEARCHBY]}
               handleFilterValue={handleFilterValueCombination}
             />
-            {filterOptions?.sortByOptions && (
+            {filterByOptions?.sortByOptions && (
               <SortFilter
                 value={filterState[EFilterKey.SORTBY]}
                 handleFilterValue={handleFilterValueCombination}
-                sortOptions={filterOptions.sortByOptions}
+                sortOptions={filterByOptions.sortByOptions}
               />
             )}
-            {filterOptions?.filterByOptions && (
+            {filterByOptions?.filterByOptions && (
               <>
                 <Divider component="div" sx={{ width: '100%' }} />
                 <VisibleFilter
                   VisibilityOptions={filterState[EFilterKey.FILTERBY]}
                   handleFilterState={setFilterState}
-                  filterByOptions={filterOptions.filterByOptions}
+                  filterByOptions={filterByOptions.filterByOptions}
                 />
               </>
             )}

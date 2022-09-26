@@ -28,7 +28,7 @@ interface IProps {
   handlePrevDateChange?: (event: React.MouseEvent<HTMLElement>) => void;
   handleNextDateChange?: (event: React.MouseEvent<HTMLElement>) => void;
   handleFilterValue?: (values: TFilterState) => void;
-  filterOptions?: TFilterOptions;
+  filterByOptions?: TFilterOptions;
 }
 
 const JSONViewerTheme = {
@@ -49,8 +49,8 @@ const ActionsBar = ({
   handleToggleZoom,
   handlePrevDateChange,
   handleNextDateChange,
-  handleFilterChange,
-  filterOptions,
+  handleFilterValue,
+  filterByOptions,
 }: IProps): JSX.Element => {
   const [isOpen, setOpen] = React.useState<boolean>(false);
   const previewData = data.metaData?.rawData
@@ -80,10 +80,10 @@ const ActionsBar = ({
               </span>
             </Tooltip>
 
-            {filterOptions && (
+            {filterByOptions && (
               <FilterBar
                 handleFilterValue={handleFilterValue}
-                filterOptions={filterOptions}
+                filterByOptions={filterByOptions}
                 disabled={disabled}
               />
             )}

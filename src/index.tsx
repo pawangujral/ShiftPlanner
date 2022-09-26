@@ -20,8 +20,8 @@ function ShiftPlanner({
   config,
   theme,
   dark = false,
-  filterOptions,
-  handleFilterClick,
+  filterByOptions,
+  handleFilterValue,
 }: IProps): JSX.Element {
   if (!plan || _.isEmpty(plan)) {
     return <Mayday />;

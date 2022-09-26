@@ -22,8 +22,8 @@ const Planner = ({
   handlePrevDateClick,
   handleNextDateClick,
   config,
-  filterOptions,
-  handleFilterClick,
+  filterByOptions,
+  handleFilterValue,
 }: IProps): JSX.Element => {
   const containerRef = React.useRef(null);
   const [settings, setSettings] = React.useState<IDefaultState>(DEFAULT_STATE);
@@ -82,7 +82,7 @@ const Planner = ({
         handleToggleSideBar={handleToggleSideBar}
         handlePrevDateChange={handlePrevDateClick}
         handleNextDateChange={handleNextDateClick}
-        filterOptions={filterByOptions}
+        filterByOptions={filterByOptions}
         handleFilterValue={handleFilterValue}
       />
 
