@@ -47,7 +47,12 @@ const Group = ({
         left={CALCULATE_BLOCK_POSITION(tasks[0].startTime, unit)}
         key={id}
       >
-        <GroupContainer tasks={tasks} name={name} duration={duration} />
+        <GroupContainer
+          tasks={tasks}
+          name={name}
+          duration={duration}
+          actions={actions}
+        />
 
         {!_.isEmpty(tasks) &&
           tasks.map((task: ITask) => (

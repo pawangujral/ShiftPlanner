@@ -29,21 +29,30 @@ const FilterBar = ({
   handleFilterValue,
   disabled,
 }: IProps): JSX.Element => {
+  const FIlTER_DEFAULT_VALUE = {
+    [EFilterKey.SEARCHBY]: '',
+  };
+
+  if (filterOptions.sortByOptions) {
+    FIlTER_DEFAULT_VALUE[EFilterKey.SORTBY] = '';
+  }
+  if (filterOptions.filterByOptions) {
+    FIlTER_DEFAULT_VALUE[EFilterKey.FILTERBY] =
+      filterOptions.filterByOptions.reduce(
+        (previousValue, currentValue) => ({
+          ...previousValue,
+          [currentValue.value]: true,
+        }),
+        {}
+      );
+  }
+
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null
   );
   const open = Boolean(anchorEl);
-  const [filterState, setFilterState] = React.useState({
-    [EFilterKey.SEARCHBY]: '',
-    [EFilterKey.SORTBY]: '',
-    [EFilterKey.FILTERBY]: filterOptions.filterByOptions.reduce(
-      (previousValue, currentValue) => ({
-        ...previousValue,
-        [currentValue.value]: true,
-      }),
-      {}
-    ),
-  });
+
+  const [filterState, setFilterState] = React.useState(FIlTER_DEFAULT_VALUE);
 
   const handleFilterValueCombination = (
     key: TFilterString,
@@ -52,9 +61,13 @@ const FilterBar = ({
     setFilterState({ ...filterState, [key]: value });
   };
 
-  React.useEffect(() => {
+  const handleFilterSubmit = () => {
     handleFilterValue(filterState);
-  }, [filterState]);
+  };
+
+  const handleFilterReset = () => {
+    setFilterState(FIlTER_DEFAULT_VALUE);
+  };
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -101,17 +114,23 @@ const FilterBar = ({
               value={filterState[EFilterKey.SEARCHBY]}
               handleFilterValue={handleFilterValueCombination}
             />
-            <SortFilter
-              value={filterState[EFilterKey.SORTBY]}
-              handleFilterValue={handleFilterValueCombination}
-              sortOptions={filterOptions.sortByOptions}
-            />
-            <Divider component="div" sx={{ width: '100%' }} />
-            <VisibleFilter
-              VisibilityOptions={filterState[EFilterKey.FILTERBY]}
-              handleFilterState={setFilterState}
-              filterByOptions={filterOptions.filterByOptions}
-            />
+            {filterOptions.sortByOptions && (
+              <SortFilter
+                value={filterState[EFilterKey.SORTBY]}
+                handleFilterValue={handleFilterValueCombination}
+                sortOptions={filterOptions.sortByOptions}
+              />
+            )}
+            {filterOptions.filterByOptions && (
+              <>
+                <Divider component="div" sx={{ width: '100%' }} />
+                <VisibleFilter
+                  VisibilityOptions={filterState[EFilterKey.FILTERBY]}
+                  handleFilterState={setFilterState}
+                  filterByOptions={filterOptions.filterByOptions}
+                />
+              </>
+            )}
           </Stack>
 
           <Stack
@@ -121,8 +140,12 @@ const FilterBar = ({
             spacing={2}
             mt={2}
           >
-            <Button variant="outlined">Apply</Button>
-            <Button variant="text">Clear</Button>
+            <Button variant="outlined" onClick={handleFilterSubmit}>
+              Apply
+            </Button>
+            <Button variant="text" onClick={handleFilterReset}>
+              Clear
+            </Button>
           </Stack>
         </Container>
       </Popover>

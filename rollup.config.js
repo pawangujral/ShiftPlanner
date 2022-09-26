@@ -9,11 +9,13 @@ export default {
   input: 'src/index.tsx',
   output: [
     {
-      file: pkg.main,
+      entry: pkg.main,
+      dir: './dist',
       format: 'cjs',
       exports: 'named',
-      sourcemap: true,
+      sourcemap: false,
       strict: false,
+      preserveModules: true,
     },
   ],
   plugins: [sass({ insert: true }), typescript(), image(), babel({ babelHelpers: 'bundled' })],

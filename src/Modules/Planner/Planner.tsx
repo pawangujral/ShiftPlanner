@@ -25,6 +25,8 @@ const Planner = ({
   handleAssigneeClick,
   handlePrevDateClick,
   handleNextDateClick,
+  handleFilterValue,
+  filterByOptions,
   config,
 }: IProps): JSX.Element => {
   const containerRef = React.useRef(null);
@@ -73,37 +75,33 @@ const Planner = ({
     setToggleAside(!toggleAside);
   };
 
-  const handleFilterValue = (values: TFilterState) => {
-    console.log(values);
-  };
-
-  if (!plan.shifts || _.isEmpty(plan.shifts)) {
-    return (
-      <Wrapper>
-        <ActionsBar
-          unit={unit}
-          data={plan}
-          disabled={true}
-          zoom={settings.zoom}
-          handleToggleZoom={handleToggleZoom}
-          handleToggleSideBar={handleToggleSideBar}
-          filterOptions={{
-            sortByOptions: [
-              { text: 'Name', value: 'name' },
-              { text: 'Start date', value: 'startDate' },
-            ],
-            filterByOptions: [
-              { text: 'all', value: 'all' },
-              { text: 'Publish', value: 'published' },
-              { text: 'Unpublished', value: 'unpublished' },
-            ],
-          }}
-          handleFilterValue={handleFilterValue}
-        />
-        <Mayday message="Nothing scheduled for this date" />
-      </Wrapper>
-    );
-  }
+  // if (!plan.shifts || _.isEmpty(plan.shifts)) {
+  //   return (
+  //     <Wrapper>
+  //       <ActionsBar
+  //         unit={unit}
+  //         data={plan}
+  //         disabled={true}
+  //         zoom={settings.zoom}
+  //         handleToggleZoom={handleToggleZoom}
+  //         handleToggleSideBar={handleToggleSideBar}
+  //         filterOptions={{
+  //           sortByOptions: [
+  //             { text: 'Name', value: 'name' },
+  //             { text: 'Start date', value: 'startDate' },
+  //           ],
+  //           filterByOptions: [
+  //             { text: 'all', value: 'all' },
+  //             { text: 'Publish', value: 'published' },
+  //             { text: 'Unpublished', value: 'unpublished' },
+  //           ],
+  //         }}
+  //         handleFilterValue={handleFilterValue}
+  //       />
+  //       <Mayday message="Nothing scheduled for this date" />
+  //     </Wrapper>
+  //   );
+  // }
 
   return (
     <Wrapper ref={containerRef}>
@@ -116,17 +114,7 @@ const Planner = ({
         handleToggleSideBar={handleToggleSideBar}
         handlePrevDateChange={handlePrevDateClick}
         handleNextDateChange={handleNextDateClick}
-        filterOptions={{
-          sortByOptions: [
-            { text: 'Name', value: 'name' },
-            { text: 'Start date', value: 'startDate' },
-          ],
-          filterByOptions: [
-            { text: 'all', value: 'all' },
-            { text: 'Publish', value: 'published' },
-            { text: 'Unpublished', value: 'unpublished' },
-          ],
-        }}
+        filterOptions={filterByOptions}
         handleFilterValue={handleFilterValue}
       />
 

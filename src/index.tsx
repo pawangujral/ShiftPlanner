@@ -17,6 +17,8 @@ function ShiftPlanner({
   handleAssigneeClick,
   handlePrevDateClick,
   handleNextDateClick,
+  handleFilterValue,
+  filterByOptions,
   config,
   theme,
   dark = false,
@@ -31,10 +33,12 @@ function ShiftPlanner({
       <Planner
         plan={plan}
         actions={actions}
+        config={config}
         handleAssigneeClick={handleAssigneeClick}
         handlePrevDateClick={handlePrevDateClick}
         handleNextDateClick={handleNextDateClick}
-        config={config}
+        handleFilterValue={handleFilterValue}
+        filterByOptions={filterByOptions}
       />
     </ThemeProvider>
   );
