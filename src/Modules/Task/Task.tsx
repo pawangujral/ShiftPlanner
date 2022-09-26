@@ -71,7 +71,7 @@ function Task({
             justifyContent="space-between"
             alignItems="center"
           >
-            {!_.isEmpty(assignee) && (
+            {!_.isEmpty(assignee) && CALCULATE_WIDTH(duration, unit) > 100 && (
               <Users
                 data={assignee}
                 handleAssigneeClick={handleAssigneeClick}

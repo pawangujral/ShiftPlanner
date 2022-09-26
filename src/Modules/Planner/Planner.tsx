@@ -95,7 +95,7 @@ const Planner = ({
             unmountOnExit
             container={containerRef.current}
           >
-            <SideBar>
+            <SideBar role="aside">
               {plan.shifts.map((item) => (
                 <ShiftInfo
                   data={item}
@@ -108,7 +108,7 @@ const Planner = ({
             </SideBar>
           </Slide>
 
-          <Main ref={elRef}>
+          <Main ref={elRef} role="main">
             <Indicator unit={unit} />
 
             <Shift

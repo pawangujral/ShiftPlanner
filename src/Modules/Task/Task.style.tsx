@@ -12,11 +12,13 @@ export const Container = styled(Paper, {
   width: width,
   overflow: 'hidden',
   transition: 'all .2s linear',
-  padding: theme.spacing(1),
+  padding: width < 100 ? theme.spacing(1, 0.5) : theme.spacing(1),
   position: 'relative',
   display: 'inline-block',
   backgroundColor:
     theme.palette.mode === 'dark' ? theme.palette.background.paper : color,
+  height: 48,
+  border: `1px solid ${theme.palette.background.default}`,
 }));
 
 export const Block = styled('div')({
@@ -38,6 +40,7 @@ export const Title = styled('h6')<{ theme?: { status: { danger: string } } }>(
     textOverflow: 'ellipsis',
     overflow: 'hidden',
     color: theme.palette.text.primary,
+    fontSize: '0.67em',
   })
 );
 

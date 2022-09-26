@@ -19,7 +19,7 @@ export const Container = styled('div')(({ theme }) => ({
   paddingTop: theme.spacing(2),
 }));
 
-export const Main = styled('main')(({ theme }) => ({
+export const Main = styled('div')(({ theme }) => ({
   overflow: 'hidden',
   overflowX: 'scroll',
   padding: theme.spacing(2, 0, 0, 0),
@@ -27,6 +27,6 @@ export const Main = styled('main')(({ theme }) => ({
   position: 'relative',
 }));
 
-export const SideBar = styled('aside')({
+export const SideBar = styled('div')({
   maxWidth: 250,
 });
