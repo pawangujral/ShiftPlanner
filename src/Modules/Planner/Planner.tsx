@@ -4,11 +4,7 @@ import { Container, Main, SideBar, Wrapper } from './Planner.style';
 import _ from 'lodash';
 import moment from 'moment';
 import { CALCULATE_BLOCK_POSITION } from '../../Utils';
-import type {
-  IShiftPlannerProps,
-  IDefaultState,
-  TFilterState,
-} from '../../Utils';
+import type { IShiftPlannerProps, IDefaultState } from '../../Utils';
 import DEFAULT_STATE from './../../Config';
 import ShiftInfo from '../../Components/Aside/ShiftInfo';
 import ActionsBar from '../../Components/ActionsBar';
@@ -74,34 +70,6 @@ const Planner = ({
   const handleToggleSideBar = () => {
     setToggleAside(!toggleAside);
   };
-
-  // if (!plan.shifts || _.isEmpty(plan.shifts)) {
-  //   return (
-  //     <Wrapper>
-  //       <ActionsBar
-  //         unit={unit}
-  //         data={plan}
-  //         disabled={true}
-  //         zoom={settings.zoom}
-  //         handleToggleZoom={handleToggleZoom}
-  //         handleToggleSideBar={handleToggleSideBar}
-  //         filterOptions={{
-  //           sortByOptions: [
-  //             { text: 'Name', value: 'name' },
-  //             { text: 'Start date', value: 'startDate' },
-  //           ],
-  //           filterByOptions: [
-  //             { text: 'all', value: 'all' },
-  //             { text: 'Publish', value: 'published' },
-  //             { text: 'Unpublished', value: 'unpublished' },
-  //           ],
-  //         }}
-  //         handleFilterValue={handleFilterValue}
-  //       />
-  //       <Mayday message="Nothing scheduled for this date" />
-  //     </Wrapper>
-  //   );
-  // }
 
   return (
     <Wrapper ref={containerRef}>

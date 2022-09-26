@@ -3,13 +3,13 @@ import typescript from 'rollup-plugin-typescript2';
 import image from '@rollup/plugin-image';
 import babel from '@rollup/plugin-babel';
 
-import pkg from './package.json';
+// import pkg from './package.json';
 
 export default {
   input: 'src/index.tsx',
   output: [
     {
-      entry: pkg.main,
+      // entry: pkg.main,
       dir: './dist',
       format: 'cjs',
       exports: 'named',
