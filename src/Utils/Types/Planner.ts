@@ -11,32 +11,15 @@ export interface IPlanner extends IBase {
   shifts: IShift[];
 }
 
-
 export interface IShiftPlannerProps {
   plan: IPlanner;
   actions?: IPlanActions;
   handlePrevDateClick?: (event: React.MouseEvent<HTMLElement>) => void;
   handleNextDateClick?: (event: React.MouseEvent<HTMLElement>) => void;
-  handleAssigneeClick?: (event:  React.MouseEvent<HTMLElement>) => void;
+  handleAssigneeClick?: (event: React.MouseEvent<HTMLElement>) => void;
   config?: IConfig;
   theme?: ThemeOptions;
   dark?: boolean;
-  filterOptions?: TFilterOptions;
-  handleFilterClick?: (value: TFilterState) => void;
+  filterByOptions?: TFilterOptions;
+  handleFilterValue?: (values: TFilterState) => void;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

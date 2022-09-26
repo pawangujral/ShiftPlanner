@@ -27,7 +27,7 @@ interface IProps {
   handleToggleSideBar: () => void;
   handlePrevDateChange?: (event: React.MouseEvent<HTMLElement>) => void;
   handleNextDateChange?: (event: React.MouseEvent<HTMLElement>) => void;
-  handleFilterChange?: (values: TFilterState) => void;
+  handleFilterValue?: (values: TFilterState) => void;
   filterOptions?: TFilterOptions;
 }
 
@@ -82,7 +82,7 @@ const ActionsBar = ({
 
             {filterOptions && (
               <FilterBar
-                handleFilterChange={handleFilterChange}
+                handleFilterValue={handleFilterValue}
                 filterOptions={filterOptions}
                 disabled={disabled}
               />
@@ -146,7 +146,7 @@ const ActionsBar = ({
       <Dialog open={isOpen} onClose={() => setOpen(false)} maxWidth="lg">
         <DialogTitle>Raw Data</DialogTitle>
         <DialogContent dividers>
-          <JSONPretty data={previewData} theme={JSONViewerTheme}></JSONPretty>
+          <JSONPretty data={previewData} theme={JSONViewerTheme} />
         </DialogContent>
       </Dialog>
     </React.Fragment>

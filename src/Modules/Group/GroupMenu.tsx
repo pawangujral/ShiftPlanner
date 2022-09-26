@@ -3,21 +3,21 @@ import _ from 'lodash';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import type { IPlanActions } from '../../Utils';
 
 export interface IProps {
-  taskId: string;
+  blockId: string;
   actions?: IPlanActions;
   isActionEnabled: boolean;
 }
 
-const TaskMenu = ({
-  taskId,
+const GroupMenu = ({
+  blockId,
   actions,
   isActionEnabled,
 }: IProps): JSX.Element | null => {
-  if (!actions?.task) {
+  if (!actions?.block) {
     return null;
   }
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -36,18 +36,19 @@ const TaskMenu = ({
       <IconButton
         aria-label="Open actions"
         component="label"
-        aria-controls={openMenu ? taskId : undefined}
+        aria-controls={openMenu ? blockId : undefined}
         aria-haspopup="true"
         aria-expanded={openMenu ? 'true' : undefined}
         onClick={handleClick}
         size="small"
+        sx={{ padding: 0 }}
       >
-        <MoreVertIcon sx={{ fontSize: 17, color: '#2d3843' }} />
+        <MoreHorizIcon sx={{ fontSize: 17, color: '#2d3843' }} />
       </IconButton>
 
       <Menu
-        id={taskId}
-        aria-labelledby={taskId}
+        id={blockId}
+        aria-labelledby={blockId}
         anchorEl={anchorEl}
         open={
           openMenu && !!actions && !_.isEmpty(actions.task) && isActionEnabled
@@ -71,7 +72,7 @@ const TaskMenu = ({
                 handleClose();
               }}
               key={index}
-              data-id={taskId}
+              data-id={blockId}
               dense
             >
               {_.upperFirst(text)}
@@ -82,4 +83,4 @@ const TaskMenu = ({
   );
 };
 
-export default TaskMenu;
+export default GroupMenu;

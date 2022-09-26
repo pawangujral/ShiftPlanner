@@ -33,12 +33,12 @@ function ShiftPlanner({
       <Planner
         plan={plan}
         actions={actions}
+        config={config}
         handleAssigneeClick={handleAssigneeClick}
         handlePrevDateClick={handlePrevDateClick}
         handleNextDateClick={handleNextDateClick}
-        config={config}
-        filterOptions={filterOptions}
-        handleFilterClick={handleFilterClick}
+        handleFilterValue={handleFilterValue}
+        filterByOptions={filterByOptions}
       />
     </ThemeProvider>
   );

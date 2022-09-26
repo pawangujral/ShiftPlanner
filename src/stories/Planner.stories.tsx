@@ -9,8 +9,8 @@ import {
   mockActions,
   handleUserClick,
   handleDateChange,
-  dummyFilterOptions,
-  handleFilterClick,
+  mockFilters,
+  handleFilterValue,
 } from '../Mocks/MockData';
 
 export default {
@@ -47,8 +47,14 @@ export const NoData = Template.bind({});
 
 Default.args = {
   plan: mockServer(),
-  filterOptions: dummyFilterOptions,
-  handleFilterClick: handleFilterClick,
+  actions: {
+    shift: mockActions(),
+    task: mockActions(),
+    block: mockActions(),
+  },
+  handleAssigneeClick: handleUserClick,
+  filterByOptions: mockFilters(),
+  handleFilterValue: handleFilterValue,
 };
 
 WithActions.args = {
@@ -56,6 +62,7 @@ WithActions.args = {
   actions: {
     shift: mockActions(),
     task: mockActions(),
+    block: mockActions(),
   },
   handleAssigneeClick: handleUserClick,
 };

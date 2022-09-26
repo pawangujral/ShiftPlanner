@@ -1,4 +1,5 @@
 import * as React from 'react';
+import _ from 'lodash';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
@@ -42,7 +43,7 @@ const SortFilter = ({
           <FormControlLabel
             value={value}
             control={<Radio size="small" />}
-            label={text}
+            label={_.upperFirst(text)}
             key={text}
           />
         ))}

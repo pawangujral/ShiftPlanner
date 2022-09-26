@@ -4,11 +4,7 @@ import { Container, Main, SideBar, Wrapper } from './Planner.style';
 import _ from 'lodash';
 import moment from 'moment';
 import { CALCULATE_BLOCK_POSITION } from '../../Utils';
-import type {
-  IShiftPlannerProps,
-  IDefaultState,
-  TFilterState,
-} from '../../Utils';
+import type { IShiftPlannerProps, IDefaultState } from '../../Utils';
 import DEFAULT_STATE from './../../Config';
 import ShiftInfo from '../../Components/Aside/ShiftInfo';
 import ActionsBar from '../../Components/ActionsBar';
@@ -86,8 +82,8 @@ const Planner = ({
         handleToggleSideBar={handleToggleSideBar}
         handlePrevDateChange={handlePrevDateClick}
         handleNextDateChange={handleNextDateClick}
-        filterOptions={filterOptions}
-        handleFilterChange={handleFilterClick}
+        filterOptions={filterByOptions}
+        handleFilterValue={handleFilterValue}
       />
 
       {!(!plan.shifts || _.isEmpty(plan.shifts)) ? (
@@ -111,6 +107,7 @@ const Planner = ({
               ))}
             </SideBar>
           </Slide>
+
           <Main ref={elRef}>
             <Indicator unit={unit} />
 

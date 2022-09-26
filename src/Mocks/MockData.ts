@@ -7,12 +7,17 @@ export const handleDateChange = (_: React.MouseEvent<HTMLElement>) => {
   alert('Render data for date change');
 };
 
-export const handleActionClick = (_: React.MouseEvent<HTMLElement>) => {
-  alert('On Click test');
+export const handleActionClick = (event: React.MouseEvent<HTMLElement>) => {
+  const id = (event.target as HTMLButtonElement).dataset.id;
+  alert('On Click test' + id);
 };
 
 export const handleUserClick = (_: React.MouseEvent<HTMLElement>) => {
   alert('Go to user');
+};
+
+export const handleFilterValue = (value: any) => {
+  console.log(value);
 };
 
 export function mockActions() {
@@ -99,18 +104,15 @@ export function mockServer() {
   };
 }
 
-export const dummyFilterOptions = {
-  sortByOptions: [
-    { text: 'Name', value: 'name' },
-    { text: 'Start date', value: 'startDate' },
-  ],
-  filterByOptions: [
-    { text: 'all', value: 'all' },
-    { text: 'Publish', value: 'published' },
-    { text: 'Unpublished', value: 'unpublished' },
-  ],
-}
-
-export const handleFilterClick = (value: any) =>{
-  console.log(value)
+export function mockFilters() {
+  return {
+    sortByOptions: [...Array(randomNumber(1, 3))].map((_) => ({
+      text: faker.random.word(),
+      value: faker.random.word(),
+    })),
+    filterByOptions: [...Array(randomNumber(2, 4))].map((_) => ({
+      text: faker.random.word(),
+      value: faker.random.word(),
+    })),
+  };
 }

@@ -7,7 +7,7 @@ export enum EFilterKey {
 export type TFilterString = keyof typeof EFilterKey;
 
 export type TFilterState = {
-  [key: string]: string | { [key: string]: boolean };
+  SEARCHBY: string;
 };
 
 export type TFilter = {

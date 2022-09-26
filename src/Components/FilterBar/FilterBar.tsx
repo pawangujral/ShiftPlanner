@@ -19,8 +19,8 @@ import Popover from '@mui/material/Popover';
 import Button from '@mui/material/Button';
 
 export interface IProps {
-  filterOptions: TFilterOptions;
-  handleFilterChange?: (values: TFilterState) => void;
+  filterOptions?: TFilterOptions;
+  handleFilterValue?: (values: TFilterState) => void;
   disabled: boolean;
 }
 
@@ -29,21 +29,30 @@ const FilterBar = ({
   handleFilterChange,
   disabled,
 }: IProps): JSX.Element => {
+  const FIlTER_DEFAULT_VALUE = {
+    [EFilterKey.SEARCHBY]: '',
+  };
+
+  if (filterOptions?.sortByOptions) {
+    FIlTER_DEFAULT_VALUE[EFilterKey.SORTBY] = '';
+  }
+  if (filterOptions?.filterByOptions) {
+    FIlTER_DEFAULT_VALUE[EFilterKey.FILTERBY] =
+      filterOptions?.filterByOptions.reduce(
+        (previousValue, currentValue) => ({
+          ...previousValue,
+          [currentValue.value]: true,
+        }),
+        {}
+      );
+  }
+
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null
   );
   const open = Boolean(anchorEl);
-  const [filterState, setFilterState] = React.useState({
-    [EFilterKey.SEARCHBY]: '',
-    [EFilterKey.SORTBY]: '',
-    [EFilterKey.FILTERBY]: filterOptions.filterByOptions.reduce(
-      (previousValue, currentValue) => ({
-        ...previousValue,
-        [currentValue.value]: true,
-      }),
-      {}
-    ),
-  });
+
+  const [filterState, setFilterState] = React.useState(FIlTER_DEFAULT_VALUE);
 
   const handleFilterValueCombination = (
     key: TFilterString,
@@ -52,9 +61,13 @@ const FilterBar = ({
     setFilterState({ ...filterState, [key]: value });
   };
 
-  React.useEffect(() => {
-    handleFilterChange && handleFilterChange(filterState);
-  }, [filterState]);
+  const handleFilterSubmit = () => {
+    handleFilterValue && handleFilterValue(filterState);
+  };
+
+  const handleFilterReset = () => {
+    setFilterState(FIlTER_DEFAULT_VALUE);
+  };
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -101,22 +114,22 @@ const FilterBar = ({
               value={filterState[EFilterKey.SEARCHBY]}
               handleFilterValue={handleFilterValueCombination}
             />
-            {filterOptions.sortByOptions && (
+            {filterOptions?.sortByOptions && (
               <SortFilter
                 value={filterState[EFilterKey.SORTBY]}
                 handleFilterValue={handleFilterValueCombination}
                 sortOptions={filterOptions.sortByOptions}
               />
             )}
-            {filterOptions.filterByOptions && (
-              <React.Fragment>
+            {filterOptions?.filterByOptions && (
+              <>
                 <Divider component="div" sx={{ width: '100%' }} />
                 <VisibleFilter
                   VisibilityOptions={filterState[EFilterKey.FILTERBY]}
                   handleFilterState={setFilterState}
                   filterByOptions={filterOptions.filterByOptions}
                 />
-              </React.Fragment>
+              </>
             )}
           </Stack>
 
@@ -127,8 +140,12 @@ const FilterBar = ({
             spacing={2}
             mt={2}
           >
-            <Button variant="outlined">Apply</Button>
-            <Button variant="text">Clear</Button>
+            <Button variant="outlined" onClick={handleFilterSubmit}>
+              Apply
+            </Button>
+            <Button variant="text" onClick={handleFilterReset}>
+              Clear
+            </Button>
           </Stack>
         </Container>
       </Popover>
