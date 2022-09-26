@@ -16,9 +16,9 @@ export const handleUserClick = (_: React.MouseEvent<HTMLElement>) => {
   alert('Go to user');
 };
 
-export const handleFilterValue = (value: any ) {
+export const handleFilterValue = (value: any) => {
   console.log(value);
-}
+};
 
 export function mockActions() {
   return [...Array(randomNumber(0, 3))].map((_) => ({

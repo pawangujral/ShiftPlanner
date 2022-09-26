@@ -108,7 +108,7 @@ const Planner = ({
       <ActionsBar
         unit={unit}
         data={plan}
-        disabled={false}
+        disabled={!plan.shifts || _.isEmpty(plan.shifts)}
         zoom={settings.zoom}
         handleToggleZoom={handleToggleZoom}
         handleToggleSideBar={handleToggleSideBar}
@@ -118,40 +118,44 @@ const Planner = ({
         handleFilterValue={handleFilterValue}
       />
 
-      <Container>
-        <Slide
-          direction="right"
-          in={toggleAside}
-          mountOnEnter
-          unmountOnExit
-          container={containerRef.current}
-        >
-          <SideBar>
-            {plan.shifts.map((item) => (
-              <ShiftInfo
-                data={item}
-                key={item.id}
-                size={settings.gridRowSize.max}
-                actions={actions}
-                handleAssigneeClick={handleAssigneeClick}
-              />
-            ))}
-          </SideBar>
-        </Slide>
+      {!(!plan.shifts || _.isEmpty(plan.shifts)) ? (
+        <Container>
+          <Slide
+            direction="right"
+            in={toggleAside}
+            mountOnEnter
+            unmountOnExit
+            container={containerRef.current}
+          >
+            <SideBar>
+              {plan.shifts.map((item) => (
+                <ShiftInfo
+                  data={item}
+                  key={item.id}
+                  size={settings.gridRowSize.max}
+                  actions={actions}
+                  handleAssigneeClick={handleAssigneeClick}
+                />
+              ))}
+            </SideBar>
+          </Slide>
 
-        <Main ref={elRef}>
-          <Indicator unit={unit} />
+          <Main ref={elRef}>
+            <Indicator unit={unit} />
 
-          <Shift
-            data={plan.shifts}
-            unit={unit}
-            state={settings}
-            gridSize={settings.gridRowSize.max}
-            actions={actions}
-            handleAssigneeClick={handleAssigneeClick}
-          />
-        </Main>
-      </Container>
+            <Shift
+              data={plan.shifts}
+              unit={unit}
+              state={settings}
+              gridSize={settings.gridRowSize.max}
+              actions={actions}
+              handleAssigneeClick={handleAssigneeClick}
+            />
+          </Main>
+        </Container>
+      ) : (
+        <Mayday message="Nothing scheduled for this date" />
+      )}
     </Wrapper>
   );
 };

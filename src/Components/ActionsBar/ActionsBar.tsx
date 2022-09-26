@@ -27,8 +27,8 @@ interface IProps {
   handleToggleSideBar: () => void;
   handlePrevDateChange?: (event: React.MouseEvent<HTMLElement>) => void;
   handleNextDateChange?: (event: React.MouseEvent<HTMLElement>) => void;
-  handleFilterValue: (values: TFilterState) => void;
-  filterOptions: TFilterOptions;
+  handleFilterValue?: (values: TFilterState) => void;
+  filterOptions?: TFilterOptions;
 }
 
 const JSONViewerTheme = {
@@ -80,11 +80,13 @@ const ActionsBar = ({
               </span>
             </Tooltip>
 
-            <FilterBar
-              handleFilterValue={handleFilterValue}
-              filterOptions={filterOptions}
-              disabled={disabled}
-            />
+            {filterOptions && (
+              <FilterBar
+                handleFilterValue={handleFilterValue}
+                filterOptions={filterOptions}
+                disabled={disabled}
+              />
+            )}
           </Stack>
         </Grid>
         <Grid item xs={4}>
@@ -144,7 +146,7 @@ const ActionsBar = ({
       <Dialog open={isOpen} onClose={() => setOpen(false)} maxWidth="lg">
         <DialogTitle>Raw Data</DialogTitle>
         <DialogContent dividers>
-          <JSONPretty data={previewData} theme={JSONViewerTheme}></JSONPretty>
+          <JSONPretty data={previewData} theme={JSONViewerTheme} />
         </DialogContent>
       </Dialog>
     </React.Fragment>

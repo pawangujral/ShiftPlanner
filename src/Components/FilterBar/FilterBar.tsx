@@ -19,8 +19,8 @@ import Popover from '@mui/material/Popover';
 import Button from '@mui/material/Button';
 
 export interface IProps {
-  filterOptions: TFilterOptions;
-  handleFilterValue: (values: TFilterState) => void;
+  filterOptions?: TFilterOptions;
+  handleFilterValue?: (values: TFilterState) => void;
   disabled: boolean;
 }
 
@@ -33,12 +33,12 @@ const FilterBar = ({
     [EFilterKey.SEARCHBY]: '',
   };
 
-  if (filterOptions.sortByOptions) {
+  if (filterOptions?.sortByOptions) {
     FIlTER_DEFAULT_VALUE[EFilterKey.SORTBY] = '';
   }
-  if (filterOptions.filterByOptions) {
+  if (filterOptions?.filterByOptions) {
     FIlTER_DEFAULT_VALUE[EFilterKey.FILTERBY] =
-      filterOptions.filterByOptions.reduce(
+      filterOptions?.filterByOptions.reduce(
         (previousValue, currentValue) => ({
           ...previousValue,
           [currentValue.value]: true,
@@ -62,7 +62,7 @@ const FilterBar = ({
   };
 
   const handleFilterSubmit = () => {
-    handleFilterValue(filterState);
+    handleFilterValue && handleFilterValue(filterState);
   };
 
   const handleFilterReset = () => {
@@ -114,14 +114,14 @@ const FilterBar = ({
               value={filterState[EFilterKey.SEARCHBY]}
               handleFilterValue={handleFilterValueCombination}
             />
-            {filterOptions.sortByOptions && (
+            {filterOptions?.sortByOptions && (
               <SortFilter
                 value={filterState[EFilterKey.SORTBY]}
                 handleFilterValue={handleFilterValueCombination}
                 sortOptions={filterOptions.sortByOptions}
               />
             )}
-            {filterOptions.filterByOptions && (
+            {filterOptions?.filterByOptions && (
               <>
                 <Divider component="div" sx={{ width: '100%' }} />
                 <VisibleFilter
