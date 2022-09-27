@@ -11,7 +11,6 @@ import {
 import { Container } from './Group.style';
 import GroupContainer from './GroupContainer';
 import type { ITask, IGroup, IPlanActions } from '../../Utils';
-
 export interface IProps {
   data: IGroup;
   unit: number;

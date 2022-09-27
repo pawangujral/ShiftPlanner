@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Container, Main, SideBar, Wrapper } from './Planner.style';
 import _ from 'lodash';
 import moment from 'moment';
-import { CALCULATE_BLOCK_POSITION } from '../../Utils';
+import { CALCULATE_BLOCK_POSITION, CALCULATE_GRID_COUNT } from '../../Utils';
 import type { IShiftPlannerProps, IDefaultState } from '../../Utils';
 import DEFAULT_STATE from './../../Config';
 import ShiftInfo from '../../Components/Aside/ShiftInfo';
@@ -26,7 +26,10 @@ const Planner = ({
   handleFilterValue,
 }: IProps): JSX.Element => {
   const containerRef = React.useRef(null);
-  const [settings, setSettings] = React.useState<IDefaultState>(DEFAULT_STATE);
+  const [settings, setSettings] = React.useState<IDefaultState>({
+    ...DEFAULT_STATE,
+    gridColumnCount: DEFAULT_STATE.gridColumnCount + CALCULATE_GRID_COUNT(plan),
+  });
   const [toggleAside, setToggleAside] = React.useState<boolean>(true);
 
   const [unit, setUnit] = React.useState<number>(settings.zoom.default);

@@ -21,7 +21,7 @@ export const handleFilterValue = (value: any) => {
 };
 
 export function mockActions() {
-  return [...Array(randomNumber(0, 3))].map((_) => ({
+  return [...Array(randomNumber(3, 3))].map((_) => ({
     id: faker.datatype.uuid(),
     text: faker.random.word(),
     onClick: handleActionClick,

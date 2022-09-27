@@ -34,3 +34,16 @@ export function CALCULATE_DURATION(start:string, end: string) {
 export function randomNumber(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+export function CALCULATE_GRID_COUNT(collection: any) {
+  let GridCount = 0;
+  collection.shifts.forEach((shift: any) => {
+    const shiftDate =  moment(collection.metaData.currentDate).date();
+    const groupDate = moment(shift.endTime).date()
+    if(groupDate > shiftDate){
+      GridCount =  moment(shift.endTime).hours() + 1
+    };
+  })
+
+  return GridCount;
+}

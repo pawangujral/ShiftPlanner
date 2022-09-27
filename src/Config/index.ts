@@ -3,7 +3,7 @@ import { IDefaultState } from '../Utils';
 const DEFAULT_STATE: IDefaultState = {
   offset: 600,
   condensed: false,
-  gridColumnCount: 25, //! this should be dynamic
+  gridColumnCount: 24,
   gridRowSize: {
     max: 75,
     width: 60,

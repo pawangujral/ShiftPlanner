@@ -51,7 +51,7 @@ const GroupMenu = ({
         aria-labelledby={blockId}
         anchorEl={anchorEl}
         open={
-          openMenu && !!actions && !_.isEmpty(actions.task) && isActionEnabled
+          openMenu && !!actions && !_.isEmpty(actions.block) && isActionEnabled
         }
         onClose={handleClose}
         anchorOrigin={{
@@ -65,7 +65,7 @@ const GroupMenu = ({
       >
         {actions &&
           !_.isEmpty(actions) &&
-          actions.task.map(({ text, onClick: handleActionClick }, index) => (
+          actions.block.map(({ text, onClick: handleActionClick }, index) => (
             <MenuItem
               onClick={(event: React.MouseEvent<HTMLElement>) => {
                 handleActionClick(event);

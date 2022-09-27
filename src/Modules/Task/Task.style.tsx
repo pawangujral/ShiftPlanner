@@ -12,7 +12,12 @@ export const Container = styled(Paper, {
   width: width,
   overflow: 'hidden',
   transition: 'all .2s linear',
-  padding: width < 100 ? theme.spacing(1, 0.5) : theme.spacing(1),
+  padding:
+    width < 100
+      ? width < 8
+        ? theme.spacing(1, 0)
+        : theme.spacing(1, 0.5)
+      : theme.spacing(1),
   position: 'relative',
   display: 'inline-block',
   backgroundColor:

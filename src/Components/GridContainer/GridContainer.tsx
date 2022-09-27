@@ -19,7 +19,7 @@ const GridContainer = ({
   time,
 }: IProps): JSX.Element => {
   const renderTimeText = (index: number) => {
-    return moment({ hour: index }).format(
+    return moment({ hour: index > 24 ? index - 24 : index }).format(
       time.format === 24 ? 'HH:mm' : 'hh:mm A'
     );
   };

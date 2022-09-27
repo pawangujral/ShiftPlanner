@@ -18,7 +18,7 @@ const ShiftMenu = ({
   actions,
   isActionEnabled,
 }: IProps): JSX.Element | null => {
-  if (!actions) {
+  if (!actions?.shift) {
     return null;
   }
 

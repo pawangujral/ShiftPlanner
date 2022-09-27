@@ -27,18 +27,20 @@ const DateGroup = ({
       justifyContent="center"
       alignItems="center"
     >
-      <Tooltip title="Previous Shift" placement="top" arrow>
-        <span>
-          <IconButton
-            size="small"
-            color="info"
-            onClick={handlePrevDateChange}
-            disabled={!handlePrevDateChange}
-          >
-            <ArrowCircleLeftIcon />
-          </IconButton>
-        </span>
-      </Tooltip>
+      {handlePrevDateChange && (
+        <Tooltip title="Previous Shift" placement="top" arrow>
+          <span>
+            <IconButton
+              size="small"
+              color="info"
+              onClick={handlePrevDateChange}
+              disabled={!handlePrevDateChange}
+            >
+              <ArrowCircleLeftIcon />
+            </IconButton>
+          </span>
+        </Tooltip>
+      )}
       <Current>
         {moment(metaData?.currentDate).format('MMM Do, YYYY')}
         {metaData?.location && (
@@ -47,18 +49,20 @@ const DateGroup = ({
           </Location>
         )}
       </Current>
-      <Tooltip title="Next Shift" placement="top" arrow>
-        <span>
-          <IconButton
-            size="small"
-            color="info"
-            onClick={handleNextDateChange}
-            disabled={!handleNextDateChange}
-          >
-            <ArrowCircleRightIcon />
-          </IconButton>
-        </span>
-      </Tooltip>
+      {handleNextDateChange && (
+        <Tooltip title="Next Shift" placement="top" arrow>
+          <span>
+            <IconButton
+              size="small"
+              color="info"
+              onClick={handleNextDateChange}
+              disabled={!handleNextDateChange}
+            >
+              <ArrowCircleRightIcon />
+            </IconButton>
+          </span>
+        </Tooltip>
+      )}
     </Stack>
   );
 };

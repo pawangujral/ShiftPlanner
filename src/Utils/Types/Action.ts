@@ -4,7 +4,7 @@ export interface IAction {
 }
 
 export interface IPlanActions {
-  shift: IAction[];
-  task: IAction[];
-  block: IAction[];
+  shift?: IAction[];
+  task?: IAction[];
+  block?: IAction[];
 }

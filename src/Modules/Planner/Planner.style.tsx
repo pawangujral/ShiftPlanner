@@ -27,6 +27,7 @@ export const Main = styled('div')(({ theme }) => ({
   position: 'relative',
 }));
 
-export const SideBar = styled('div')({
+export const SideBar = styled('div')(({ theme }) => ({
   maxWidth: 250,
-});
+  margin: theme.spacing(2, 0, 0, 0),
+}));
